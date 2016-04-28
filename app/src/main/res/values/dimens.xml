@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <!--text Size-->
+    <dimen name="empresasize">40sp</dimen>
+    <dimen name="namesize">25sp</dimen>
+
+    <dimen name="detail_backdrop_height">256dp</dimen>
+
+    <dimen name="card_margin_leftright">16dp</dimen>
+    <dimen name="card_margin_topbottom">24dp</dimen>
+
+    <dimen name="margin">40dp</dimen>
+
+    <dimen name="list_item_avatar_size">150dp</dimen>
+    <dimen name="list_item_avatar_size_little">80dp</dimen>
+    <dimen name="list_item_avatar_size_team">100dp</dimen>
+
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="profile_vertical_margin">8dp</dimen>
+    <dimen name="size">32dp</dimen>
+    <dimen name="size1">36dp</dimen>
+
+    <dimen name="sizehome">110dp</dimen>
+
+    <dimen name="FAB">20dp</dimen>
+</resources>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="@string/inicio" />
+        <item
+            android:id="@+id/nav_university"
+            android:icon="@drawable/ic_computer"
+            android:title="@string/Universidad" />
+        <item
+            android:id="@+id/nav_perfil"
+            android:icon="@drawable/ic_login"
+            android:title="@string/perfil" />
+        <item
+            android:id="@+id/nav_calendar"
+            android:icon="@drawable/ic_calendar"
+            android:title="@string/eventos" />
+        <item
+            android:id="@+id/nav_horario"
+            android:icon="@drawable/ic_schedule"
+            android:title="@string/horario" />
+        <item
+            android:id="@+id/nav_grupos"
+            android:icon="@drawable/ic_groups"
+            android:title="@string/grupos" />
+        <item
+            android:id="@+id/nav_mapas"
+            android:icon="@drawable/ic_maps"
+            android:title="@string/mapa" />
+        <item
+            android:id="@+id/nav_galeria"
+            android:icon="@drawable/ic_gallery"
+            android:title="@string/galeria" />
+        <item
+            android:id="@+id/nav_sitioweb"
+            android:icon="@drawable/ic_web"
+            android:title="@string/Sitio_Web" />
+    </group>
+
+    <item
+        android:title="@string/Herramientas">
+        <menu>
+            <item
+                android:id="@+id/nav_login"
+                android:icon="@drawable/ic_perfil"
+                android:title="@string/login" />
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_settings"
+                android:title="@string/Configuracion" />
+            <item
+                android:id="@+id/nav_info"
+                android:icon="@drawable/ic_sign"
+                android:title="@string/Informacion" />
+            <item
+                android:id="@+id/nav_exit"
+                android:icon="@drawable/ic_exit"
+                android:title="@string/salir" />
+        </menu>
+    </item>
+</menu>

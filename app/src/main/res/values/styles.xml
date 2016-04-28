@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <style name="Theme.ESUdeA" parent="Base.Theme.ESUdeA">
+    </style>
+
+    <style name="Base.Theme.ESUdeA" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/window_background</item>
+    </style>
+
+    <style name="Widget.CardContent" parent="android:Widget">
+        <item name="android:paddingLeft">@dimen/card_margin_leftright</item>
+        <item name="android:paddingRight">@dimen/card_margin_leftright</item>
+        <item name="android:paddingTop">@dimen/card_margin_topbottom</item>
+        <item name="android:paddingBottom">@dimen/card_margin_topbottom</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+</resources>
