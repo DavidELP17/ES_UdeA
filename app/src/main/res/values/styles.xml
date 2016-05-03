@@ -4,6 +4,8 @@
     <style name="Theme.ESUdeA" parent="Base.Theme.ESUdeA">
     </style>
 
+    <!-- Base application theme. -->
+    <!-- <style name="Base.Theme.ESUdeA" parent="android:Theme.Holo"> -->
     <style name="Base.Theme.ESUdeA" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -17,5 +19,25 @@
         <item name="android:paddingTop">@dimen/card_margin_topbottom</item>
         <item name="android:paddingBottom">@dimen/card_margin_topbottom</item>
         <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="Theme.ESUdeA.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.ESUdeA.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.ESUdeA.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Theme.ESUdeA.FullScreen" parent="android:Theme.Black.NoTitleBar.Fullscreen"/>
+
+    <style name="PhotoGridLayout">
+        <item name="android:drawSelectorOnTop">true</item>
+        <item name="android:listSelector">@drawable/photo_grid_list_selector</item>
+    </style>
+
+    <style name="TranslucentDarkActionBar" parent="android:Widget.Holo.ActionBar">
+        <item name="android:background">#99000000</item>
     </style>
 </resources>

@@ -20,7 +20,7 @@
     <string name="title_activity_settings">Configuración</string>
 
     <!-- Strings related to Settings -->
-    <string name="ajustes">ajustes</string>
+    <string name="ajustes">Ajustes</string>
 
     <!-- Example General settings -->
     <string name="pref_header_general">General</string>
@@ -125,5 +125,7 @@
     <string name="image_description">Image description</string>
     <string name="gallery_description">Gallery description</string>
     <string name="gallery_count">0/0</string>
+
+    <string name="hello_world">Hello world!</string>
 </resources>
 

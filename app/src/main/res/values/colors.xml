@@ -6,4 +6,10 @@
     <color name="colorPrimaryDark">#00c853</color>
     <color name="colorAccent">#00c853</color>
     <color name="colorFragment">#6ed5dfd4</color>
+
+    <color name="progressBar">#00bcd4</color>
+    <color name="navigationBarColor">#000000</color>
+
+    <color name="grid_state_pressed">#1Affffff</color>
+    <color name="grid_state_focused">#80000000</color>
 </resources>

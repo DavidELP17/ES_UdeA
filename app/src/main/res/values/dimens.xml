@@ -26,4 +26,9 @@
     <dimen name="sizehome">110dp</dimen>
 
     <dimen name="FAB">20dp</dimen>
+
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="image_thumbnail_size">100dp</dimen>
+    <dimen name="image_thumbnail_spacing">1dp</dimen>
 </resources>

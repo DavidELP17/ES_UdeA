@@ -15,8 +15,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.davidelp17.arnolflorez.esudea.ui.PhotoGalleryFragment;
+import com.davidelp17.arnolflorez.esudea.utils.Utils;
+
 public class MainActivity extends AppCompatActivity
 {
+    public static final String TAG = "MainActivity";
+    public static final String IMAGE_CACHE_DIR = "thumbs";
+
     private NavigationView navView;
     private DrawerLayout mDrawerLayout;
 
@@ -28,6 +34,10 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if(BuildConfig.DEBUG){
+            Utils.enableStrictMode();
+        }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -95,11 +105,13 @@ public class MainActivity extends AppCompatActivity
                                 fragmentTransaction = true;
                                 break;
                             case R.id.nav_mapas:
-                                //Aqui vá una actividad o que cojones?
+                                fragment = new MapsFragment();
+                                fragmentName1 = MapsFragment.TAGMaps;
+                                fragmentTransaction = true;
                                 break;
                             case R.id.nav_galeria:
-                                fragment = new GalleryFragment();
-                                fragmentName1 = GalleryFragment.TAGGallery;
+                                fragment = new PhotoGalleryFragment();
+                                fragmentName1 = PhotoGalleryFragment.TAGPhotoGallery;
                                 fragmentTransaction = true;
                                 break;
                             case R.id.nav_sitioweb:
@@ -158,11 +170,11 @@ public class MainActivity extends AppCompatActivity
             case GruposFragment.TAGGrupos:
                 fragment = new GruposFragment();
                 break;
-            //case R.id.nav_mapas:
-                //Aqui vá una actividad o que cojones?
-                //break;
-            case GalleryFragment.TAGGallery:
-                fragment = new GalleryFragment();
+            case MapsFragment.TAGMaps:
+                fragment = new MapsFragment();
+                break;
+            case PhotoGalleryFragment.TAGPhotoGallery:
+                fragment = new PhotoGalleryFragment();
                 break;
             case WebsiteFragment.TAGWebsite:
                 fragment = new WebsiteFragment();

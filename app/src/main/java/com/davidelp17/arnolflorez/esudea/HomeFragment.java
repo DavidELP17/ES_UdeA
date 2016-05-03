@@ -5,7 +5,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+
+import com.davidelp17.arnolflorez.esudea.ui.PhotoGalleryFragment;
 
 public class HomeFragment extends Fragment implements View.OnClickListener{
 
@@ -57,7 +58,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 //((MainActivity) getActivity()).setFragment(MAPAS, R.id.content_frame, false);
                 break;
             case R.id.home_button_galeria:
-                ((MainActivity) getActivity()).setFragment(GalleryFragment.TAGGallery, R.id.content_frame, false);
+                ((MainActivity) getActivity()).setFragment(PhotoGalleryFragment.TAGPhotoGallery, R.id.content_frame, false);
                 break;
             case R.id.home_button_sitioweb:
                 ((MainActivity) getActivity()).setFragment(WebsiteFragment.TAGWebsite, R.id.content_frame, false);

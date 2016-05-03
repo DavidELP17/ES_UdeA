@@ -32,7 +32,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Calendar"
+                        android:text="Mapas"
                         android:gravity="center_horizontal"
                         android:textSize="@dimen/empresasize"/>
 
