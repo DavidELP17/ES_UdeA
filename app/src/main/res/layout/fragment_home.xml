@@ -19,6 +19,11 @@
             android:orientation="vertical"
             android:paddingTop="@dimen/activity_vertical_margin">
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:src="@drawable/udea_portada"/>
+
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -29,15 +34,6 @@
                     android:layout_height="match_parent"
                     style="@style/Widget.CardContent"
                     android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/home_textview_titulo"
-                        android:text="@string/UniversidadFull"
-                        android:gravity="center_horizontal"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Button"
-                        android:paddingBottom="@dimen/activity_vertical_margin" />
 
                     <RelativeLayout
                             android:layout_width="match_parent"

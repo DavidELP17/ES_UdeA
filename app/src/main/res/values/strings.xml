@@ -127,5 +127,20 @@
     <string name="gallery_count">0/0</string>
 
     <string name="hello_world">Hello world!</string>
+
+    <string name="cheese_ipsum">Está localizada en la ciudad de Medellín, entre la calle 67 (Barranquilla)
+        y la carrera 55 (Av. Del Ferrocarril) y se terminó de construir en 1966. Tiene una superficie de 287.467 m²
+        y unos 133.942 m² de área construida, con zonas peatonales, áreas verdes y espacios abiertos. En su interior,
+        además de los bloques de aulas, laboratorios y espacios administrativos, se encuentran el Museo Universitario,
+        el Teatro Universitario Camilo Torres Restrepo, la Biblioteca Central y un amplio complejo deportivo. Hay una
+        constante relación artística con las obras de maestros reconocidos de la plástica nacional como Francisco Antonio Cano,
+        Jorge Cárdenas Hernández, Rodrigo Arenas Betancur, Salvador Arango, Enrique Grau, Eduardo Ramírez Villamizar,
+        Alonso Ríos, Eladio Vélez y Marta Lucía Villafañe, entre otros.
+
+        El Campus fue declarado bien de interés cultural de la nación, el 26 de julio de 2013, y es el único del país con
+        esta categoría patrimonial. </string>
+    <string name="checkin">Checkin</string>
+    <string name="Programas">Programas</string>
+    <string name="Oficinas">Oficinas</string>
 </resources>
 
