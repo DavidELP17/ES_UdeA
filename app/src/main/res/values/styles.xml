@@ -40,4 +40,8 @@
     <style name="TranslucentDarkActionBar" parent="android:Widget.Holo.ActionBar">
         <item name="android:background">#99000000</item>
     </style>
+
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/background_splash</item>
+    </style>
 </resources>
