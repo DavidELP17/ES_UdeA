@@ -6,7 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.davidelp17.arnolflorez.esudea.ui.PhotoGalleryFragment;
+import com.davidelp17.arnolflorez.esudea.Calendar.CalendarFragment;
+import com.davidelp17.arnolflorez.esudea.Galeria.UI.PhotoGalleryFragment;
+import com.davidelp17.arnolflorez.esudea.Grupos.GruposFragment;
+import com.davidelp17.arnolflorez.esudea.Horario.HorarioFragment;
+import com.davidelp17.arnolflorez.esudea.Informacion.InfoFragment;
+import com.davidelp17.arnolflorez.esudea.Perfil.ProfileFragment;
+import com.davidelp17.arnolflorez.esudea.SitioWeb.WebsiteFragment;
+import com.davidelp17.arnolflorez.esudea.Universidad.UniversityFragment;
 
 public class HomeFragment extends Fragment implements View.OnClickListener{
 

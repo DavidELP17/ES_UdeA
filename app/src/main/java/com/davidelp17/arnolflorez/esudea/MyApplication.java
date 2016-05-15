@@ -10,9 +10,6 @@ import com.android.volley.toolbox.ImageLoader;
 import com.facebook.stetho.Stetho;
 
 
-/**
- * Created by Prashanth Reddy (facebook.com/pr.amrita) (github.com/itspr)  on 09-11-2015.
- */
 public class MyApplication extends Application {
     public static final String TAG = MyApplication.class
         .getSimpleName();

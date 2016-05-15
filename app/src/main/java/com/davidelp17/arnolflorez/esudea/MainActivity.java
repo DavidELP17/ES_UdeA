@@ -16,8 +16,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.davidelp17.arnolflorez.esudea.ui.PhotoGalleryFragment;
-import com.davidelp17.arnolflorez.esudea.utils.Utils;
+import com.davidelp17.arnolflorez.esudea.Calendar.CalendarFragment;
+import com.davidelp17.arnolflorez.esudea.Galeria.UI.PhotoGalleryFragment;
+import com.davidelp17.arnolflorez.esudea.Galeria.Utils.Utils;
+import com.davidelp17.arnolflorez.esudea.Grupos.GruposFragment;
+import com.davidelp17.arnolflorez.esudea.Horario.HorarioFragment;
+import com.davidelp17.arnolflorez.esudea.Informacion.InfoFragment;
+import com.davidelp17.arnolflorez.esudea.Mapas.MapsFragment;
+import com.davidelp17.arnolflorez.esudea.Perfil.ProfileFragment;
+import com.davidelp17.arnolflorez.esudea.SitioWeb.WebsiteFragment;
+import com.davidelp17.arnolflorez.esudea.Universidad.MainActivityTabs;
+import com.davidelp17.arnolflorez.esudea.Universidad.UniversityFragment;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -283,12 +292,6 @@ public class MainActivity extends AppCompatActivity
         SharedPreferences.Editor editor= pref.edit();
         editor.putString(PREF_CONTRASEÑA, nContraseña);
         editor.commit();
-    }
-
-    void enviardato(String nContraseña){
-        Intent intent = new Intent(MainActivity.this,LoginActivity.class);
-        intent.putExtra("NUEVA_CONTRASEÑA", nContraseña);
-        startActivity(intent);
     }
 }
 
