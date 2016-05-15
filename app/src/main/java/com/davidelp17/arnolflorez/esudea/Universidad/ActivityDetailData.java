@@ -12,15 +12,15 @@ public class ActivityDetailData {
         switch (RANDOM.nextInt(5)) {
             default:
             case 0:
-                return R.drawable.uni_1;
+                return R.drawable.universidad_1;
             case 1:
-                return R.drawable.uni_2;
+                return R.drawable.universidad_2;
             case 2:
-                return R.drawable.uni_3;
+                return R.drawable.universidad_3;
             case 3:
-                return R.drawable.uni_4;
+                return R.drawable.universidad_4;
             case 4:
-                return R.drawable.uni_5;
+                return R.drawable.universidad_5;
         }
     }
 
