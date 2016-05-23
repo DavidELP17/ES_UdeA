@@ -31,37 +31,27 @@
         </activity>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".Home.HomeActivity"
             android:label="@string/app_name">
         </activity>
 
         <activity
-            android:name=".Universidad.MainActivityTabs"
+            android:name=".University.UniversityActivity"
             android:label="@string/app_name">
 
         </activity>
 
-        <activity android:name=".Universidad.DetailActivity"
-            android:parentActivityName=".Universidad.MainActivityTabs">
+        <activity android:name=".University.UniversityDetailActivity"
+            android:parentActivityName=".University.UniversityActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Universidad.MainActivityTabs" >
+                android:value=".University.UniversityActivity" >
             </meta-data>
         </activity>
 
         <activity
-            android:name=".IniciarSesion.LoginActivity"
+            android:name=".Login.LoginActivity"
             android:label="@string/title_activity_login">
-        </activity>
-
-        <activity
-            android:name=".Ajustes.SettingsActivity"
-            android:label="@string/title_activity_settings">
-        </activity>
-
-        <activity
-            android:name=".Galeria.UI.MainActivity"
-            android:label="@string/app_name" >
         </activity>
 
         <meta-data

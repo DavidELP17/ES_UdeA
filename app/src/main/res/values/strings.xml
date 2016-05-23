@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-    <string name="app_name">ES UdeA</string>
+    <string name="app_name">0ES UdeA</string>
     <string name="title_activity_maps">Mapa Universidad</string>
     <string name="title_activity_login">Iniciar Sesion</string>
 
@@ -120,11 +120,6 @@
     <string name="title_section2">Section 2</string>
     <string name="title_section3">Section 3</string>
     <string name="action_settings">Settings</string>
-    <!-- Image Fragment -->
-    <string name="image_title">Image Title</string>
-    <string name="image_description">Image description</string>
-    <string name="gallery_description">Gallery description</string>
-    <string name="gallery_count">0/0</string>
 
     <string name="hello_world">Hello world!</string>
 
@@ -142,5 +137,6 @@
     <string name="checkin">Checkin</string>
     <string name="Programas">Programas</string>
     <string name="Oficinas">Oficinas</string>
+    <string name="Snackbar_Ya_Estas">Ya Estás en Universidad</string>
 </resources>
 
