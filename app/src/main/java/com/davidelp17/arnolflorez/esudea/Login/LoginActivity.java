@@ -3,12 +3,15 @@ package com.davidelp17.arnolflorez.esudea.Login;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.support.v7.app.AppCompatActivity;
 import android.os.AsyncTask;
-
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
@@ -23,6 +26,9 @@ public class LoginActivity extends AppCompatActivity {
 
     public static final String PREF_CLAVE = "NUEVA_CLAVE";
     public static final String PREF_CLAVE_VALOR = "Valor_Nuevo";
+
+    private NavigationView navView;
+    private DrawerLayout mDrawerLayout;
 
     private static final String[] DATOSUSUARIO = new String[]{
             "lololo:NombreDeUsuario"
@@ -48,6 +54,11 @@ public class LoginActivity extends AppCompatActivity {
 
         mUsernameView = (EditText) findViewById(R.id.username);
         mPasswordView = (EditText) findViewById(R.id.password);
+
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navView = (NavigationView) findViewById(R.id.nav_view);
+
+
 
         texto = (TextView) findViewById(R.id.ingremaTextView);//Dejar para fines de comprobación
 
@@ -86,6 +97,63 @@ public class LoginActivity extends AppCompatActivity {
                 attemptLogin();
             }
         });
+
+        navView.setNavigationItemSelectedListener(
+
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+
+                        switch (menuItem.getItemId()) {
+                            case R.id.nav_home:
+                                Snackbar.make(navView, "Ya Estás en la Pantalla Principal", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                                break;
+                            case R.id.nav_university:
+                                Intent UniversityActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.University.UniversityActivity.class);
+                                startActivity(UniversityActivity);
+                                break;
+                            case R.id.nav_perfil:
+                                Intent ProfileActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Profile.ProfileActivity.class);
+                                startActivity(ProfileActivity);
+                                break;
+                            case R.id.nav_calendar:
+                                break;
+                            case R.id.nav_horario:
+                                break;
+                            case R.id.nav_grupos:
+                                break;
+                            case R.id.nav_mapas:
+                                Intent MapsActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Maps.MapsActivity.class);
+                                startActivity(MapsActivity);
+                                break;
+                            case R.id.nav_galeria:
+                                break;
+                            case R.id.nav_sitioweb:
+                                break;
+                            case R.id.nav_login:
+                                Intent LoginActivity = new Intent(getApplicationContext(), LoginActivity.class);
+                                startActivity(LoginActivity);
+                                break;
+                            case R.id.nav_info:
+                                break;
+                            case R.id.nav_exit:
+                                finish();
+                                Intent intent = new Intent(Intent.ACTION_MAIN);
+                                intent.addCategory(Intent.CATEGORY_HOME);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                        }
+
+                        menuItem.setChecked(true);
+                        getSupportActionBar().setTitle(R.string.app_name);
+
+                        mDrawerLayout.closeDrawers();
+
+                        return true;
+                    }
+                });
+
+        navView.getMenu().getItem(0).setChecked(true);
     }
 
     /**

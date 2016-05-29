@@ -14,6 +14,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.davidelp17.arnolflorez.esudea.Login.LoginActivity;
+import com.davidelp17.arnolflorez.esudea.Profile.ProfileActivity;
 import com.davidelp17.arnolflorez.esudea.R;
 import com.davidelp17.arnolflorez.esudea.University.UniversityActivity;
 
@@ -66,10 +68,12 @@ public class HomeActivity extends AppCompatActivity
                                 Snackbar.make(navView, "Ya Estás en la Pantalla Principal", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_university:
-                                Intent MainActivity1 = new Intent(getApplicationContext(), UniversityActivity.class);
-                                startActivity(MainActivity1);
+                                Intent UniversityActivity = new Intent(getApplicationContext(), UniversityActivity.class);
+                                startActivity(UniversityActivity);
                                 break;
                             case R.id.nav_perfil:
+                                Intent ProfileActivity = new Intent(getApplicationContext(), ProfileActivity.class);
+                                startActivity(ProfileActivity);
                                 break;
                             case R.id.nav_calendar:
                                 break;
@@ -78,10 +82,16 @@ public class HomeActivity extends AppCompatActivity
                             case R.id.nav_grupos:
                                 break;
                             case R.id.nav_mapas:
+                                Intent MapsActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Maps.MapsActivity.class);
+                                startActivity(MapsActivity);
                                 break;
                             case R.id.nav_galeria:
                                 break;
                             case R.id.nav_sitioweb:
+                                break;
+                            case R.id.nav_login:
+                                Intent LoginActivity = new Intent(getApplicationContext(), LoginActivity.class);
+                                startActivity(LoginActivity);
                                 break;
                             case R.id.nav_info:
                                 break;

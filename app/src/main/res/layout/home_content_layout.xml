@@ -15,7 +15,8 @@
         android:id="@+id/Content_linearlayout"
         android:clickable="true"
         tools:context=".Home.HomeActivity"
-        tools:showIn="@layout/home_activity_home">
+        tools:showIn="@layout/home_activity_home"
+        android:background="@drawable/side_nav_bar">
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appbar"
@@ -33,11 +34,12 @@
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
 
-        <FrameLayout
+        <ImageView
             android:id="@+id/content_frame"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </FrameLayout>
+            android:layout_height="wrap_content"
+            android:src="@drawable/udea_portada">
+        </ImageView>
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton

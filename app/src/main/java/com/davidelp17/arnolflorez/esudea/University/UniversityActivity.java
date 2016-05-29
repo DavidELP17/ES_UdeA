@@ -93,6 +93,8 @@ public class UniversityActivity extends AppCompatActivity {
                                 Snackbar.make(navView, R.string.Snackbar_Ya_Estas, Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_perfil:
+                                Intent ProfileActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Profile.ProfileActivity.class);
+                                startActivity(ProfileActivity);
                                 break;
                             case R.id.nav_calendar:
                                 break;
@@ -101,10 +103,16 @@ public class UniversityActivity extends AppCompatActivity {
                             case R.id.nav_grupos:
                                 break;
                             case R.id.nav_mapas:
+                                Intent MapsActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Maps.MapsActivity.class);
+                                startActivity(MapsActivity);
                                 break;
                             case R.id.nav_galeria:
                                 break;
                             case R.id.nav_sitioweb:
+                                break;
+                            case R.id.nav_login:
+                                Intent LoginActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Login.LoginActivity.class);
+                                startActivity(LoginActivity);
                                 break;
                             case R.id.nav_info:
                                 break;

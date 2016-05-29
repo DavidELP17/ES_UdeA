@@ -21,15 +21,15 @@
         <item
             android:id="@+id/nav_calendar"
             android:icon="@drawable/ic_calendar"
-            android:title="@string/eventos" />
+            android:title="@string/eventos"/>
         <item
             android:id="@+id/nav_horario"
             android:icon="@drawable/ic_schedule"
-            android:title="@string/horario" />
+            android:title="@string/horario"/>
         <item
             android:id="@+id/nav_grupos"
             android:icon="@drawable/ic_groups"
-            android:title="@string/grupos" />
+            android:title="@string/grupos"/>
         <item
             android:id="@+id/nav_mapas"
             android:icon="@drawable/ic_maps"
@@ -37,11 +37,11 @@
         <item
             android:id="@+id/nav_galeria"
             android:icon="@drawable/ic_gallery"
-            android:title="@string/galeria" />
+            android:title="@string/galeria"/>
         <item
             android:id="@+id/nav_sitioweb"
             android:icon="@drawable/ic_web"
-            android:title="@string/Sitio_Web" />
+            android:title="@string/Sitio_Web"/>
     </group>
 
     <item
@@ -55,11 +55,11 @@
             <item
                 android:id="@+id/nav_settings"
                 android:icon="@drawable/ic_settings"
-                android:title="@string/Configuracion" />
+                android:title="@string/Configuracion"/>
             <item
                 android:id="@+id/nav_info"
                 android:icon="@drawable/ic_sign"
-                android:title="@string/Informacion" />
+                android:title="@string/Informacion"/>
             <item
                 android:id="@+id/nav_exit"
                 android:icon="@drawable/ic_exit"

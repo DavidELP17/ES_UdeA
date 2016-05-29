@@ -138,5 +138,33 @@
     <string name="Programas">Programas</string>
     <string name="Oficinas">Oficinas</string>
     <string name="Snackbar_Ya_Estas">Ya Estás en Universidad</string>
+    <string name="Perfil">Perfil</string>
+
+
+
+    <string name="author">Es UdeA</string>
+    <string name="url">https://www.udea.edu.co</string>
+
+    <string name="github">Proyecto Final</string>
+    <string name="share">Compartir</string>
+
+    <string name="sample_2">Sample 2</string>
+
+    <string name="details_2"><![CDATA[• Any amount of markers per fragment\n• Custom layout\n• Custom initial position]]></string>
+
+    <string name="item_1">Item 1</string>
+    <string name="item_2">Item 2</string>
+
+    <string name="maps_api_key">AIzaSyDs1wQfeVGBuH8sqZw8EEKb-Z_jIjvQFQ0</string>
+
+    <string name="lorem_ipsum">Está localizada en la ciudad de Medellín, entre la calle 67 (Barranquilla)
+        y la carrera 55 (Av. Del Ferrocarril) y se terminó de construir en 1966. Tiene una superficie de 287.467 m²
+        y unos 133.942 m² de área construida, con zonas peatonales, áreas verdes y espacios abiertos. En su interior,
+        además de los bloques de aulas, laboratorios y espacios administrativos, se encuentran el Museo Universitario,
+        el Teatro Universitario Camilo Torres Restrepo, la Biblioteca Central y un amplio complejo deportivo. Hay una
+        constante relación artística con las obras de maestros reconocidos de la plástica nacional como Francisco Antonio Cano,
+        Jorge Cárdenas Hernández, Rodrigo Arenas Betancur, Salvador Arango, Enrique Grau, Eduardo Ramírez Villamizar,
+        Alonso Ríos, Eladio Vélez y Marta Lucía Villafañe, entre otros.</string>
+
 </resources>
 
