@@ -11,6 +11,8 @@
     <dimen name="card_margin_topbottom">24dp</dimen>
 
     <dimen name="margin">40dp</dimen>
+    <dimen name="margin_profile">10dp</dimen>
+
 
     <dimen name="list_item_avatar_size">150dp</dimen>
     <dimen name="list_item_avatar_size_little">80dp</dimen>

@@ -86,6 +86,7 @@
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:text="@string/action_sign_in"
             android:textStyle="bold"
+            android:onClick="OnClicEntrar"
             />
     </LinearLayout>
 

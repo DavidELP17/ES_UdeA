@@ -5,6 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/ES_UdeA.iml" filepath="$PROJECT_DIR$/ES_UdeA.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/libraries/libraries.iml" filepath="$PROJECT_DIR$/libraries/libraries.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libraries/libraries.iml" filepath="$PROJECT_DIR$/libraries/libraries.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libraries/mapviewpager/mapviewpager.iml" filepath="$PROJECT_DIR$/libraries/mapviewpager/mapviewpager.iml" />
       <module fileurl="file://$PROJECT_DIR$/libraries/mapviewpager/mapviewpager.iml" filepath="$PROJECT_DIR$/libraries/mapviewpager/mapviewpager.iml" />
     </modules>
   </component>
