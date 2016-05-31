@@ -31,6 +31,10 @@
             android:icon="@drawable/ic_groups"
             android:title="@string/grupos"/>
         <item
+            android:id="@+id/nav_sedes"
+            android:title="@string/sedes"
+            android:visible="false"/>
+        <item
             android:id="@+id/nav_mapas"
             android:icon="@drawable/ic_maps"
             android:title="@string/mapa" />

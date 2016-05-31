@@ -6,10 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.davidelp17.arnolflorez.esudea.Home.HomeActivity;
 
-public class SplashActivity extends AppCompatActivity {
-
+public class SplashActivity extends AppCompatActivity
+{
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
 
         Intent intent = new Intent(this, HomeActivity.class);

@@ -25,19 +25,15 @@ import com.davidelp17.arnolflorez.esudea.R;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * TODO
- */
-public class UniversityActivity extends AppCompatActivity {
-
-    private DrawerLayout mDrawerLayout;
+public class UniversityActivity extends AppCompatActivity
+{
 
     private NavigationView navView;
-
-    String fragmentName1;
+    private DrawerLayout mDrawerLayout;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.university_activity_university);
 
@@ -48,6 +44,7 @@ public class UniversityActivity extends AppCompatActivity {
         ab.setHomeAsUpIndicator(R.drawable.ic_menu);
         ab.setDisplayHomeAsUpEnabled(true);
 
+        navView = (NavigationView) findViewById(R.id.nav_view);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -72,17 +69,17 @@ public class UniversityActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-        navView = (NavigationView) findViewById(R.id.nav_view);
-
         if (navView != null) {
             setupDrawerContent(navView);
         }
 
         navView.setNavigationItemSelectedListener(
 
-                new NavigationView.OnNavigationItemSelectedListener() {
+                new NavigationView.OnNavigationItemSelectedListener()
+                {
                     @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                    public boolean onNavigationItemSelected(MenuItem menuItem)
+                    {
 
                         switch (menuItem.getItemId()) {
                             case R.id.nav_home:
@@ -97,24 +94,36 @@ public class UniversityActivity extends AppCompatActivity {
                                 startActivity(ProfileActivity);
                                 break;
                             case R.id.nav_calendar:
+                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_horario:
+                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_grupos:
+                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                                break;
+                            case R.id.nav_sedes:
+                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_mapas:
                                 Intent MapsActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Maps.MapsActivity.class);
                                 startActivity(MapsActivity);
                                 break;
                             case R.id.nav_galeria:
+                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_sitioweb:
+                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_login:
                                 Intent LoginActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Login.LoginActivity.class);
                                 startActivity(LoginActivity);
                                 break;
+                            case R.id.nav_settings:
+                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                                break;
                             case R.id.nav_info:
+                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_exit:
                                 finish();
@@ -137,13 +146,14 @@ public class UniversityActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.general_menu_main, menu);
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         switch (item.getItemId()) {
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
@@ -152,7 +162,8 @@ public class UniversityActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void setupViewPager(ViewPager viewPager) {
+    private void setupViewPager(ViewPager viewPager)
+    {
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(new UniversityFragment(), "Facultades");
         adapter.addFragment(new UniversityFragment(), "Extension");
@@ -160,11 +171,13 @@ public class UniversityActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
     }
 
-    private void setupDrawerContent(NavigationView navigationView) {
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
+    private void setupDrawerContent(NavigationView navigationView)
+    {
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener()
+        {
             @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
+            public boolean onNavigationItemSelected(MenuItem menuItem)
+            {
                 menuItem.setChecked(true);
                 mDrawerLayout.closeDrawers();
                 return true;
@@ -172,31 +185,37 @@ public class UniversityActivity extends AppCompatActivity {
         });
     }
 
-    static class Adapter extends FragmentPagerAdapter {
+    static class Adapter extends FragmentPagerAdapter
+    {
         private final List<Fragment> mFragments = new ArrayList<>();
         private final List<String> mFragmentTitles = new ArrayList<>();
 
-        public Adapter(FragmentManager fm) {
+        public Adapter(FragmentManager fm)
+        {
             super(fm);
         }
 
-        public void addFragment(Fragment fragment, String title) {
+        public void addFragment(Fragment fragment, String title)
+        {
             mFragments.add(fragment);
             mFragmentTitles.add(title);
         }
 
         @Override
-        public Fragment getItem(int position) {
+        public Fragment getItem(int position)
+        {
             return mFragments.get(position);
         }
 
         @Override
-        public int getCount() {
+        public int getCount()
+        {
             return mFragments.size();
         }
 
         @Override
-        public CharSequence getPageTitle(int position) {
+        public CharSequence getPageTitle(int position)
+        {
             return mFragmentTitles.get(position);
         }
     }

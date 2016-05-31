@@ -16,10 +16,12 @@
         android:layout_height="match_parent"
         android:background="@android:color/white" >
 
-        <fragment class="com.google.android.gms.maps.SupportMapFragment"
+        <fragment
+            class="com.google.android.gms.maps.SupportMapFragment"
             android:id="@+id/map"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
+        </fragment>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,10 +43,9 @@
                 android:paddingRight="36dp"
                 android:paddingBottom="18dp"
                 android:clipToPadding="false"
-                android:overScrollMode="never" />
-
+                android:overScrollMode="never">
+            </android.support.v4.view.ViewPager>
         </LinearLayout>
-
     </FrameLayout>
 
     <android.support.design.widget.NavigationView
@@ -54,7 +55,7 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/general_navigation_header"
-        app:menu="@menu/general_drawer_view"/>
-
+        app:menu="@menu/general_drawer_view">
+    </android.support.design.widget.NavigationView>
 </android.support.v4.widget.DrawerLayout>
 

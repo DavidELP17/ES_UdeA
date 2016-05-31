@@ -10,7 +10,9 @@
     android:fitsSystemWindows="true"
     tools:context=".SplashScreen.SplashActivity">
 
-    <include layout="@layout/home_content_layout"/>
+    <include
+        layout="@layout/home_content_layout">
+    </include>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
@@ -19,6 +21,6 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/general_navigation_header"
-        app:menu="@menu/general_drawer_view"/>
-
+        app:menu="@menu/general_drawer_view">
+    </android.support.design.widget.NavigationView>
 </android.support.v4.widget.DrawerLayout>

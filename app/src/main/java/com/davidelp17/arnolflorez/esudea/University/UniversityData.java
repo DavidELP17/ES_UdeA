@@ -4,12 +4,14 @@ import com.davidelp17.arnolflorez.esudea.R;
 
 import java.util.Random;
 
-public class UniversityData {
-
+public class UniversityData
+{
     private static final Random RANDOM = new Random();
 
-    public static int getRandomCheeseDrawable() {
-        switch (RANDOM.nextInt(5)) {
+    public static int getRandomUniDrawable()
+    {
+        switch (RANDOM.nextInt(5))
+        {
             default:
             case 0:
                 return R.drawable.universidad_1;
@@ -24,7 +26,8 @@ public class UniversityData {
         }
     }
 
-    public static final String[] sCheeseStrings = {
+    public static final String[] sUniStrings =
+    {
             "Facultad de Ingenieria", "Facultad de Educacion", "Salud Publica", "Facultad de Enfermeria",
             "Instituto de Fisica", "Facultad de Quimica Farmaceutica", "Escuela de Idiomas",
             "Facultad de Ingenieria", "Facultad de Educacion", "Salud Publica", "Facultad de Enfermeria",

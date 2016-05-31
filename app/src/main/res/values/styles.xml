@@ -4,9 +4,19 @@
     <style name="Theme.ESUdeA" parent="Base.Theme.ESUdeA">
     </style>
 
+    <style name="Theme.ESUdeAActionBar" parent="Base.Theme.ESUdeAActionBar">
+    </style>
+
     <!-- Base application theme. -->
     <!-- <style name="Base.Theme.ESUdeA" parent="android:Theme.Holo"> -->
     <style name="Base.Theme.ESUdeA" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/window_background</item>
+    </style>
+
+    <style name="Base.Theme.ESUdeAActionBar" parent="Theme.AppCompat.Light">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>

@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -30,7 +31,8 @@ public class LoginActivity extends AppCompatActivity {
     private NavigationView navView;
     private DrawerLayout mDrawerLayout;
 
-    private static final String[] DATOSUSUARIO = new String[]{
+    private static final String[] DATOSUSUARIO = new String[]
+    {
             "lololo:NombreDeUsuario"
     };
 
@@ -45,7 +47,8 @@ public class LoginActivity extends AppCompatActivity {
     TextView texto;//Dejar para fines de comprobación
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity_login);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -58,7 +61,10 @@ public class LoginActivity extends AppCompatActivity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navView = (NavigationView) findViewById(R.id.nav_view);
 
-
+        if (navView != null)
+        {
+            setupDrawerContent(navView);
+        }
 
         texto = (TextView) findViewById(R.id.ingremaTextView);//Dejar para fines de comprobación
 
@@ -79,9 +85,11 @@ public class LoginActivity extends AppCompatActivity {
             //texto.setText("Clave:"+Nueva_Contraseña);//Dejar para fines de comprobación
         }
 
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener()
+        {
             @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
+            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent)
+            {
                 if (id == R.id.login || id == EditorInfo.IME_NULL) {
                     attemptLogin();
                     return true;
@@ -91,22 +99,23 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         Button mEmailSignInButton = (Button) findViewById(R.id.boton_login);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
+        mEmailSignInButton.setOnClickListener(new OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 attemptLogin();
             }
         });
 
         navView.setNavigationItemSelectedListener(
-
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
-
                         switch (menuItem.getItemId()) {
                             case R.id.nav_home:
-                                Snackbar.make(navView, "Ya Estás en la Pantalla Principal", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                                Intent HomeActivity1 = new Intent(getApplicationContext(), HomeActivity.class);
+                                startActivity(HomeActivity1);
                                 break;
                             case R.id.nav_university:
                                 Intent UniversityActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.University.UniversityActivity.class);
@@ -117,24 +126,35 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(ProfileActivity);
                                 break;
                             case R.id.nav_calendar:
+                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_horario:
+                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_grupos:
+                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                                break;
+                            case R.id.nav_sedes:
+                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_mapas:
                                 Intent MapsActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Maps.MapsActivity.class);
                                 startActivity(MapsActivity);
                                 break;
                             case R.id.nav_galeria:
+                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_sitioweb:
+                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_login:
-                                Intent LoginActivity = new Intent(getApplicationContext(), LoginActivity.class);
-                                startActivity(LoginActivity);
+                                Snackbar.make(navView, "Ya estas en la ventana de Incio de Sesion", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                                break;
+                            case R.id.nav_settings:
+                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_info:
+                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_exit:
                                 finish();
@@ -145,22 +165,47 @@ public class LoginActivity extends AppCompatActivity {
                         }
 
                         menuItem.setChecked(true);
-                        getSupportActionBar().setTitle(R.string.app_name);
 
                         mDrawerLayout.closeDrawers();
 
                         return true;
                     }
                 });
+    }
 
-        navView.getMenu().getItem(0).setChecked(true);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                mDrawerLayout.openDrawer(GravityCompat.START);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void setupDrawerContent(NavigationView navigationView)
+    {
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener()
+        {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem)
+            {
+                menuItem.setChecked(true);
+                mDrawerLayout.closeDrawers();
+                return true;
+            }
+        });
     }
 
     /**
      * Asegurarse que no haya errores
      */
-    private void attemptLogin() {
-        if (mAuthTask != null) {
+    private void attemptLogin()
+    {
+        if (mAuthTask != null)
+        {
             return;
         }
 
@@ -176,29 +221,35 @@ public class LoginActivity extends AppCompatActivity {
         View focusView = null;
 
         // Si en la contraseña no se esribio nada o se escribio menos de 4 caracteres
-        if (TextUtils.isEmpty(password) || !tamañocontraseña(password)) {
+        if (TextUtils.isEmpty(password) || !tamañocontraseña(password))
+        {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
         }
 
         // Si el usuario no escribe nada en nombre de usuario
-        if (TextUtils.isEmpty(email)) {
+        if (TextUtils.isEmpty(email))
+        {
             mUsernameView.setError(getString(R.string.error_field_required));
             focusView = mUsernameView;
             cancel = true;
         }
-        if (cancel) {
+        if (cancel)
+        {
             // Si hubo un error no permitir iniciar sesion y mostrar primer campo con error
             focusView.requestFocus();
-        } else {
+        }
+        else
+        {
             //Luego de verificar errores. Ejecuta nueva tarea para permitir inciar sesión
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
         }
     }
 
-    private boolean tamañocontraseña(String password) {
+    private boolean tamañocontraseña(String password)
+    {
         //La contraseña debe tener mas de 4 caracteres.
         return password.length() > 4;
     }
@@ -206,28 +257,32 @@ public class LoginActivity extends AppCompatActivity {
     /**
      * Autentificación del Usuario
      */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
-
+    public class UserLoginTask extends AsyncTask<Void, Void, Boolean>
+    {
         private final String mUsername;
         private final String mPassword;
         boolean opc;
 
-        UserLoginTask(String email, String password) {
+        UserLoginTask(String email, String password)
+        {
             mUsername = email;
             mPassword = password;
         }
 
         @Override
-        protected Boolean doInBackground(Void... params) {
-
-            for (String credential : DATOSUSUARIO) {
+        protected Boolean doInBackground(Void... params)
+        {
+            for (String credential : DATOSUSUARIO)
+            {
                 String[] pieces = credential.split(":");
-                if (pieces[0].equals(mUsername)) {
+                if (pieces[0].equals(mUsername))
+                {
                     opc = true;
                     // La cuenta existe, retorna true si la contrseña coincide
                     return Nueva_Contraseña.equals(mPassword);
                 }
-                if (!pieces[0].equals(mUsername)) {
+                if (!pieces[0].equals(mUsername))
+                {
                     // La cuenta NO existe, retorna false y Error
                     opc = false;
                     return false;
@@ -237,19 +292,24 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(final Boolean success) {
+        protected void onPostExecute(final Boolean success)
+        {
             mAuthTask = null;
 
-            if (success) {
+            if (success)
+            {
                 Intent MainActivity1 = new Intent(getApplicationContext(), HomeActivity.class);
                 startActivity(MainActivity1);
                 finish();
-            } else {
-                if(!opc) {
+            } else
+            {
+                if(!opc)
+                {
                     mUsernameView.setError(getString(R.string.error_incorrect_password));
                     mUsernameView.requestFocus();
                 }
-                if(opc) {
+                if(opc)
+                {
                     mPasswordView.setError(getString(R.string.error_incorrect_password));
                     mPasswordView.requestFocus();
                 }
@@ -257,7 +317,8 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         @Override
-        protected void onCancelled() {
+        protected void onCancelled()
+        {
             mAuthTask = null;
         }
     }

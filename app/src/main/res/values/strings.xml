@@ -140,8 +140,6 @@
     <string name="Snackbar_Ya_Estas">Ya Estás en Universidad</string>
     <string name="Perfil">Perfil</string>
 
-
-
     <string name="author">Es UdeA</string>
     <string name="url">https://www.udea.edu.co</string>
 
@@ -166,5 +164,6 @@
         Jorge Cárdenas Hernández, Rodrigo Arenas Betancur, Salvador Arango, Enrique Grau, Eduardo Ramírez Villamizar,
         Alonso Ríos, Eladio Vélez y Marta Lucía Villafañe, entre otros.</string>
 
+    <string name="sedes">Sedes</string>
 </resources>
 

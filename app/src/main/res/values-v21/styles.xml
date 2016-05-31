@@ -7,4 +7,11 @@
         <item name="android:navigationBarColor">@android:color/holo_green_dark</item>
         <item name="android:windowBackground">@color/window_background</item>
     </style>
+
+    <style name="Theme.ESUdeAActionBar" parent="Base.Theme.ESUdeAActionBar">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/holo_green_dark</item>
+        <item name="android:navigationBarColor">@android:color/holo_green_dark</item>
+        <item name="android:windowBackground">@color/window_background</item>
+    </style>
 </resources>

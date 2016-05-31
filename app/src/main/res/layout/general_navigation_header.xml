@@ -18,7 +18,8 @@
         android:layout_width="@dimen/list_item_avatar_size_little"
         android:layout_height="@dimen/list_item_avatar_size_little"
         android:paddingTop="@dimen/activity_vertical_margin"
-        android:src="@drawable/andy" />
+        android:src="@drawable/andy">
+    </de.hdodenhof.circleimageview.CircleImageView>
 
     <TextView
         android:id="@+id/namelabel"
@@ -26,12 +27,13 @@
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/activity_vertical_margin"
         android:text="@string/namelabel1"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1">
+    </TextView>
 
     <TextView
         android:id="@+id/usernamelabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Emaillabel1"/>
-
+        android:text="@string/Emaillabel1">
+    </TextView>
 </LinearLayout>
