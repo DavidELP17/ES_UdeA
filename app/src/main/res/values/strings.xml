@@ -10,6 +10,7 @@
     <string name="hint_username">Nombre de Usuario</string>
     <string name="hint_password">Contraseña</string>
     <string name="action_sign_in">Iniciar Sesión</string>
+    <string name="action_sign_out">Cerrar Sesión</string>
     <string name="action_sign_in_short">Entrar</string>
     <string name="error_invalid_email">Usuario demasiado corto</string>
     <string name="error_invalid_password">Contraseña demasiado corta</string>
@@ -111,6 +112,10 @@
     <string name="hint_changepassword">Nueva Contraseña</string>
     <string name="action_changepassword_in">Cambiar Contraseña</string>
     <string name="action_changepassword_short">Aplicar</string>
+    <string name="mis_datos">Mis Datos</string>
+    <string name="facultad">Mi Facultad</string>
+    <string name="carrera">Mi Carrera</string>
+    <string name="cedula"> TIP #</string>
 
     <!--Information Fragment-->
     <string name="Information">Información</string>
