@@ -32,8 +32,8 @@
             android:textSize="@dimen/empresasize"
             android:id="@+id/ingremaTextView"
             android:textColor="@color/colorAccent"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title">
-        </TextView>
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            />
 
         <ImageView
             tools:ignore="ContentDescription"
@@ -42,8 +42,9 @@
             android:id="@+id/login_avatar"
             android:layout_gravity="fill_horizontal"
             android:paddingTop="@dimen/activity_vertical_margin"
-            android:src="@drawable/logo_udea">
-        </ImageView>
+            android:src="@drawable/logo_udea"
+            android:onClick="OnClicProfile"
+            />
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -56,8 +57,8 @@
                 android:hint="@string/hint_username"
                 android:inputType="textPersonName"
                 android:maxLines="1"
-                android:singleLine="true">
-            </EditText>
+                android:singleLine="true"
+                />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -74,8 +75,8 @@
                 android:imeOptions="actionUnspecified"
                 android:inputType="textPassword"
                 android:maxLines="1"
-                android:singleLine="true">
-            </EditText>
+                android:singleLine="true"
+                />
         </android.support.design.widget.TextInputLayout>
 
         <Button
@@ -85,8 +86,21 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:text="@string/action_sign_in"
-            android:textStyle="bold">
-        </Button>
+            android:textStyle="bold"
+            android:onClick="OnClicEntrar"
+            />
+
+        <Button
+            style="?android:textAppearanceSmall"
+            android:id="@+id/boton_outlogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:text="@string/action_sign_out"
+            android:textStyle="bold"
+            android:visibility="gone"
+            android:onClick="OnClicOutlogin"
+            />
     </LinearLayout>
 
     <android.support.design.widget.NavigationView
@@ -96,6 +110,6 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/general_navigation_header"
-        app:menu="@menu/general_drawer_view">
-    </android.support.design.widget.NavigationView>
+        app:menu="@menu/general_drawer_view"/>
+
 </android.support.v4.widget.DrawerLayout>
