@@ -52,13 +52,15 @@ public class ProfileActivity extends AppCompatActivity
                             case R.id.nav_home:
                                 Intent HomeActivity1 = new Intent(getApplicationContext(), HomeActivity.class);
                                 startActivity(HomeActivity1);
+                                finish();
                                 break;
                             case R.id.nav_university:
                                 Intent UniversityActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.University.UniversityActivity.class);
                                 startActivity(UniversityActivity);
+                                finish();
                                 break;
                             case R.id.nav_perfil:
-                                Snackbar.make(navView, "Ya_Estas en Perfil", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                                Snackbar.make(navView, "Ya Estás en Perfíl", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_calendar:
                                 Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
@@ -75,9 +77,12 @@ public class ProfileActivity extends AppCompatActivity
                             case R.id.nav_mapas:
                                 Intent MapsActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Maps.MapsActivity.class);
                                 startActivity(MapsActivity);
+                                finish();
                                 break;
                             case R.id.nav_galeria:
-                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                                Intent GalleryActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Gallery.GalleryActivity.class);
+                                startActivity(GalleryActivity);
+                                finish();
                                 break;
                             case R.id.nav_sitioweb:
                                 Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
@@ -85,6 +90,7 @@ public class ProfileActivity extends AppCompatActivity
                             case R.id.nav_login:
                                 Intent LoginActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Login.LoginActivity.class);
                                 startActivity(LoginActivity);
+                                finish();
                                 break;
                             case R.id.nav_settings:
                                 Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
@@ -132,5 +138,15 @@ public class ProfileActivity extends AppCompatActivity
                 return true;
             }
         });
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        Intent HomeActivity1 = new Intent(getApplicationContext(), HomeActivity.class);
+        startActivity(HomeActivity1);
+        finish();
+
+        super.onBackPressed();
     }
 }

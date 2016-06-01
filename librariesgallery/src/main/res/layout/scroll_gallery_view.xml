@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <com.veinhorn.scrollgalleryview.HackyViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+    </com.veinhorn.scrollgalleryview.HackyViewPager>
 
     <HorizontalScrollView
         android:id="@+id/thumbnails_scroll_view"
@@ -21,6 +24,7 @@
             android:id="@+id/thumbnails_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"></LinearLayout>
+            android:orientation="horizontal">
+        </LinearLayout>
     </HorizontalScrollView>
 </RelativeLayout>

@@ -73,10 +73,12 @@ public class HomeActivity extends AppCompatActivity
                             case R.id.nav_university:
                                 Intent UniversityActivity = new Intent(getApplicationContext(), UniversityActivity.class);
                                 startActivity(UniversityActivity);
+                                finish();
                                 break;
                             case R.id.nav_perfil:
                                 Intent ProfileActivity = new Intent(getApplicationContext(), ProfileActivity.class);
                                 startActivity(ProfileActivity);
+                                finish();
                                 break;
                             case R.id.nav_calendar:
                                 Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
@@ -93,9 +95,12 @@ public class HomeActivity extends AppCompatActivity
                             case R.id.nav_mapas:
                                 Intent MapsActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Maps.MapsActivity.class);
                                 startActivity(MapsActivity);
+                                finish();
                                 break;
                             case R.id.nav_galeria:
-                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                                Intent GalleryActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Gallery.GalleryActivity.class);
+                                startActivity(GalleryActivity);
+                                finish();
                                 break;
                             case R.id.nav_sitioweb:
                                 Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
@@ -103,6 +108,7 @@ public class HomeActivity extends AppCompatActivity
                             case R.id.nav_login:
                                 Intent LoginActivity = new Intent(getApplicationContext(), LoginActivity.class);
                                 startActivity(LoginActivity);
+                                finish();
                                 break;
                             case R.id.nav_settings:
                                 Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();

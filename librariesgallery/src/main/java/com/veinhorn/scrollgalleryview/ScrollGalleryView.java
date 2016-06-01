@@ -24,10 +24,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Created by veinhorn on 6.8.15.
- */
-public class ScrollGalleryView extends LinearLayout {
+public class ScrollGalleryView extends LinearLayout
+{
     private FragmentManager fragmentManager;
     private Context context;
     private Point displayProps;
@@ -45,20 +43,25 @@ public class ScrollGalleryView extends LinearLayout {
     private ViewPager viewPager;
 
     // Listeners
-    private final ViewPager.SimpleOnPageChangeListener viewPagerChangeListener = new ViewPager.SimpleOnPageChangeListener() {
-        @Override public void onPageSelected(int position) {
+    private final ViewPager.SimpleOnPageChangeListener viewPagerChangeListener = new ViewPager.SimpleOnPageChangeListener()
+    {
+        @Override public void onPageSelected(int position)
+        {
             scroll(thumbnailsContainer.getChildAt(position));
         }
     };
 
-    private final OnClickListener thumbnailOnClickListener = new OnClickListener() {
-        @Override public void onClick(View v) {
+    private final OnClickListener thumbnailOnClickListener = new OnClickListener()
+    {
+        @Override public void onClick(View v)
+        {
             scroll(v);
             viewPager.setCurrentItem((int) v.getTag(), true);
         }
     };
 
-    public ScrollGalleryView(Context context, AttributeSet attrs) {
+    public ScrollGalleryView(Context context, AttributeSet attrs)
+    {
         super(context, attrs);
         this.context = context;
         mListOfMedia = new ArrayList<>();
@@ -74,13 +77,15 @@ public class ScrollGalleryView extends LinearLayout {
         thumbnailsContainer.setPadding(displayProps.x / 2, 0, displayProps.x / 2, 0);
     }
 
-    public ScrollGalleryView setFragmentManager(FragmentManager fragmentManager) {
+    public ScrollGalleryView setFragmentManager(FragmentManager fragmentManager)
+    {
         this.fragmentManager = fragmentManager;
         initializeViewPager();
         return this;
     }
 
-    public ViewPager getViewPager() {
+    public ViewPager getViewPager()
+    {
         return viewPager;
     }
 
@@ -88,44 +93,56 @@ public class ScrollGalleryView extends LinearLayout {
      * Set up OnPageChangeListener for internal ViewPager
      * @param listener
      */
-    public void addOnPageChangeListener(final ViewPager.OnPageChangeListener listener) {
+    public void addOnPageChangeListener(final ViewPager.OnPageChangeListener listener)
+    {
         viewPager.clearOnPageChangeListeners();
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener()
+        {
+            @Override public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
+            {
                 listener.onPageScrolled(position, positionOffset, positionOffsetPixels);
             }
 
-            @Override public void onPageSelected(int position) {
+            @Override public void onPageSelected(int position)
+            {
                 scroll(thumbnailsContainer.getChildAt(position));
                 listener.onPageSelected(position);
             }
 
-            @Override public void onPageScrollStateChanged(int state) {
+            @Override public void onPageScrollStateChanged(int state)
+            {
                 listener.onPageScrollStateChanged(state);
             }
         });
     }
 
-    public ScrollGalleryView addMedia(MediaInfo mediaInfo) {
-        if (mediaInfo == null) {
+    public ScrollGalleryView addMedia(MediaInfo mediaInfo)
+    {
+        if (mediaInfo == null)
+        {
             throw new NullPointerException("Infos may not be null!");
         }
 
         return addMedia(Collections.singletonList(mediaInfo));
     }
 
-    public ScrollGalleryView addMedia(List<MediaInfo> infos) {
-        if (infos == null) {
+    public ScrollGalleryView addMedia(List<MediaInfo> infos)
+    {
+        if (infos == null)
+        {
             throw new NullPointerException("Infos may not be null!");
         }
 
-        for (MediaInfo info : infos) {
+        for (MediaInfo info : infos)
+        {
             mListOfMedia.add(info);
 
             final ImageView thumbnail = addThumbnail(getDefaultThumbnail());
-            info.getLoader().loadThumbnail(getContext(), thumbnail, new MediaLoader.SuccessCallback() {
+            info.getLoader().loadThumbnail(getContext(), thumbnail, new MediaLoader.SuccessCallback()
+            {
                 @Override
-                public void onSuccess() {
+                public void onSuccess()
+                {
                     thumbnail.setScaleType(ImageView.ScaleType.FIT_CENTER);
                 }
             });
@@ -141,22 +158,26 @@ public class ScrollGalleryView extends LinearLayout {
      * @param i a zero-based index
      * @return
      */
-    public ScrollGalleryView setCurrentItem(int i) {
+    public ScrollGalleryView setCurrentItem(int i)
+    {
         viewPager.setCurrentItem(i, false);
         return this;
     }
 
-    public ScrollGalleryView setThumbnailSize(int thumbnailSize) {
+    public ScrollGalleryView setThumbnailSize(int thumbnailSize)
+    {
         this.thumbnailSize = thumbnailSize;
         return this;
     }
 
-    public ScrollGalleryView setZoom(boolean zoomEnabled) {
+    public ScrollGalleryView setZoom(boolean zoomEnabled)
+    {
         this.zoomEnabled = zoomEnabled;
         return this;
     }
 
-    public ScrollGalleryView hideThumbnails(boolean thumbnailsHiddenEnabled) {
+    public ScrollGalleryView hideThumbnails(boolean thumbnailsHiddenEnabled)
+    {
         this.thumbnailsHiddenEnabled = thumbnailsHiddenEnabled;
         horizontalScrollView.setVisibility(GONE);
         return this;
@@ -198,18 +219,21 @@ public class ScrollGalleryView extends LinearLayout {
         return thumbnailView;
     }
 
-    private Bitmap createThumbnail(Bitmap image) {
+    private Bitmap createThumbnail(Bitmap image)
+    {
         return ThumbnailUtils.extractThumbnail(image, thumbnailSize, thumbnailSize);
     }
 
-    private void initializeViewPager() {
+    private void initializeViewPager()
+    {
         viewPager = (HackyViewPager) findViewById(R.id.viewPager);
         pagerAdapter = new ScreenSlidePagerAdapter(fragmentManager, mListOfMedia, zoomEnabled);
         viewPager.setAdapter(pagerAdapter);
         viewPager.addOnPageChangeListener(viewPagerChangeListener);
     }
 
-    private void scroll(View thumbnail) {
+    private void scroll(View thumbnail)
+    {
         int thumbnailCoords[] = new int[2];
         thumbnail.getLocationOnScreen(thumbnailCoords);
 
@@ -219,9 +243,11 @@ public class ScrollGalleryView extends LinearLayout {
         horizontalScrollView.smoothScrollBy(-thumbnailDelta, 0);
     }
 
-    private int calculateInSampleSize(int imgWidth, int imgHeight, int maxWidth, int maxHeight) {
+    private int calculateInSampleSize(int imgWidth, int imgHeight, int maxWidth, int maxHeight)
+    {
         int inSampleSize = 1;
-        while (imgWidth / inSampleSize > maxWidth || imgHeight / inSampleSize > maxHeight) {
+        while (imgWidth / inSampleSize > maxWidth || imgHeight / inSampleSize > maxHeight)
+        {
             inSampleSize *= 2;
         }
         return inSampleSize;

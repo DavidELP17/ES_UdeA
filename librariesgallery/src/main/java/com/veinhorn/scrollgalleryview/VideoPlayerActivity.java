@@ -8,20 +8,20 @@ import android.view.View;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
-/**
- * {describe the class purpose here}
- */
-public class VideoPlayerActivity extends Activity {
-
+public class VideoPlayerActivity extends Activity
+{
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         String url = getIntent().getExtras().getString(Constants.URL);
         setContentView(R.layout.video_fragment);
         final VideoView videoView = (VideoView) findViewById(R.id.videoView);
-        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener()
+        {
             @Override
-            public void onPrepared(MediaPlayer mp) {
+            public void onPrepared(MediaPlayer mp)
+            {
                 View progress = findViewById(R.id.videoProgress);
                 progress.setVisibility(View.GONE);
 

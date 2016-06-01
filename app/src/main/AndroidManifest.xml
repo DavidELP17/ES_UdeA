@@ -112,6 +112,10 @@
             android:name=".Maps.MapsActivity"
             android:theme="@style/NoActionBar">
         </activity>
-    </application>
 
+        <activity
+            android:name=".Gallery.GalleryActivity"
+            android:label="@string/galeria" >
+        </activity>
+    </application>
 </manifest>

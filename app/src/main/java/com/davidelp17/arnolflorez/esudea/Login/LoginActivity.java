@@ -116,14 +116,17 @@ public class LoginActivity extends AppCompatActivity {
                             case R.id.nav_home:
                                 Intent HomeActivity1 = new Intent(getApplicationContext(), HomeActivity.class);
                                 startActivity(HomeActivity1);
+                                finish();
                                 break;
                             case R.id.nav_university:
                                 Intent UniversityActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.University.UniversityActivity.class);
                                 startActivity(UniversityActivity);
+                                finish();
                                 break;
                             case R.id.nav_perfil:
                                 Intent ProfileActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Profile.ProfileActivity.class);
                                 startActivity(ProfileActivity);
+                                finish();
                                 break;
                             case R.id.nav_calendar:
                                 Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
@@ -140,15 +143,18 @@ public class LoginActivity extends AppCompatActivity {
                             case R.id.nav_mapas:
                                 Intent MapsActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Maps.MapsActivity.class);
                                 startActivity(MapsActivity);
+                                finish();
                                 break;
                             case R.id.nav_galeria:
-                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                                Intent GalleryActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Gallery.GalleryActivity.class);
+                                startActivity(GalleryActivity);
+                                finish();
                                 break;
                             case R.id.nav_sitioweb:
                                 Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_login:
-                                Snackbar.make(navView, "Ya estas en la ventana de Incio de Sesion", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                                Snackbar.make(navView, "Ya estás en Inicio de Sesión", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_settings:
                                 Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
@@ -321,6 +327,16 @@ public class LoginActivity extends AppCompatActivity {
         {
             mAuthTask = null;
         }
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        Intent HomeActivity1 = new Intent(getApplicationContext(), HomeActivity.class);
+        startActivity(HomeActivity1);
+        finish();
+
+        super.onBackPressed();
     }
 }
 
