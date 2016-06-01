@@ -3,60 +3,64 @@ package com.davidelp17.arnolflorez.esudea.Login;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.os.AsyncTask;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
-import android.view.KeyEvent;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
+import com.davidelp17.arnolflorez.esudea.DataBase.BDEstudiantes;
+import com.davidelp17.arnolflorez.esudea.DataBase.ContracEstudiantes;
 import com.davidelp17.arnolflorez.esudea.Home.HomeActivity;
+import com.davidelp17.arnolflorez.esudea.Profile.ProfileActivity;
 import com.davidelp17.arnolflorez.esudea.R;
 
 public class LoginActivity extends AppCompatActivity {
 
-    public static final String PREF_CLAVE = "NUEVA_CLAVE";
-    public static final String PREF_CLAVE_VALOR = "Valor_Nuevo";
+    private static final String TAG = "Ingreso";
+
+    private static final String PREF_ID = "PREF_ID";
+    private static final String EDITOR_ID = "EDITOR_ID";
+
+    public SharedPreferences ID_PREF;
+    public SharedPreferences.Editor editor_id;
+
+    private EditText mUsernameView;
+    private EditText mPasswordView;
+    private Button mOutLogin;
+    private Button mLogin;
 
     private NavigationView navView;
     private DrawerLayout mDrawerLayout;
 
-    private static final String[] DATOSUSUARIO = new String[]
-    {
-            "lololo:NombreDeUsuario"
-    };
+    public BDEstudiantes helper;
+    public SQLiteDatabase dbRead;
+    public Cursor c;
 
-    //Realiza un seguimiento a la tarea dedicada al login(comprobacion de datos)
-    private UserLoginTask mAuthTask = null;
-
-    private EditText mUsernameView;
-    private EditText mPasswordView;
-    String Nueva_Contraseña;
-    SharedPreferences pref;
-
-    TextView texto;//Dejar para fines de comprobación
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity_login);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        pref = getSharedPreferences(LoginActivity.PREF_CLAVE, MODE_PRIVATE);
+        ID_PREF = getSharedPreferences(PREF_ID, MODE_PRIVATE);
+        editor_id = ID_PREF.edit();
+
 
         mUsernameView = (EditText) findViewById(R.id.username);
         mPasswordView = (EditText) findViewById(R.id.password);
+        mOutLogin = (Button) findViewById(R.id.boton_outlogin);
+        mLogin = (Button) findViewById(R.id.boton_login);
+
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navView = (NavigationView) findViewById(R.id.nav_view);
@@ -66,53 +70,26 @@ public class LoginActivity extends AppCompatActivity {
             setupDrawerContent(navView);
         }
 
-        texto = (TextView) findViewById(R.id.ingremaTextView);//Dejar para fines de comprobación
+        helper = new BDEstudiantes(this);
+        dbRead = helper.getWritableDatabase();
 
-        Intent intent = getIntent();
-        Bundle extras = intent.getExtras();
+        String ShR_id = ID_PREF.getString(EDITOR_ID, "null");
 
-        if(extras != null){
-            Nueva_Contraseña = extras.getString("NUEVA_CONTRASEÑA");
-            if(Nueva_Contraseña != null){
-                SharedPreferences.Editor editor = pref.edit();
-                editor.putString(PREF_CLAVE_VALOR, String.valueOf(Nueva_Contraseña));
-                //texto.setText("Cambio!:"+Nueva_Contraseña);//Dejar para fines de comprobación
-                editor.commit();
-            }
+        if(!ShR_id.equals("null")){
+            mPasswordView.setVisibility(View.INVISIBLE);
+            mUsernameView.setVisibility(View.INVISIBLE);
+            mLogin.setVisibility(View.GONE);
+            mOutLogin.setVisibility(View.VISIBLE);
         }
-        if(Nueva_Contraseña == null){
-            Nueva_Contraseña = (pref.getString(LoginActivity.PREF_CLAVE_VALOR, "popopo")); //"popopo" es la primera clave
-            //texto.setText("Clave:"+Nueva_Contraseña);//Dejar para fines de comprobación
-        }
-
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener()
-        {
-            @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent)
-            {
-                if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
-                    return true;
-                }
-                return false;
-            }
-        });
-
-        Button mEmailSignInButton = (Button) findViewById(R.id.boton_login);
-        mEmailSignInButton.setOnClickListener(new OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                attemptLogin();
-            }
-        });
 
         navView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
+                new NavigationView.OnNavigationItemSelectedListener()
+                {
                     @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        switch (menuItem.getItemId()) {
+                    public boolean onNavigationItemSelected(MenuItem menuItem)
+                    {
+                        switch (menuItem.getItemId())
+                        {
                             case R.id.nav_home:
                                 Intent HomeActivity1 = new Intent(getApplicationContext(), HomeActivity.class);
                                 startActivity(HomeActivity1);
@@ -124,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
                                 finish();
                                 break;
                             case R.id.nav_perfil:
-                                Intent ProfileActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Profile.ProfileActivity.class);
+                                Intent ProfileActivity = new Intent(getApplicationContext(), ProfileActivity.class);
                                 startActivity(ProfileActivity);
                                 finish();
                                 break;
@@ -154,7 +131,8 @@ public class LoginActivity extends AppCompatActivity {
                                 Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_login:
-                                Snackbar.make(navView, "Ya estás en Inicio de Sesión", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                                Snackbar.make(navView, "Ya Estás en la Inicio de Sesión", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                                finish();
                                 break;
                             case R.id.nav_settings:
                                 Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
@@ -205,133 +183,103 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * Asegurarse que no haya errores
-     */
-    private void attemptLogin()
-    {
-        if (mAuthTask != null)
-        {
-            return;
-        }
+    public String getUsuario() {
 
-        // Reiniciar Errores.
-        mUsernameView.setError(null);
-        mPasswordView.setError(null);
+        String Usuario = mUsernameView.getText().toString();
 
-        // Lee y Almacena en variable string los valores obtenidos del EditText.
-        String email = mUsernameView.getText().toString();
-        String password = mPasswordView.getText().toString();
-
-        boolean cancel = false;
-        View focusView = null;
-
-        // Si en la contraseña no se esribio nada o se escribio menos de 4 caracteres
-        if (TextUtils.isEmpty(password) || !tamañocontraseña(password))
-        {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
-            focusView = mPasswordView;
-            cancel = true;
-        }
-
-        // Si el usuario no escribe nada en nombre de usuario
-        if (TextUtils.isEmpty(email))
-        {
-            mUsernameView.setError(getString(R.string.error_field_required));
-            focusView = mUsernameView;
-            cancel = true;
-        }
-        if (cancel)
-        {
-            // Si hubo un error no permitir iniciar sesion y mostrar primer campo con error
-            focusView.requestFocus();
-        }
-        else
-        {
-            //Luego de verificar errores. Ejecuta nueva tarea para permitir inciar sesión
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
-        }
+        return Usuario;
     }
 
-    private boolean tamañocontraseña(String password)
-    {
-        //La contraseña debe tener mas de 4 caracteres.
-        return password.length() > 4;
+    public String getContraseña() {
+
+        String Contraseña = mPasswordView.getText().toString();
+
+        return Contraseña;
     }
 
-    /**
-     * Autentificación del Usuario
-     */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean>
-    {
-        private final String mUsername;
-        private final String mPassword;
-        boolean opc;
 
-        UserLoginTask(String email, String password)
-        {
-            mUsername = email;
-            mPassword = password;
-        }
+    public void OnClicEntrar(View view) {
 
-        @Override
-        protected Boolean doInBackground(Void... params)
-        {
-            for (String credential : DATOSUSUARIO)
-            {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mUsername))
-                {
-                    opc = true;
-                    // La cuenta existe, retorna true si la contrseña coincide
-                    return Nueva_Contraseña.equals(mPassword);
+
+        String ID;
+        String[] args = new String[]{getUsuario()};
+        String[] retur = new String[]{ContracEstudiantes.Estudiantes.COLUMN_CONTRASEÑA_TITLE, ContracEstudiantes.Estudiantes._ID};
+
+        String where = ContracEstudiantes.Estudiantes.COLUMN_USER + "=?";
+
+
+        String password = null;
+        c = dbRead.query(ContracEstudiantes.ESTUDIANTES_TABLE_NAME, retur, where, args, null, null, null);
+        //c= dbRead.rawQuery("select nombre,contraseña  from Estudiantes where nombre='ju'", null);
+        c.moveToFirst();
+
+
+        if (c != null) {
+
+            if (c.getCount() != 0) {
+
+                password = c.getString(c.getColumnIndex(ContracEstudiantes.Estudiantes.COLUMN_CONTRASEÑA_TITLE));
+                ID = c.getString(c.getColumnIndex(ContracEstudiantes.Estudiantes._ID));
+                //password=c.getString(0);
+                Log.i(TAG, "OnClicEntrar: Pasaword " + password);
+
+                if (getContraseña().equals(password)) {
+                    Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
+                    intent.putExtra("ID", ID);
+
+                    editor_id.putString(EDITOR_ID, ID);
+                    editor_id.commit();
+
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Snackbar.make(view, "Contraseña Incorrecta ", Snackbar.LENGTH_LONG).show();
+                    mPasswordView.setText("");
+
+                    editor_id.putString(EDITOR_ID, "null");
+                    editor_id.commit();
+
                 }
-                if (!pieces[0].equals(mUsername))
-                {
-                    // La cuenta NO existe, retorna false y Error
-                    opc = false;
-                    return false;
-                }
+            } else {
+                Snackbar.make(view, "Usuario Incorrecto ", Snackbar.LENGTH_LONG).show();
+                mUsernameView.setText("");
+                mPasswordView.setText("");
+
+                editor_id.putString(EDITOR_ID, "null");
+                editor_id.commit();
             }
-            return true;
+
         }
 
-        @Override
-        protected void onPostExecute(final Boolean success)
-        {
-            mAuthTask = null;
+    }
 
-            if (success)
-            {
-                Intent MainActivity1 = new Intent(getApplicationContext(), HomeActivity.class);
-                startActivity(MainActivity1);
-                finish();
-            } else
-            {
-                if(!opc)
-                {
-                    mUsernameView.setError(getString(R.string.error_incorrect_password));
-                    mUsernameView.requestFocus();
-                }
-                if(opc)
-                {
-                    mPasswordView.setError(getString(R.string.error_incorrect_password));
-                    mPasswordView.requestFocus();
-                }
-            }
+
+    public String ObtenerID(Cursor c) {
+        String ID;
+        return ID = c.getString(c.getColumnIndex(ContracEstudiantes.Estudiantes._ID));
+    }
+
+    public void OnClicOutlogin(View v){
+        editor_id.putString(EDITOR_ID,"null");
+        editor_id.commit();
+        mUsernameView.setVisibility(View.VISIBLE);
+        mPasswordView.setVisibility(View.VISIBLE);
+        mLogin.setVisibility(View.VISIBLE);
+        mOutLogin.setVisibility(View.GONE);
+        Log.i(TAG, "OnClicOutlogin: " + ID_PREF.getString(EDITOR_ID, "null"));
+    }
+
+    public void OnClicProfile(View v){
+        if(mOutLogin.isShown()){
+            Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
+            startActivity(intent);
+            finish();
         }
 
-        @Override
-        protected void onCancelled()
-        {
-            mAuthTask = null;
-        }
     }
 
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         Intent HomeActivity1 = new Intent(getApplicationContext(), HomeActivity.class);
         startActivity(HomeActivity1);
         finish();
