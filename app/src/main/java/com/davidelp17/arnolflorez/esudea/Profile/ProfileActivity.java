@@ -2,15 +2,16 @@ package com.davidelp17.arnolflorez.esudea.Profile;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
@@ -20,10 +21,12 @@ import android.widget.TextView;
 
 import com.davidelp17.arnolflorez.esudea.DataBase.BDEstudiantes;
 import com.davidelp17.arnolflorez.esudea.DataBase.ContracEstudiantes;
+import com.davidelp17.arnolflorez.esudea.Events.EventsActivity;
+import com.davidelp17.arnolflorez.esudea.Groups.GroupsActivityRaw;
 import com.davidelp17.arnolflorez.esudea.Home.HomeActivity;
+import com.davidelp17.arnolflorez.esudea.Information.InformationActivity;
 import com.davidelp17.arnolflorez.esudea.Login.LoginActivity;
 import com.davidelp17.arnolflorez.esudea.R;
-import com.davidelp17.arnolflorez.esudea.University.UniversityActivity;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -31,7 +34,9 @@ public class ProfileActivity extends AppCompatActivity {
 
     private static final String PREF_ID = "PREF_ID";
     private static final String EDITOR_ID = "EDITOR_ID";
+    private static final String EDITOR_FAC = "EDITOR_FAC";
     public SharedPreferences ID_PREF;
+    public SharedPreferences.Editor editor_fac;
 
 
 
@@ -52,12 +57,15 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_activity_profile);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         ID_PREF = getSharedPreferences(PREF_ID, MODE_PRIVATE);
         Log.i(TAG, "onCreate: Preference " + ID_PREF);
 
         String ShR_id = ID_PREF.getString(EDITOR_ID, "null");
         Log.i(TAG, "onCreate: Preference "+ShR_id);
+
+        editor_fac=ID_PREF.edit();
 
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -132,16 +140,17 @@ public class ProfileActivity extends AppCompatActivity {
                                 Snackbar.make(navView, "Ya Estás en Perfíl", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_calendar:
-                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                                Intent CalendarActivity = new Intent(getApplicationContext(), EventsActivity.class);
+                                startActivity(CalendarActivity);
+                                finish();
                                 break;
                             case R.id.nav_horario:
                                 Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_grupos:
-                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-                                break;
-                            case R.id.nav_sedes:
-                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                                Intent GroupsActivity = new Intent(getApplicationContext(), GroupsActivityRaw.class);
+                                startActivity(GroupsActivity);
+                                finish();
                                 break;
                             case R.id.nav_mapas:
                                 Intent MapsActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Maps.MapsActivity.class);
@@ -149,8 +158,8 @@ public class ProfileActivity extends AppCompatActivity {
                                 finish();
                                 break;
                             case R.id.nav_galeria:
-                                Intent GalleryActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Gallery.GalleryActivity.class);
-                                startActivity(GalleryActivity);
+                                Intent PreGalleryActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Gallery.PreGallery.PreGalleryActivity.class);
+                                startActivity(PreGalleryActivity);
                                 finish();
                                 break;
                             case R.id.nav_sitioweb:
@@ -165,7 +174,9 @@ public class ProfileActivity extends AppCompatActivity {
                                 Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_info:
-                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                                Intent InfoActivity = new Intent(getApplicationContext(), InformationActivity.class);
+                                startActivity(InfoActivity);
+                                finish();
                                 break;
                             case R.id.nav_exit:
                                 finish();
@@ -216,6 +227,11 @@ public class ProfileActivity extends AppCompatActivity {
             Carrera = c.getString(c.getColumnIndex(ContracEstudiantes.Estudiantes.COLUMN_CARRERA_TITLE));
             Email = c.getString(c.getColumnIndex(ContracEstudiantes.Estudiantes.COLUMN_CORREO));
         }
+
+        editor_fac.putString(EDITOR_FAC,Faculdad);
+        editor_fac.commit();
+
+        Log.i(TAG, "ActualizarDatos: Commit" +Faculdad);
 
         TvNombre.setText(Nombre);
         TvTIP.setText("TIP # "+Celula);

@@ -15,6 +15,7 @@
 
 
     <dimen name="list_item_avatar_size">150dp</dimen>
+    <dimen name="list_item_avatar_size1">70dp</dimen>
     <dimen name="list_item_avatar_size_little">80dp</dimen>
     <dimen name="list_item_avatar_size_team">100dp</dimen>
 
@@ -35,4 +36,19 @@
     <dimen name="image_thumbnail_spacing">1dp</dimen>
 
     <dimen name="card_margin">16dp</dimen>
+
+    <dimen name="list_item_height">72dp</dimen>
+
+    <!-- Define standard dimensions to comply with Holo-style grids and rhythm. -->
+
+    <dimen name="margin_tiny">4dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_medium">16dp</dimen>
+    <dimen name="margin_large">32dp</dimen>
+    <dimen name="margin_huge">64dp</dimen>
+
+    <!-- Semantic definitions -->
+
+    <dimen name="horizontal_page_margin">@dimen/margin_medium</dimen>
+    <dimen name="vertical_page_margin">@dimen/margin_medium</dimen>
 </resources>

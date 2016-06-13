@@ -12,8 +12,8 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/avatar"
-        android:layout_width="@dimen/list_item_avatar_size"
-        android:layout_height="@dimen/list_item_avatar_size"
+        android:layout_width="@dimen/list_item_avatar_size1"
+        android:layout_height="@dimen/list_item_avatar_size1"
         android:layout_marginRight="16dp">
     </de.hdodenhof.circleimageview.CircleImageView>
 

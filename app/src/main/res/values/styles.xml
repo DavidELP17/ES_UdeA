@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Theme.ESUdeA" parent="Base.Theme.ESUdeA">
-    </style>
 
-    <style name="Theme.ESUdeAActionBar" parent="Base.Theme.ESUdeAActionBar">
-    </style>
+    <style name="Theme.ESUdeA" parent="Base.Theme.ESUdeA"></style>
+
+    <style name="Theme.ESUdeAActionBar" parent="Base.Theme.ESUdeAActionBar"></style>
 
     <!-- Base application theme. -->
     <!-- <style name="Base.Theme.ESUdeA" parent="android:Theme.Holo"> -->
@@ -40,7 +39,7 @@
 
     <style name="Theme.ESUdeA.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="Theme.ESUdeA.FullScreen" parent="android:Theme.Black.NoTitleBar.Fullscreen"/>
+    <style name="Theme.ESUdeA.FullScreen" parent="android:Theme.Black.NoTitleBar.Fullscreen" />
 
     <style name="TranslucentDarkActionBar" parent="android:Widget.Holo.ActionBar">
         <item name="android:background">#99000000</item>
@@ -68,6 +67,28 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
-        <item name="android:windowTranslucentNavigation" tools:targetApi="kitkat">@bool/portrait</item>
+        <item name="android:windowTranslucentNavigation" tools:targetApi="kitkat">@bool/portrait
+        </item>
+    </style>
+
+    <!-- Activity themes -->
+    <style name="Theme.Base" parent="android:Theme.Holo.Light" tools:targetApi="honeycomb" />
+
+    <style name="Theme.Sample" parent="Theme.Base" />
+
+    <style name="AppTheme" parent="Theme.Sample" />
+    <!-- Widget styling -->
+
+    <style name="Widget" />
+
+    <style name="Widget.SampleMessage">
+        <item name="android:textAppearance">?android:textAppearanceMedium</item>
+        <item name="android:lineSpacingMultiplier">1.1</item>
+    </style>
+
+    <style name="Widget.SampleMessageTile">
+        <item name="android:shadowColor">#7F000000</item>
+        <item name="android:shadowDy">-3.5</item>
+        <item name="android:shadowRadius">2</item>
     </style>
 </resources>

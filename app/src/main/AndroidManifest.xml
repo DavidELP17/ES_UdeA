@@ -29,7 +29,7 @@
     </uses-permission>
 
     <uses-permission
-        android:name="android.permission.ACCESS_FINE_LOCATION">
+        android:name="android.permission.ACCESS_FINE_LOCATION"> 
     </uses-permission>
 
     <uses-permission
@@ -57,14 +57,11 @@
             android:label="@string/app_name"
             android:theme="@style/SplashTheme">
             <intent-filter>
-                <action
-                    android:name="android.intent.action.MAIN">
+                <action android:name="android.intent.action.MAIN">
                 </action>
-                <category
-                    android:name="android.intent.category.DEFAULT">
+                <category android:name="android.intent.category.DEFAULT">
                 </category>
-                <category
-                    android:name="android.intent.category.LAUNCHER">
+                <category android:name="android.intent.category.LAUNCHER">
                 </category>
             </intent-filter>
         </activity>
@@ -76,7 +73,7 @@
 
         <activity
             android:name=".University.UniversityActivity"
-            android:label="@string/app_name">
+            android:label="@string/Universidad">
         </activity>
 
         <activity
@@ -115,7 +112,34 @@
 
         <activity
             android:name=".Gallery.GalleryActivity"
-            android:label="@string/galeria" >
+            android:label="@string/galeria">
+        </activity>
+
+        <activity
+            android:name=".Gallery.PreGallery.PreGalleryActivity"
+            android:label="@string/galeria">
+        </activity>
+
+        <activity
+            android:name=".Groups.GroupsActivityRaw"
+            android:label="@string/Grupos">
+        </activity>
+
+        <activity
+            android:name=".Groups.GroupsActivity"
+            android:label="@string/grupos">
+        </activity>
+
+        <activity
+            android:name=".Events.EventsActivity"
+            android:label="@string/eventos">
+        </activity>
+
+        <activity
+            android:name=".Information.InformationActivity"
+            android:label="@string/title_activity_information"
+            android:theme="@style/Theme.ESUdeA">
         </activity>
     </application>
+
 </manifest>

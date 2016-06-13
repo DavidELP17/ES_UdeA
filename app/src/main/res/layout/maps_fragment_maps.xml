@@ -17,14 +17,13 @@
         android:minHeight="?android:attr/actionBarSize"
         android:background="?colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:navigationIcon="@drawable/ic_close"
         app:contentInsetStart="0dp"
         app:titleMarginStart="0dp"
         app:popupTheme="@style/ThemeOverlay.AppCompat">
     </android.support.v7.widget.Toolbar>
 
     <ScrollView
-        android:id="@+id/scroll"
+        android:id="@+id/scrollmapas"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

@@ -4,16 +4,25 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ScrollView;
+
 import com.davidelp17.arnolflorez.esudea.R;
 
 public class MapsFragment extends Fragment
 {
+    private ViewPager viewPager;
     private Toolbar toolbar;
     private int index;
+
+    private boolean veces = true;
+    View view;
+
+    ScrollView scroll;
 
     public MapsFragment()
     {
@@ -33,8 +42,10 @@ public class MapsFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.maps_fragment_maps, container, false);
+        view = inflater.inflate(R.layout.maps_fragment_maps, container, false);
         toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        scroll = (ScrollView) view.findViewById(R.id.scrollmapas);
+        veces = true;
         return view;
     }
 
@@ -55,7 +66,7 @@ public class MapsFragment extends Fragment
             @Override
             public void onClick(View v)
             {
-                getActivity().onBackPressed();
+
             }
         });
     }

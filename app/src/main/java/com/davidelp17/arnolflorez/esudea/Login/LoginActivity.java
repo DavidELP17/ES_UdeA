@@ -16,10 +16,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.davidelp17.arnolflorez.esudea.DataBase.BDEstudiantes;
 import com.davidelp17.arnolflorez.esudea.DataBase.ContracEstudiantes;
+import com.davidelp17.arnolflorez.esudea.Events.EventsActivity;
+import com.davidelp17.arnolflorez.esudea.Groups.GroupsActivityRaw;
 import com.davidelp17.arnolflorez.esudea.Home.HomeActivity;
+import com.davidelp17.arnolflorez.esudea.Information.InformationActivity;
 import com.davidelp17.arnolflorez.esudea.Profile.ProfileActivity;
 import com.davidelp17.arnolflorez.esudea.R;
 
@@ -44,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
     public BDEstudiantes helper;
     public SQLiteDatabase dbRead;
     public Cursor c;
+    private ImageView Logo;
 
 
     @Override
@@ -60,6 +65,7 @@ public class LoginActivity extends AppCompatActivity {
         mPasswordView = (EditText) findViewById(R.id.password);
         mOutLogin = (Button) findViewById(R.id.boton_outlogin);
         mLogin = (Button) findViewById(R.id.boton_login);
+        Logo=(ImageView) findViewById(R.id.login_avatar);
 
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -106,16 +112,17 @@ public class LoginActivity extends AppCompatActivity {
                                 finish();
                                 break;
                             case R.id.nav_calendar:
-                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                                Intent CalendarActivity = new Intent(getApplicationContext(), EventsActivity.class);
+                                startActivity(CalendarActivity);
+                                finish();
                                 break;
                             case R.id.nav_horario:
                                 Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_grupos:
-                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-                                break;
-                            case R.id.nav_sedes:
-                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                                Intent GroupsActivity = new Intent(getApplicationContext(), GroupsActivityRaw.class);
+                                startActivity(GroupsActivity);
+                                finish();
                                 break;
                             case R.id.nav_mapas:
                                 Intent MapsActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Maps.MapsActivity.class);
@@ -123,8 +130,8 @@ public class LoginActivity extends AppCompatActivity {
                                 finish();
                                 break;
                             case R.id.nav_galeria:
-                                Intent GalleryActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Gallery.GalleryActivity.class);
-                                startActivity(GalleryActivity);
+                                Intent PreGalleryActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Gallery.PreGallery.PreGalleryActivity.class);
+                                startActivity(PreGalleryActivity);
                                 finish();
                                 break;
                             case R.id.nav_sitioweb:
@@ -138,7 +145,9 @@ public class LoginActivity extends AppCompatActivity {
                                 Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_info:
-                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                                Intent InfoActivity = new Intent(getApplicationContext(), InformationActivity.class);
+                                startActivity(InfoActivity);
+                                finish();
                                 break;
                             case R.id.nav_exit:
                                 finish();
@@ -230,6 +239,9 @@ public class LoginActivity extends AppCompatActivity {
                     editor_id.putString(EDITOR_ID, ID);
                     editor_id.commit();
 
+                    //Cambiar color LOGO
+                    Logo.setColorFilter(65);
+
                     startActivity(intent);
                     finish();
                 } else {
@@ -271,6 +283,9 @@ public class LoginActivity extends AppCompatActivity {
 
     public void OnClicProfile(View v){
         if(mOutLogin.isShown()){
+            //Cambiar color LOGO
+            Logo.setColorFilter(0);
+
             Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
             startActivity(intent);
             finish();

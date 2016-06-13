@@ -171,5 +171,17 @@
 
     <string name="sedes">Sedes</string>
 
+    <!-- Groups Activity -->
+    <string name="group_facultad">Mi Facultad</string>
+    <string name="group_cargar">Cargar Grupos</string>
+    <string name="Grupos">Grupos</string>
+
+    <string name="element_text">Element</string>
+    <string name="grid_layout_manager">Grid Layout Manager</string>
+    <string name="linear_layout_manager">Linear Layout Manager</string>
+    <string name="Lugar">Lugar: Teatro Camilo Torres</string>
+    <string name="Fecha">Fecha: Jueves 16 de Junio de 2016</string>
+    <string name="Hora">Hora: 21:40 p.m.</string>
+    <string name="title_activity_information">Información</string>
 </resources>
 

@@ -1,6 +1,7 @@
 package com.davidelp17.arnolflorez.esudea.University;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -19,7 +20,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.davidelp17.arnolflorez.esudea.Groups.GroupsActivity;
+import com.davidelp17.arnolflorez.esudea.Groups.GroupsActivityRaw;
 import com.davidelp17.arnolflorez.esudea.Home.HomeActivity;
+import com.davidelp17.arnolflorez.esudea.Information.InformationActivity;
 import com.davidelp17.arnolflorez.esudea.R;
 
 import java.util.ArrayList;
@@ -36,6 +40,7 @@ public class UniversityActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.university_activity_university);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -96,16 +101,17 @@ public class UniversityActivity extends AppCompatActivity
                                 finish();
                                 break;
                             case R.id.nav_calendar:
-                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                                Intent CalendarActivity = new Intent(getApplicationContext(), GroupsActivity.class);
+                                startActivity(CalendarActivity);
+                                finish();
                                 break;
                             case R.id.nav_horario:
                                 Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_grupos:
-                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-                                break;
-                            case R.id.nav_sedes:
-                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                                Intent GroupsActivity = new Intent(getApplicationContext(), GroupsActivityRaw.class);
+                                startActivity(GroupsActivity);
+                                finish();
                                 break;
                             case R.id.nav_mapas:
                                 Intent MapsActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Maps.MapsActivity.class);
@@ -113,8 +119,8 @@ public class UniversityActivity extends AppCompatActivity
                                 finish();
                                 break;
                             case R.id.nav_galeria:
-                                Intent GalleryActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Gallery.GalleryActivity.class);
-                                startActivity(GalleryActivity);
+                                Intent PreGalleryActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Gallery.PreGallery.PreGalleryActivity.class);
+                                startActivity(PreGalleryActivity);
                                 finish();
                                 break;
                             case R.id.nav_sitioweb:
@@ -129,7 +135,9 @@ public class UniversityActivity extends AppCompatActivity
                                 Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_info:
-                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                                Intent InfoActivity = new Intent(getApplicationContext(), InformationActivity.class);
+                                startActivity(InfoActivity);
+                                finish();
                                 break;
                             case R.id.nav_exit:
                                 finish();
@@ -140,7 +148,7 @@ public class UniversityActivity extends AppCompatActivity
                         }
 
                         menuItem.setChecked(true);
-                        getSupportActionBar().setTitle("University");
+                        //getSupportActionBar().setTitle("University");
 
                         mDrawerLayout.closeDrawers();
 

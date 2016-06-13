@@ -21,21 +21,18 @@
         <item
             android:id="@+id/nav_calendar"
             android:icon="@drawable/ic_calendar"
-            android:title="@string/eventos"
-            android:visible="false"/>
+            android:title="@string/eventos"/>
         <item
             android:id="@+id/nav_horario"
             android:icon="@drawable/ic_schedule"
-            android:title="@string/horario"
-            android:visible="false"/>
+            android:title="@string/horario"/>
         <item
             android:id="@+id/nav_grupos"
             android:icon="@drawable/ic_groups"
             android:title="@string/grupos"/>
         <item
             android:id="@+id/nav_sedes"
-            android:title="@string/sedes"
-            android:visible="false"/>
+            android:title="Pruebas"/>
         <item
             android:id="@+id/nav_mapas"
             android:icon="@drawable/ic_maps"
@@ -47,8 +44,7 @@
         <item
             android:id="@+id/nav_sitioweb"
             android:icon="@drawable/ic_web"
-            android:title="@string/Sitio_Web"
-            android:visible="false"/>
+            android:title="@string/Sitio_Web"/>
     </group>
 
     <item
@@ -62,8 +58,7 @@
             <item
                 android:id="@+id/nav_settings"
                 android:icon="@drawable/ic_settings"
-                android:title="@string/Configuracion"
-                android:visible="false"/>
+                android:title="@string/Configuracion"/>
             <item
                 android:id="@+id/nav_info"
                 android:icon="@drawable/ic_sign"

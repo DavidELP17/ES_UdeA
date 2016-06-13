@@ -1,6 +1,7 @@
 package com.davidelp17.arnolflorez.esudea.Maps;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -11,9 +12,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.davidelp17.arnolflorez.esudea.Events.EventsActivity;
+import com.davidelp17.arnolflorez.esudea.Groups.GroupsActivityRaw;
 import com.davidelp17.arnolflorez.esudea.Home.HomeActivity;
-import com.github.nitrico.mapviewpager.MapViewPager;
+import com.davidelp17.arnolflorez.esudea.Information.InformationActivity;
 import com.davidelp17.arnolflorez.esudea.R;
+import com.github.nitrico.mapviewpager.MapViewPager;
 import com.google.android.gms.maps.SupportMapFragment;
 
 public class MapsActivity extends AppCompatActivity implements MapViewPager.Callback
@@ -29,11 +33,13 @@ public class MapsActivity extends AppCompatActivity implements MapViewPager.Call
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.maps_activity_maps);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         SupportMapFragment map = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         viewPager.setPageMargin(Utils.dp(this, 18));
-        Utils.setMargins(viewPager, 0, 0, 0, Utils.getNavigationBarHeight(this));
+        Utils.setMargins(viewPager, 0, 0, 0, 0);
+        //Utils.setMargins(viewPager, 0, 0, 0, Utils.getNavigationBarHeight(this));
 
         mvp = new MapViewPager.Builder(this)
                 .mapFragment(map)
@@ -76,23 +82,24 @@ public class MapsActivity extends AppCompatActivity implements MapViewPager.Call
                                 finish();
                                 break;
                             case R.id.nav_calendar:
-                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                                Intent CalendarActivity = new Intent(getApplicationContext(), EventsActivity.class);
+                                startActivity(CalendarActivity);
+                                finish();
                                 break;
                             case R.id.nav_horario:
                                 Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_grupos:
-                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-                                break;
-                            case R.id.nav_sedes:
-                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                                Intent GroupsActivity = new Intent(getApplicationContext(), GroupsActivityRaw.class);
+                                startActivity(GroupsActivity);
+                                finish();
                                 break;
                             case R.id.nav_mapas:
                                 Snackbar.make(navView, "Ya Estás en Mapas", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_galeria:
-                                Intent GalleryActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Gallery.GalleryActivity.class);
-                                startActivity(GalleryActivity);
+                                Intent PreGalleryActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Gallery.PreGallery.PreGalleryActivity.class);
+                                startActivity(PreGalleryActivity);
                                 finish();
                                 break;
                             case R.id.nav_sitioweb:
@@ -107,7 +114,9 @@ public class MapsActivity extends AppCompatActivity implements MapViewPager.Call
                                 Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_info:
-                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                                Intent InfoActivity = new Intent(getApplicationContext(), InformationActivity.class);
+                                startActivity(InfoActivity);
+                                finish();
                                 break;
                             case R.id.nav_exit:
                                 finish();

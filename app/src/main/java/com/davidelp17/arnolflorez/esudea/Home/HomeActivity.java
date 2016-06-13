@@ -1,6 +1,7 @@
 package com.davidelp17.arnolflorez.esudea.Home;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -13,13 +14,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.davidelp17.arnolflorez.esudea.Events.EventsActivity;
+import com.davidelp17.arnolflorez.esudea.Groups.GroupsActivity;
+import com.davidelp17.arnolflorez.esudea.Groups.GroupsActivityRaw;
+import com.davidelp17.arnolflorez.esudea.Information.InformationActivity;
 import com.davidelp17.arnolflorez.esudea.Login.LoginActivity;
 import com.davidelp17.arnolflorez.esudea.Profile.ProfileActivity;
 import com.davidelp17.arnolflorez.esudea.R;
 import com.davidelp17.arnolflorez.esudea.University.UniversityActivity;
 
-public class HomeActivity extends AppCompatActivity
-{
+public class HomeActivity extends AppCompatActivity {
     public static final String TAGHomeActivity = "HomeActivity";
 
     private NavigationView navView;
@@ -28,10 +32,10 @@ public class HomeActivity extends AppCompatActivity
     public static final String PREF_CONTRASEÑA = "CONTRASEÑA";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity_home);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -43,30 +47,24 @@ public class HomeActivity extends AppCompatActivity
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navView = (NavigationView) findViewById(R.id.nav_view);
 
-        if (navView != null)
-        {
+        if (navView != null) {
             setupDrawerContent(navView);
         }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener()
-        {
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
                 Snackbar.make(view, "Texto de Prueba", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
 
         navView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener()
-                {
+                new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem)
-                    {
-                        switch (menuItem.getItemId())
-                        {
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        switch (menuItem.getItemId()) {
                             case R.id.nav_home:
                                 Snackbar.make(navView, "Ya Estás en la Pantalla Principal", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
@@ -81,16 +79,22 @@ public class HomeActivity extends AppCompatActivity
                                 finish();
                                 break;
                             case R.id.nav_calendar:
-                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                                Intent CalendarActivity = new Intent(getApplicationContext(), EventsActivity.class);
+                                startActivity(CalendarActivity);
+                                finish();
                                 break;
                             case R.id.nav_horario:
                                 Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_grupos:
-                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                                Intent GroupsActivityR = new Intent(getApplicationContext(), GroupsActivityRaw.class);
+                                startActivity(GroupsActivityR);
+                                finish();
                                 break;
                             case R.id.nav_sedes:
-                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                                Intent PGroupsActivity = new Intent(getApplicationContext(), GroupsActivity.class);
+                                startActivity(PGroupsActivity);
+                                finish();
                                 break;
                             case R.id.nav_mapas:
                                 Intent MapsActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Maps.MapsActivity.class);
@@ -98,8 +102,8 @@ public class HomeActivity extends AppCompatActivity
                                 finish();
                                 break;
                             case R.id.nav_galeria:
-                                Intent GalleryActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Gallery.GalleryActivity.class);
-                                startActivity(GalleryActivity);
+                                Intent PreGalleryActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Gallery.PreGallery.PreGalleryActivity.class);
+                                startActivity(PreGalleryActivity);
                                 finish();
                                 break;
                             case R.id.nav_sitioweb:
@@ -114,7 +118,9 @@ public class HomeActivity extends AppCompatActivity
                                 Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_info:
-                                Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                                Intent InfoActivity = new Intent(getApplicationContext(), InformationActivity.class);
+                                startActivity(InfoActivity);
+                                finish();
                                 break;
                             case R.id.nav_exit:
                                 finish();
@@ -137,10 +143,8 @@ public class HomeActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        switch (item.getItemId())
-        {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 return true;
@@ -148,29 +152,14 @@ public class HomeActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    private void setupDrawerContent(NavigationView navigationView)
-    {
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener()
-        {
+    private void setupDrawerContent(NavigationView navigationView) {
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem)
-            {
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
                 menuItem.setChecked(true);
                 mDrawerLayout.closeDrawers();
                 return true;
             }
         });
-    }
-
-    @Override
-    public void onStart()
-    {
-        super.onStart();
-    }
-
-    @Override
-    public void onStop()
-    {
-        super.onStop();
     }
 }

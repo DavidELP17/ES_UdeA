@@ -11,8 +11,8 @@ import java.util.List;
 
 public class MapsAdapter extends MapViewPager.MultiAdapter
 {
-    public static final String[] PAGE_TITLES = { "Robledo" , "Posgrados"       , "Ciudadela",
-                                                 "Escuela Idiomas", "Medicina", "Medellin" };
+    public static final String[] PAGE_TITLES = { "  Robledo" , "  Posgrados"       , "  Ciudadela",
+                                                 "  Escuela Idiomas", "  Medicina", "  Medellin" };
 
     public static final String[] ROBLEDO_TITLES = { "Robledo" };
     public static final String[] POSGRADOS_TITLES = { "Sede Posgrados" };

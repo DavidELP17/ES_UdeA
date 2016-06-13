@@ -7,6 +7,7 @@
     <color name="colorAccent">#81c784</color>
     <color name="colorFragment">#6ed5dfd4</color>
 
+    <color name="colorCard">#cceca6</color>
     <color name="progressBar">#00bcd4</color>
     <color name="navigationBarColor">#000000</color>
 
