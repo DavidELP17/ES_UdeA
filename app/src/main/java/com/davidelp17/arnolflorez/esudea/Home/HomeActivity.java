@@ -3,39 +3,44 @@ package com.davidelp17.arnolflorez.esudea.Home;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatCallback;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.davidelp17.arnolflorez.esudea.Events.EventsActivity;
-import com.davidelp17.arnolflorez.esudea.Groups.GroupsActivity;
 import com.davidelp17.arnolflorez.esudea.Groups.GroupsActivityRaw;
+import com.davidelp17.arnolflorez.esudea.Home.Logger.ActivityBase;
+import com.davidelp17.arnolflorez.esudea.Home.Logger.Log;
+import com.davidelp17.arnolflorez.esudea.Home.Logger.LogWrapper;
+import com.davidelp17.arnolflorez.esudea.Home.Logger.MessageOnlyLogFilter;
 import com.davidelp17.arnolflorez.esudea.Information.InformationActivity;
-import com.davidelp17.arnolflorez.esudea.Login.LoginActivity;
-import com.davidelp17.arnolflorez.esudea.Profile.ProfileActivity;
 import com.davidelp17.arnolflorez.esudea.R;
-import com.davidelp17.arnolflorez.esudea.University.UniversityActivity;
 
-public class HomeActivity extends AppCompatActivity {
-    public static final String TAGHomeActivity = "HomeActivity";
+public class HomeActivity extends ActivityBase implements AppCompatCallback
+{
+    public static final String TAG = "HomeActivity";
+
+    // Whether the Log Fragment is currently shown
+    private boolean mLogShown;
 
     private NavigationView navView;
     private DrawerLayout mDrawerLayout;
 
-    public static final String PREF_CONTRASEÑA = "CONTRASEÑA";
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity_home);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navView = (NavigationView) findViewById(R.id.nav_view);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -44,21 +49,17 @@ public class HomeActivity extends AppCompatActivity {
         ab.setHomeAsUpIndicator(R.drawable.ic_menu);
         ab.setDisplayHomeAsUpEnabled(true);
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navView = (NavigationView) findViewById(R.id.nav_view);
-
         if (navView != null) {
             setupDrawerContent(navView);
         }
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Texto de Prueba", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        if (savedInstanceState == null)
+        {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            HomeFragment fragment = new HomeFragment();
+            transaction.replace(R.id.sample_content_fragment, fragment);
+            transaction.commit();
+        }
 
         navView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
@@ -69,12 +70,12 @@ public class HomeActivity extends AppCompatActivity {
                                 Snackbar.make(navView, "Ya Estás en la Pantalla Principal", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_university:
-                                Intent UniversityActivity = new Intent(getApplicationContext(), UniversityActivity.class);
+                                Intent UniversityActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.University.UniversityActivity.class);
                                 startActivity(UniversityActivity);
                                 finish();
                                 break;
                             case R.id.nav_perfil:
-                                Intent ProfileActivity = new Intent(getApplicationContext(), ProfileActivity.class);
+                                Intent ProfileActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Profile.ProfileActivity.class);
                                 startActivity(ProfileActivity);
                                 finish();
                                 break;
@@ -87,18 +88,18 @@ public class HomeActivity extends AppCompatActivity {
                                 Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_grupos:
-                                Intent GroupsActivityR = new Intent(getApplicationContext(), GroupsActivityRaw.class);
-                                startActivity(GroupsActivityR);
-                                finish();
-                                break;
-                            case R.id.nav_sedes:
-                                Intent PGroupsActivity = new Intent(getApplicationContext(), GroupsActivity.class);
-                                startActivity(PGroupsActivity);
+                                Intent GroupsActivity = new Intent(getApplicationContext(), GroupsActivityRaw.class);
+                                startActivity(GroupsActivity);
                                 finish();
                                 break;
                             case R.id.nav_mapas:
                                 Intent MapsActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Maps.MapsActivity.class);
                                 startActivity(MapsActivity);
+                                finish();
+                                break;
+                            case R.id.nav_sedes:
+                                Intent PGroupsActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Groups.GroupsActivity.class);
+                                startActivity(PGroupsActivity);
                                 finish();
                                 break;
                             case R.id.nav_galeria:
@@ -110,7 +111,7 @@ public class HomeActivity extends AppCompatActivity {
                                 Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_login:
-                                Intent LoginActivity = new Intent(getApplicationContext(), LoginActivity.class);
+                                Intent LoginActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Login.LoginActivity.class);
                                 startActivity(LoginActivity);
                                 finish();
                                 break;
@@ -131,7 +132,7 @@ public class HomeActivity extends AppCompatActivity {
                         }
 
                         menuItem.setChecked(true);
-                        getSupportActionBar().setTitle(R.string.app_name);
+                        //getSupportActionBar().setTitle(R.string.app_name);
 
                         mDrawerLayout.closeDrawers();
 
@@ -161,5 +162,21 @@ public class HomeActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    /** Create a chain of targets that will receive log data */
+    @Override
+    public void initializeLogging()
+    {
+        // Wraps Android's native log framework.
+        LogWrapper logWrapper = new LogWrapper();
+        // Using Log, front-end to the logging chain, emulates android.util.log method signatures.
+        Log.setLogNode(logWrapper);
+
+        // Filter strips out everything except the message text.
+        MessageOnlyLogFilter msgFilter = new MessageOnlyLogFilter();
+        logWrapper.setNext(msgFilter);
+
+        Log.i(TAG, "Ready");
     }
 }

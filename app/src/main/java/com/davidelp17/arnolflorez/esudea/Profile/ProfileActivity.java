@@ -23,7 +23,6 @@ import com.davidelp17.arnolflorez.esudea.DataBase.BDEstudiantes;
 import com.davidelp17.arnolflorez.esudea.DataBase.ContracEstudiantes;
 import com.davidelp17.arnolflorez.esudea.Events.EventsActivity;
 import com.davidelp17.arnolflorez.esudea.Groups.GroupsActivityRaw;
-import com.davidelp17.arnolflorez.esudea.Home.HomeActivity;
 import com.davidelp17.arnolflorez.esudea.Information.InformationActivity;
 import com.davidelp17.arnolflorez.esudea.Login.LoginActivity;
 import com.davidelp17.arnolflorez.esudea.R;
@@ -37,8 +36,6 @@ public class ProfileActivity extends AppCompatActivity {
     private static final String EDITOR_FAC = "EDITOR_FAC";
     public SharedPreferences ID_PREF;
     public SharedPreferences.Editor editor_fac;
-
-
 
     private NavigationView navView;
     private DrawerLayout mDrawerLayout;
@@ -67,10 +64,8 @@ public class ProfileActivity extends AppCompatActivity {
 
         editor_fac=ID_PREF.edit();
 
-
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navView = (NavigationView) findViewById(R.id.nav_view);
-
 
         helper = new BDEstudiantes(this);
         dbRead = helper.getReadableDatabase();
@@ -105,13 +100,14 @@ public class ProfileActivity extends AppCompatActivity {
             }).show();
 
         }
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         final ActionBar ab = getSupportActionBar();
         ab.setHomeAsUpIndicator(R.drawable.ic_menu);
         ab.setDisplayHomeAsUpEnabled(true);
-        ab.setTitle(R.string.app_name);
+        ab.setTitle(R.string.perfil);
 
         if (navView != null) {
             setupDrawerContent(navView);
@@ -127,7 +123,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                         switch (menuItem.getItemId()) {
                             case R.id.nav_home:
-                                Intent HomeActivity1 = new Intent(getApplicationContext(), HomeActivity.class);
+                                Intent HomeActivity1 = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Home.HomeActivity.class);
                                 startActivity(HomeActivity1);
                                 finish();
                                 break;
@@ -265,7 +261,7 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        Intent HomeActivity1 = new Intent(getApplicationContext(), HomeActivity.class);
+        Intent HomeActivity1 = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Home.HomeActivity.class);
         startActivity(HomeActivity1);
         finish();
 

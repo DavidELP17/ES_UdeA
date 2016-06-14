@@ -1,7 +1,10 @@
 package com.davidelp17.arnolflorez.esudea.Groups;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -12,18 +15,37 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatCallback;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
+import com.davidelp17.arnolflorez.esudea.DataBase.BDGrupos;
+import com.davidelp17.arnolflorez.esudea.Events.EventsActivity;
 import com.davidelp17.arnolflorez.esudea.Groups.Logger.ActivityBase;
 import com.davidelp17.arnolflorez.esudea.Groups.Logger.Log;
 import com.davidelp17.arnolflorez.esudea.Groups.Logger.LogWrapper;
 import com.davidelp17.arnolflorez.esudea.Groups.Logger.MessageOnlyLogFilter;
-import com.davidelp17.arnolflorez.esudea.Home.HomeActivity;
 import com.davidelp17.arnolflorez.esudea.Information.InformationActivity;
 import com.davidelp17.arnolflorez.esudea.R;
 
 public class GroupsActivity extends ActivityBase implements AppCompatCallback
 {
     public static final String TAG = "GroupsActivity";
+
+    public BDGrupos helper;
+    public SQLiteDatabase dbRead;
+    public Cursor c;
+
+    public TextView GC;
+    public TextView GM;
+    public TextView GH;
+    public TextView GP;
+    private EditText Selector;
+
+    private static final String PREF_ID = "PREF_ID";
+    private static final String EDITOR_FAC = "EDITOR_FAC";
+    public SharedPreferences ID_PREF;
+    private String ShR_fac;
 
     // Whether the Log Fragment is currently shown
     private boolean mLogShown;
@@ -37,6 +59,23 @@ public class GroupsActivity extends ActivityBase implements AppCompatCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.groups_activity_groups);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        ID_PREF = getSharedPreferences(PREF_ID, MODE_PRIVATE);
+        android.util.Log.i(TAG, "onCreate: Preference " + ID_PREF);
+
+        ShR_fac = ID_PREF.getString(EDITOR_FAC, "null");
+        android.util.Log.i(TAG, "onCreate: Preference " + ShR_fac);
+
+        helper = new BDGrupos(this);
+        dbRead = helper.getWritableDatabase();
+
+        Selector = (EditText)findViewById(R.id.group_facultad);
+        GH=(TextView)findViewById(R.id.groupH);
+        GC=(TextView)findViewById(R.id.groupC);
+        GM=(TextView)findViewById(R.id.groupM);
+        GP=(TextView)findViewById(R.id.groupP);
+
+        Selector.setText(ShR_fac);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navView = (NavigationView) findViewById(R.id.nav_view);
@@ -66,7 +105,7 @@ public class GroupsActivity extends ActivityBase implements AppCompatCallback
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         switch (menuItem.getItemId()) {
                             case R.id.nav_home:
-                                Intent HomeActivity1 = new Intent(getApplicationContext(), HomeActivity.class);
+                                Intent HomeActivity1 = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Home.HomeActivity.class);
                                 startActivity(HomeActivity1);
                                 finish();
                                 break;
@@ -81,7 +120,7 @@ public class GroupsActivity extends ActivityBase implements AppCompatCallback
                                 finish();
                                 break;
                             case R.id.nav_calendar:
-                                Intent CalendarActivity = new Intent(getApplicationContext(), GroupsActivity.class);
+                                Intent CalendarActivity = new Intent(getApplicationContext(), EventsActivity.class);
                                 startActivity(CalendarActivity);
                                 finish();
                                 break;
@@ -139,6 +178,33 @@ public class GroupsActivity extends ActivityBase implements AppCompatCallback
         navView.getMenu().getItem(5).setChecked(true);
     }
 
+    public void GenerarGrupos(View v)
+    {
+        /*String Busqueda=null;
+
+        if(!ShR_fac.equals("null")){
+            Busqueda=ShR_fac;
+        }
+
+        String where = ContracGrupos.COLUMN_FACULTAD + "=?";
+        String[] retur = new String[]{
+                ContracGrupos.COLUMN_CODIGO,
+                ContracGrupos.COLUMN_MATERIA,
+                ContracGrupos.COLUMN_HORARIO,
+                ContracGrupos.COLUMN_PROFESOR
+        };
+
+        c = dbRead.query(ContracGrupos.GRUPO_TABLE_NAME, retur, where, new String[]{Busqueda}, null, null, null);
+        //c= dbRead.rawQuery("select nombre,contraseña  from Estudiantes where nombre='ju'", null);
+        while (c.moveToNext()){
+
+            GC.append("\n"+ c.getString(c.getColumnIndex(ContracGrupos.COLUMN_CODIGO)));
+            GM.append("\n"+ c.getString(c.getColumnIndex(ContracGrupos.COLUMN_MATERIA)));
+            GH.append("\n"+ c.getString(c.getColumnIndex(ContracGrupos.COLUMN_HORARIO)));
+            GP.append("\n"+ c.getString(c.getColumnIndex(ContracGrupos.COLUMN_PROFESOR)));
+        }*/
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -179,7 +245,7 @@ public class GroupsActivity extends ActivityBase implements AppCompatCallback
     @Override
     public void onBackPressed()
     {
-        Intent HomeActivity1 = new Intent(getApplicationContext(), HomeActivity.class);
+        Intent HomeActivity1 = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Home.HomeActivity.class);
         startActivity(HomeActivity1);
         finish();
 

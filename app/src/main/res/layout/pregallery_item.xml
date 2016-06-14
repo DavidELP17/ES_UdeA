@@ -3,36 +3,28 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/list_item_height"
-    android:layout_marginLeft="@dimen/margin_medium"
-    android:layout_marginRight="@dimen/margin_medium"
+    android:layout_height="wrap_content"
+    android:padding="1dp"
     android:gravity="center_vertical">
 
-    <android.support.v7.widget.CardView
+    <RelativeLayout
+        android:id="@+id/fotopregallery"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp">
+        android:layout_height="180dp"
+        android:orientation="vertical"
+        android:background="@drawable/universidad_4">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/textView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/colorPrimary">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/universidad_2"/>
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_gravity="center_horizontal"
-                android:layout_height="wrap_content"
-                android:text="@string/element_text"/>
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
+            android:layout_gravity="center_horizontal"
+            android:layout_height="30dp"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:background="@color/colorPrimary"
+            android:text="@string/element_text"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+    </RelativeLayout>
 </FrameLayout>

@@ -1,20 +1,4 @@
-/*
-* Copyright (C) 2014 The Android Open Source Project
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*      http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-package com.davidelp17.arnolflorez.esudea.Gallery.PreGallery;
+package com.davidelp17.arnolflorez.esudea.Home;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -28,18 +12,15 @@ import android.widget.RadioButton;
 
 import com.davidelp17.arnolflorez.esudea.R;
 
-/**
- * Demonstrates the use of {@link RecyclerView} with a {@link LinearLayoutManager} and a
- * {@link GridLayoutManager}.
- */
-public class RecyclerViewFragment extends Fragment {
-
-    private static final String TAG = "RecyclerViewFragment";
+public class HomeFragment extends Fragment
+{
+    private static final String TAG = "HomeFragment";
     private static final String KEY_LAYOUT_MANAGER = "layoutManager";
     private static final int SPAN_COUNT = 2;
     private static final int DATASET_COUNT = 60;
 
-    private enum LayoutManagerType {
+    private enum LayoutManagerType
+    {
         GRID_LAYOUT_MANAGER,
         LINEAR_LAYOUT_MANAGER
     }
@@ -50,23 +31,22 @@ public class RecyclerViewFragment extends Fragment {
     protected RadioButton mGridLayoutRadioButton;
 
     protected RecyclerView mRecyclerView;
-    protected CustomAdapter mAdapter;
+    protected HomeAdapter mAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;
     protected String[] mDataset;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
 
-        // Initialize dataset, this data would usually come from a local content provider or
-        // remote server.
         initDataset();
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.pregallery_fragment_recycler, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
+        View rootView = inflater.inflate(R.layout.home_fragment_recycler, container, false);
         rootView.setTag(TAG);
 
         // BEGIN_INCLUDE(initializeRecyclerView)
@@ -77,38 +57,37 @@ public class RecyclerViewFragment extends Fragment {
         // elements are laid out.
         mLayoutManager = new LinearLayoutManager(getActivity());
 
-        mCurrentLayoutManagerType = LayoutManagerType.GRID_LAYOUT_MANAGER;
+        mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
 
-        if (savedInstanceState != null) {
+        if (savedInstanceState != null)
+        {
             // Restore saved layout manager type.
             mCurrentLayoutManagerType = (LayoutManagerType) savedInstanceState
                     .getSerializable(KEY_LAYOUT_MANAGER);
         }
         setRecyclerViewLayoutManager(mCurrentLayoutManagerType);
 
-        mAdapter = new CustomAdapter(mDataset);
-        // Set CustomAdapter as the adapter for RecyclerView.
+        mAdapter = new HomeAdapter(mDataset);
+        // Set HomeAdapter as the adapter for RecyclerView.
         mRecyclerView.setAdapter(mAdapter);
         // END_INCLUDE(initializeRecyclerView)
 
         return rootView;
     }
 
-    /**
-     * Set RecyclerView's LayoutManager to the one given.
-     *
-     * @param layoutManagerType Type of layout manager to switch to.
-     */
-    public void setRecyclerViewLayoutManager(LayoutManagerType layoutManagerType) {
+    public void setRecyclerViewLayoutManager(LayoutManagerType layoutManagerType)
+    {
         int scrollPosition = 0;
 
         // If a layout manager has already been set, get current scroll position.
-        if (mRecyclerView.getLayoutManager() != null) {
+        if (mRecyclerView.getLayoutManager() != null)
+        {
             scrollPosition = ((LinearLayoutManager) mRecyclerView.getLayoutManager())
                     .findFirstCompletelyVisibleItemPosition();
         }
 
-        switch (layoutManagerType) {
+        switch (layoutManagerType)
+        {
             case GRID_LAYOUT_MANAGER:
                 mLayoutManager = new GridLayoutManager(getActivity(), SPAN_COUNT);
                 mCurrentLayoutManagerType = LayoutManagerType.GRID_LAYOUT_MANAGER;
@@ -127,19 +106,18 @@ public class RecyclerViewFragment extends Fragment {
     }
 
     @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
+    public void onSaveInstanceState(Bundle savedInstanceState)
+    {
         // Save currently selected layout manager.
         savedInstanceState.putSerializable(KEY_LAYOUT_MANAGER, mCurrentLayoutManagerType);
         super.onSaveInstanceState(savedInstanceState);
     }
 
-    /**
-     * Generates Strings for RecyclerView's adapter. This data would usually come
-     * from a local content provider or remote server.
-     */
-    private void initDataset() {
+    private void initDataset()
+    {
         mDataset = new String[DATASET_COUNT];
-        for (int i = 0; i < DATASET_COUNT; i++) {
+        for (int i = 0; i < DATASET_COUNT; i++)
+        {
             mDataset[i] = "This is element #" + i;
         }
     }

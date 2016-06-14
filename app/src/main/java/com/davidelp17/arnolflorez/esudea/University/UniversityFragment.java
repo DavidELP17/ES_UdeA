@@ -19,7 +19,6 @@ import com.davidelp17.arnolflorez.esudea.R;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class UniversityFragment extends Fragment
 {
@@ -36,16 +35,15 @@ public class UniversityFragment extends Fragment
     {
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
         recyclerView.setAdapter(new SimpleStringRecyclerViewAdapter(getActivity(),
-                getRandomSublist(UniversityData.sUniStrings, 30)));
+                getRandomSublist(UniversityData.sUniStrings, 25)));
     }
 
     private List<String> getRandomSublist(String[] array, int amount)
     {
         ArrayList<String> list = new ArrayList<>(amount);
-        Random random = new Random();
-        while (list.size() < amount)
+        for(int i = 0; i < amount; i++)
         {
-            list.add(array[random.nextInt(array.length)]);
+            list.add(array[i]);
         }
         return list;
     }
@@ -119,10 +117,12 @@ public class UniversityFragment extends Fragment
                 }
             });
 
+
             Glide.with(holder.mImageView.getContext())
-                    .load(UniversityData.getRandomUniDrawable())
+                    .load(UniversityData.getRandomUniDrawable(position))
                     .fitCenter()
                     .into(holder.mImageView);
+
         }
 
         @Override

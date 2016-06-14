@@ -1,4 +1,4 @@
-package com.davidelp17.arnolflorez.esudea.Gallery.PreGallery;
+package com.davidelp17.arnolflorez.esudea.Home;
 
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -7,11 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.davidelp17.arnolflorez.esudea.Gallery.PreGallery.Logger.Log;
+import com.davidelp17.arnolflorez.esudea.Home.Logger.Log;
 import com.davidelp17.arnolflorez.esudea.R;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
-    private static final String TAG = "CustomAdapter";
+public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
+    private static final String TAG = "HomeAdapter";
 
     private String[] mDataSet;
 
@@ -29,8 +29,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                 @Override
                 public void onClick(View v) {
                     Log.d(TAG, "Element " + getPosition() + " clicked.");
-                    Intent GalleryActivity = new Intent(v.getContext(), com.davidelp17.arnolflorez.esudea.Gallery.GalleryActivity.class);
-                    v.getContext().startActivity(GalleryActivity);
+                    Intent EventsActivity = new Intent(v.getContext(), com.davidelp17.arnolflorez.esudea.Events.EventsActivity.class);
+                    v.getContext().startActivity(EventsActivity);
                 }
             });
             textView = (TextView) v.findViewById(R.id.textView);
@@ -47,7 +47,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
      *
      * @param dataSet String[] containing the data to populate views to be used by RecyclerView.
      */
-    public CustomAdapter(String[] dataSet) {
+    public HomeAdapter(String[] dataSet) {
         mDataSet = dataSet;
     }
 
@@ -57,7 +57,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         // Create a new view.
         View v = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.pregallery_item, viewGroup, false);
+                .inflate(R.layout.home_item, viewGroup, false);
 
         return new ViewHolder(v);
     }

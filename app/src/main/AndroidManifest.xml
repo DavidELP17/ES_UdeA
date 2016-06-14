@@ -50,6 +50,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.ESUdeA"
+        android:largeHeap="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
         <activity
@@ -64,6 +65,11 @@
                 <category android:name="android.intent.category.LAUNCHER">
                 </category>
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".Home.HomeActivityRaw"
+            android:label="@string/app_name">
         </activity>
 
         <activity
@@ -107,7 +113,8 @@
 
         <activity
             android:name=".Maps.MapsActivity"
-            android:theme="@style/NoActionBar">
+            android:theme="@style/NoActionBar"
+            android:label="@string/mapa">
         </activity>
 
         <activity

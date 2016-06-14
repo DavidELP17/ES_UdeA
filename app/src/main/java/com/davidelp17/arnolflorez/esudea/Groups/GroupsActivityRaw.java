@@ -22,7 +22,6 @@ import android.widget.TextView;
 import com.davidelp17.arnolflorez.esudea.DataBase.BDGrupos;
 import com.davidelp17.arnolflorez.esudea.DataBase.ContracGrupos;
 import com.davidelp17.arnolflorez.esudea.Events.EventsActivity;
-import com.davidelp17.arnolflorez.esudea.Home.HomeActivity;
 import com.davidelp17.arnolflorez.esudea.Information.InformationActivity;
 import com.davidelp17.arnolflorez.esudea.R;
 
@@ -94,7 +93,7 @@ public class GroupsActivityRaw extends AppCompatActivity {
 
                         switch (menuItem.getItemId()) {
                             case R.id.nav_home:
-                                Intent HomeActivity1 = new Intent(getApplicationContext(), HomeActivity.class);
+                                Intent HomeActivity1 = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Home.HomeActivity.class);
                                 startActivity(HomeActivity1);
                                 finish();
                                 break;
@@ -217,7 +216,7 @@ public class GroupsActivityRaw extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        Intent HomeActivity1 = new Intent(getApplicationContext(), HomeActivity.class);
+        Intent HomeActivity1 = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Home.HomeActivity.class);
         startActivity(HomeActivity1);
         finish();
 

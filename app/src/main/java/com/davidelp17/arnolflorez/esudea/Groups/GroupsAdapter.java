@@ -23,10 +23,6 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.ViewHolder
     public SQLiteDatabase dbRead;
     public Cursor c;
 
-    public TextView GC;
-    public TextView GM;
-    public TextView GH;
-    public TextView GP;
     private EditText Selector;
 
     private static final String PREF_ID = "PREF_ID";
@@ -35,7 +31,10 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.ViewHolder
     private String ShR_fac;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView textView;
+        private final TextView GC;
+        private final TextView GM;
+        private final TextView GH;
+        private final TextView GP;
 
         public ViewHolder(View v) {
             super(v);
@@ -46,11 +45,14 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.ViewHolder
                     Log.d(TAG, "Element " + getPosition() + " clicked.");
                 }
             });
-            textView = (TextView) v.findViewById(R.id.textView);
+            GC = (TextView) v.findViewById(R.id.groupC);
+            GH = (TextView) v.findViewById(R.id.groupH);
+            GM = (TextView) v.findViewById(R.id.groupM);
+            GP = (TextView) v.findViewById(R.id.groupP);
         }
 
         public TextView getTextView() {
-            return textView;
+            return GC;
         }
     }
 

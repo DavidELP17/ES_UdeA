@@ -16,7 +16,6 @@ import android.view.View;
 
 import com.davidelp17.arnolflorez.esudea.Events.EventsActivity;
 import com.davidelp17.arnolflorez.esudea.Groups.GroupsActivityRaw;
-import com.davidelp17.arnolflorez.esudea.Home.HomeActivity;
 import com.davidelp17.arnolflorez.esudea.R;
 
 public class InformationActivity extends AppCompatActivity
@@ -59,7 +58,7 @@ public class InformationActivity extends AppCompatActivity
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         switch (menuItem.getItemId()) {
                             case R.id.nav_home:
-                                Intent HomeActivity1 = new Intent(getApplicationContext(), HomeActivity.class);
+                                Intent HomeActivity1 = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Home.HomeActivity.class);
                                 startActivity(HomeActivity1);
                                 finish();
                                 break;
@@ -147,5 +146,14 @@ public class InformationActivity extends AppCompatActivity
                 return true;
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent HomeActivity1 = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Home.HomeActivity.class);
+        startActivity(HomeActivity1);
+        finish();
+
+        super.onBackPressed();
     }
 }

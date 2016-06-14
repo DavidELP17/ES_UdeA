@@ -22,7 +22,6 @@ import com.davidelp17.arnolflorez.esudea.DataBase.BDEstudiantes;
 import com.davidelp17.arnolflorez.esudea.DataBase.ContracEstudiantes;
 import com.davidelp17.arnolflorez.esudea.Events.EventsActivity;
 import com.davidelp17.arnolflorez.esudea.Groups.GroupsActivityRaw;
-import com.davidelp17.arnolflorez.esudea.Home.HomeActivity;
 import com.davidelp17.arnolflorez.esudea.Information.InformationActivity;
 import com.davidelp17.arnolflorez.esudea.Profile.ProfileActivity;
 import com.davidelp17.arnolflorez.esudea.R;
@@ -97,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
                         switch (menuItem.getItemId())
                         {
                             case R.id.nav_home:
-                                Intent HomeActivity1 = new Intent(getApplicationContext(), HomeActivity.class);
+                                Intent HomeActivity1 = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Home.HomeActivity.class);
                                 startActivity(HomeActivity1);
                                 finish();
                                 break;
@@ -295,7 +294,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent HomeActivity1 = new Intent(getApplicationContext(), HomeActivity.class);
+        Intent HomeActivity1 = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Home.HomeActivity.class);
         startActivity(HomeActivity1);
         finish();
 

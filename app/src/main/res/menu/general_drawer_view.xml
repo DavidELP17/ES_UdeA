@@ -58,7 +58,8 @@
             <item
                 android:id="@+id/nav_settings"
                 android:icon="@drawable/ic_settings"
-                android:title="@string/Configuracion"/>
+                android:title="@string/Configuracion"
+                android:visible="false"/>
             <item
                 android:id="@+id/nav_info"
                 android:icon="@drawable/ic_sign"
