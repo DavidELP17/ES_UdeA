@@ -50,7 +50,7 @@ public class PreGalleryFragment extends Fragment {
     protected RadioButton mGridLayoutRadioButton;
 
     protected RecyclerView mRecyclerView;
-    protected PreGalleryAdapter mAdapter;
+    protected PreGalleryAdaptador mAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;
     protected String[] mDataset;
 
@@ -86,8 +86,8 @@ public class PreGalleryFragment extends Fragment {
         }
         setRecyclerViewLayoutManager(mCurrentLayoutManagerType);
 
-        mAdapter = new PreGalleryAdapter(mDataset);
-        // Set PreGalleryAdapter as the adapter for RecyclerView.
+        mAdapter = new PreGalleryAdaptador(mDataset);
+        // Set PreGalleryAdaptador as the adapter for RecyclerView.
         mRecyclerView.setAdapter(mAdapter);
         // END_INCLUDE(initializeRecyclerView)
 
