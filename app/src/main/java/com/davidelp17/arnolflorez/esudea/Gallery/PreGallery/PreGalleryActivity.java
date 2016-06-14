@@ -19,7 +19,6 @@ import com.davidelp17.arnolflorez.esudea.Gallery.PreGallery.Logger.Log;
 import com.davidelp17.arnolflorez.esudea.Gallery.PreGallery.Logger.LogWrapper;
 import com.davidelp17.arnolflorez.esudea.Gallery.PreGallery.Logger.MessageOnlyLogFilter;
 import com.davidelp17.arnolflorez.esudea.Groups.GroupsActivityRaw;
-import com.davidelp17.arnolflorez.esudea.Home.HomeActivity;
 import com.davidelp17.arnolflorez.esudea.Information.InformationActivity;
 import com.davidelp17.arnolflorez.esudea.R;
 
@@ -55,7 +54,7 @@ public class PreGalleryActivity extends ActivityBase implements AppCompatCallbac
 
         if (savedInstanceState == null) {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            RecyclerViewFragment fragment = new RecyclerViewFragment();
+            PreGalleryFragment fragment = new PreGalleryFragment();
             transaction.replace(R.id.sample_content_fragment, fragment);
             transaction.commit();
         }
@@ -66,7 +65,7 @@ public class PreGalleryActivity extends ActivityBase implements AppCompatCallbac
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         switch (menuItem.getItemId()) {
                             case R.id.nav_home:
-                                Intent HomeActivity1 = new Intent(getApplicationContext(), HomeActivity.class);
+                                Intent HomeActivity1 = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Home.HomeActivity.class);
                                 startActivity(HomeActivity1);
                                 finish();
                                 break;
@@ -176,7 +175,7 @@ public class PreGalleryActivity extends ActivityBase implements AppCompatCallbac
     @Override
     public void onBackPressed()
     {
-        Intent HomeActivity1 = new Intent(getApplicationContext(), HomeActivity.class);
+        Intent HomeActivity1 = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Home.HomeActivity.class);
         startActivity(HomeActivity1);
         finish();
 
