@@ -105,6 +105,9 @@
     <string name="Emaillabel">Email@udea.edu.co</string>
     <string name="Usernamelabel">Nombre de Usuario</string>
 
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
     <string name="namelabel1">Andy</string>
     <string name="Emaillabel1">Andy@udea.edu.co</string>
 
@@ -183,5 +186,7 @@
     <string name="Fecha">Fecha: Jueves 16 de Junio de 2016</string>
     <string name="Hora">Hora: 21:40 p.m.</string>
     <string name="title_activity_information">Información</string>
+
+
 </resources>
 

@@ -1,5 +1,6 @@
 package com.davidelp17.arnolflorez.esudea.Profile;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -8,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -49,6 +51,9 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView TvCarrera;
     private TextView TvEmail;
     private EditText EdMis_Datos;
+    private TextView HNombre;
+    private TextView HCorreo;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +68,9 @@ public class ProfileActivity extends AppCompatActivity {
         Log.i(TAG, "onCreate: Preference "+ShR_id);
 
         editor_fac=ID_PREF.edit();
+
+        HNombre = (TextView) findViewById(R.id.namelabel);
+        HCorreo = (TextView)findViewById(R.id.usernamelabel);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navView = (NavigationView) findViewById(R.id.nav_view);
@@ -107,7 +115,18 @@ public class ProfileActivity extends AppCompatActivity {
         final ActionBar ab = getSupportActionBar();
         ab.setHomeAsUpIndicator(R.drawable.ic_menu);
         ab.setDisplayHomeAsUpEnabled(true);
-        ab.setTitle(R.string.perfil);
+
+        navView = (NavigationView) findViewById(R.id.nav_view);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        //Animacion para el boton de MENU
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawerLayout.setDrawerListener(toggle);
+        toggle.syncState();
+        ////////////////////
+
+
 
         if (navView != null) {
             setupDrawerContent(navView);
@@ -222,18 +241,20 @@ public class ProfileActivity extends AppCompatActivity {
             Faculdad = c.getString(c.getColumnIndex(ContracEstudiantes.Estudiantes.COLUMN_FACULDAD_TITLE));
             Carrera = c.getString(c.getColumnIndex(ContracEstudiantes.Estudiantes.COLUMN_CARRERA_TITLE));
             Email = c.getString(c.getColumnIndex(ContracEstudiantes.Estudiantes.COLUMN_CORREO));
+
         }
 
-        editor_fac.putString(EDITOR_FAC,Faculdad);
+        editor_fac.putString(EDITOR_FAC, Faculdad);
         editor_fac.commit();
 
-        Log.i(TAG, "ActualizarDatos: Commit" +Faculdad);
+        Log.i(TAG, "ActualizarDatos: Commit" + Faculdad);
 
         TvNombre.setText(Nombre);
         TvTIP.setText("TIP # "+Celula);
         TvFacultad.setText(Faculdad);
         TvCarrera.setText(Carrera);
         TvEmail.setText(Email);
+
 
     }
     @Override
@@ -256,6 +277,23 @@ public class ProfileActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+   public void Actualizacion_Usuario_Header(String Nombre, String Email) {
+
+       TextView HNombre = (TextView) findViewById(R.id.namelabel);
+       TextView HCorreo = (TextView) findViewById(R.id.usernamelabel);
+
+       HCorreo.setText(Email);
+       HNombre.setText(Nombre);
+   }
+
+
+    public void AnimacionMenu(){
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawerLayout.setDrawerListener(toggle);
+        toggle.syncState();
     }
 
     @Override
