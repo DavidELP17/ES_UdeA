@@ -7,7 +7,7 @@
     <color name="colorAccent">#81c784</color>
     <color name="colorFragment">#6ed5dfd4</color>
 
-    <color name="colorCard">#cceca6</color>
+    <color name="colorCard">#c6ffffff</color>
     <color name="progressBar">#00bcd4</color>
     <color name="navigationBarColor">#000000</color>
 
@@ -15,4 +15,8 @@
     <color name="grid_state_focused">#80000000</color>
 
     <color name="gray">#a5d6a7</color>
+    <color name="cardEvent">#d38ec23a</color>
+    <color name="Black">#000000</color>
+    <color name="Blanco">#FFFFFF</color>
+    <color name="GaleryItem">#caaad837</color>
 </resources>

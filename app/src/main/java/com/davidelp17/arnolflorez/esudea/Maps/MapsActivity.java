@@ -1,11 +1,18 @@
 package com.davidelp17.arnolflorez.esudea.Maps;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -13,22 +20,34 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import com.davidelp17.arnolflorez.esudea.Events.EventsActivity;
 import com.davidelp17.arnolflorez.esudea.Groups.GroupsActivityRaw;
 import com.davidelp17.arnolflorez.esudea.Information.InformationActivity;
 import com.davidelp17.arnolflorez.esudea.R;
 import com.github.nitrico.mapviewpager.MapViewPager;
+import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CircleOptions;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapsActivity extends AppCompatActivity implements MapViewPager.Callback
+public class MapsActivity extends AppCompatActivity implements MapViewPager.Callback, LocationListener
 {
     private ViewPager viewPager;
     private MapViewPager mvp;
 
+    private LocationManager locManager;
+    public Location loc;
+
+
     private NavigationView navView;
     private DrawerLayout mDrawerLayout;
+    private String TAG="Mapas";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
@@ -68,6 +87,9 @@ public class MapsActivity extends AppCompatActivity implements MapViewPager.Call
         mDrawerLayout.setDrawerListener(toggle);
         toggle.syncState();
         ////////////////////
+
+        //Comenzamos el servicio de localización obteniendo la referencia de LOCATION_SERVICE y la guardamos en locManege
+        locManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
 
         if (navView != null)
@@ -114,6 +136,7 @@ public class MapsActivity extends AppCompatActivity implements MapViewPager.Call
                                 break;
                             case R.id.nav_mapas:
                                 Snackbar.make(navView, "Ya Estás en Mapas", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                                comenzarLocalizacion(navView);
                                 break;
                             case R.id.nav_galeria:
                                 Intent PreGalleryActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Gallery.PreGallery.PreGalleryActivity.class);
@@ -190,6 +213,7 @@ public class MapsActivity extends AppCompatActivity implements MapViewPager.Call
                 Utils.dp(this, 40),
                 Utils.getNavigationBarWidth(this),
                 viewPager.getHeight() + Utils.getNavigationBarHeight(this));
+
     }
 
     @Override
@@ -200,5 +224,84 @@ public class MapsActivity extends AppCompatActivity implements MapViewPager.Call
         finish();
 
         super.onBackPressed();
+    }
+
+    public void ObtenerPosicion(double Latitud ,double Longitud){
+
+        GoogleMap Mapa= mvp.getMap();
+        CircleOptions marcador = null;
+        marcador.center(new LatLng(Latitud,Longitud));
+        Mapa.addCircle(marcador);
+
+    }
+
+    public boolean comprobarGps(){
+        //Comprobar si el GPS esta Encendido
+        if(!locManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+
+            Toast.makeText(getApplicationContext(), "Activar GPS", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+            startActivity(intent);
+        }
+
+        return locManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+    }
+
+
+    public void comenzarLocalizacion(View view) {
+
+
+        //Comprobamos si el GPS esta Encendido
+
+        if (locManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+
+            //Android Studio por defecto añade esta linea de comprobacion extra
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
+            //Obtenemos la ultima localizacion conocida por medio del GPS
+            loc = locManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+            //Pedimos las actuaclizaciones de posicion mediante GPS cada 3s o 1metro
+            locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 3000, 0, this);
+
+            ObtenerPosicion(loc.getLatitude(),loc.getLongitude());
+
+
+            Log.i(TAG, " Actualizacion ");
+
+        } else {
+            //Mostrasmos un Aviso de que el GPS no esta Hablilitado
+            Snackbar.make(view, "Activar GPS", Snackbar.LENGTH_LONG).show();
+        }
+
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+
+        ObtenerPosicion(location.getLatitude(),location.getLongitude());
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
     }
 }

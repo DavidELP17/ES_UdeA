@@ -10,7 +10,7 @@
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
         android:layout_marginLeft="5dp"
@@ -18,51 +18,64 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@color/colorCard">
+            android:background="@color/colorCard"
+            android:elevation="10dp">
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/universidad_1"/>
 
             <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:textSize="20sp"
-            android:text="@string/element_text"/>
-
-            <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textSize="15sp"
-                android:text=" "/>
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="@dimen/card_margin_leftright"
+                android:layout_gravity="left"
+                android:textSize="@dimen/TituloEvent"
+                android:textColor="@color/colorPrimary"
+                android:text="@string/element_text"
+                android:typeface="normal"
+                android:textStyle="bold"
+                />
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/card_margin_leftright"
+                android:layout_marginTop="2dp"
+                android:background="@color/colorPrimary"/>
 
             <TextView
                 android:id="@+id/textView_lugar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="@dimen/card_margin_leftright"
+                android:layout_gravity="left"
                 android:text="@string/Lugar"/>
+
 
             <TextView
                 android:id="@+id/textView_fecha"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/card_margin_leftright"
+                android:layout_gravity="left"
+                android:textColor="@color/Black"
                 android:text="@string/Fecha"/>
 
             <TextView
                 android:id="@+id/textView_hora"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/card_margin_leftright"
+                android:layout_gravity="left"
                 android:text="@string/Hora"
                 android:layout_marginBottom="10dp"/>
         </LinearLayout>
