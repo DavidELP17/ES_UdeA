@@ -78,6 +78,8 @@ public class EventsDetailActivity extends AppCompatActivity {
             collapsingToolbar.setTitle(UniName);
         }
 
+        programastitulo.setText(R.string.programastitulofull);
+
         loadBackdrop();
 
         navView = (NavigationView) findViewById(R.id.nav_view);
@@ -177,9 +179,9 @@ public class EventsDetailActivity extends AppCompatActivity {
                 Intent SharingIntent = new Intent(Intent.ACTION_SEND);
                 SharingIntent.setType("text/plain");
                 String shareBody = UniName + " - " + informaciontitulo.getText().toString() + ": " + informacion.getText().toString();
-                SharingIntent.putExtra(Intent.EXTRA_SUBJECT,"EsUdeA Información " + UniName);
-                SharingIntent.putExtra(Intent.EXTRA_TEXT,shareBody);
-                startActivity(Intent.createChooser(SharingIntent,"Compartir contenido vía"));
+                SharingIntent.putExtra(Intent.EXTRA_SUBJECT, "EsUdeA Información " + UniName);
+                SharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
+                startActivity(Intent.createChooser(SharingIntent, "Compartir contenido vía"));
             }
         });
     }
@@ -209,27 +211,59 @@ public class EventsDetailActivity extends AppCompatActivity {
     private void loadBackdrop() {
         final ImageView imageView = (ImageView) findViewById(R.id.backdrop);
 
-        if (Objects.equals(unirecibido, "Facultad de Artes")) {
+        if (Objects.equals(unirecibido, "ACTUALICEMONOS EN MICROBIOLOGÍA EN INDUSTRIA DE ALIMENTOS")) {
             if (imageView != null) {
-                Glide.with(this).load(UniversityData.getRandomUniDrawable(0)).centerCrop().into(imageView);
-            }
-            if (informaciontitulo != null) {
-                informaciontitulo.setText(R.string.informaciontituloartes);
+                Glide.with(this).load(UniversityData.getRandomEveDrawable(0)).centerCrop().into(imageView);
             }
             if (informacion != null) {
-                informacion.setText(R.string.informacionartes);
-            }
-            if (programastitulo != null) {
-                programastitulo.setText(R.string.programastituloartes);
+                informacion.setText(R.string.informacionmicrob);
             }
             if (programas != null) {
-                programas.setText(R.string.programasartes);
+                programas.setText(R.string.programasmicrob);
             }
-            if (oficinastitulo != null) {
-                oficinastitulo.setText(R.string.oficinastituloartes);
+        }
+        if (Objects.equals(unirecibido, "CONGRESO MUNDIAL SOBRE CANCER DE MAMA")) {
+            if (imageView != null) {
+                Glide.with(this).load(UniversityData.getRandomEveDrawable(1)).centerCrop().into(imageView);
             }
-            if (oficinas != null) {
-                oficinas.setText(R.string.oficinasartes);
+            if (informacion != null) {
+                informacion.setText(R.string.informacionmama);
+            }
+            if (programas != null) {
+                programas.setText(R.string.programasmama);
+            }
+        }
+        if (Objects.equals(unirecibido, "CONGRESO UNIVERSITARIO SOBRE REDES SOCIALES")) {
+            if (imageView != null) {
+                Glide.with(this).load(UniversityData.getRandomEveDrawable(2)).centerCrop().into(imageView);
+            }
+            if (informacion != null) {
+                informacion.setText(R.string.informacionred);
+            }
+            if (programas != null) {
+                programas.setText(R.string.programasred);
+            }
+        }
+        if (Objects.equals(unirecibido, "CONVERSATORIO BECAS FULLBRIGHT")) {
+            if (imageView != null) {
+                Glide.with(this).load(UniversityData.getRandomEveDrawable(3)).centerCrop().into(imageView);
+            }
+            if (informacion != null) {
+                informacion.setText(R.string.informacionevent3);
+            }
+            if (programas != null) {
+                programas.setText(R.string.programasevent3);
+            }
+        }
+        if (Objects.equals(unirecibido, "FESTIVAL DE DANZA")) {
+            if (imageView != null) {
+                Glide.with(this).load(UniversityData.getRandomEveDrawable(4)).centerCrop().into(imageView);
+            }
+            if (informacion != null) {
+                informacion.setText(R.string.informaciondanza);
+            }
+            if (programas != null) {
+                programas.setText(R.string.programasdanza);
             }
         }
     }

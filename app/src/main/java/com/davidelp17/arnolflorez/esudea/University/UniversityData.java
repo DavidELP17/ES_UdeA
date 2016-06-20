@@ -133,6 +133,46 @@ public class UniversityData
         }
     }
 
+    public static int getRandomEveDrawable(int i)
+    {
+        switch (i)
+        {
+            case 0:
+                return R.drawable.unidades17;
+            case 1:
+                return R.drawable.unidades12;
+            case 2:
+                return R.drawable.fotos27;
+            case 3:
+                return R.drawable.universidad_3;
+            case 4:
+                return R.drawable.fotos38;
+            default:
+                return R.drawable.universidad_1;
+        }
+    }
+
+    public static int getRandomMapaDrawable(int i)
+    {
+        switch (i)
+        {
+            case 0:
+                return R.drawable.mapa1;
+            case 1:
+                return R.drawable.mapa2;
+            case 2:
+                return R.drawable.universidad_1;
+            case 3:
+                return R.drawable.mapa4;
+            case 4:
+                return R.drawable.mapa5;
+            case 5:
+                return R.drawable.mapa6;
+            default:
+                return R.drawable.universidad_1;
+        }
+    }
+
     public static final String[] sUniStrings =
     {
             "Facultad de Artes",

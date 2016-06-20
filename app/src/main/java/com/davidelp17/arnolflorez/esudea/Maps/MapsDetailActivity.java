@@ -40,10 +40,6 @@ public class MapsDetailActivity extends AppCompatActivity {
 
     TextView informaciontitulo;
     TextView informacion;
-    TextView programastitulo;
-    TextView programas;
-    TextView oficinastitulo;
-    TextView oficinas;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -59,10 +55,6 @@ public class MapsDetailActivity extends AppCompatActivity {
 
         informaciontitulo = (TextView) findViewById(R.id.informaciontitulo);
         informacion = (TextView) findViewById(R.id.informacion);
-        programastitulo = (TextView) findViewById(R.id.programastitulo);
-        programas = (TextView) findViewById(R.id.programas);
-        oficinastitulo = (TextView) findViewById(R.id.oficinastitulo);
-        oficinas = (TextView) findViewById(R.id.oficinas);
 
         Intent intent = getIntent();
         final String UniName = intent.getStringExtra(EXTRA_NAME);
@@ -216,27 +208,52 @@ public class MapsDetailActivity extends AppCompatActivity {
     private void loadBackdrop() {
         final ImageView imageView = (ImageView) findViewById(R.id.backdrop);
 
-        if (Objects.equals(unirecibido, "Facultad de Artes")) {
+        if (Objects.equals(unirecibido, "  Robledo")) {
             if (imageView != null) {
-                Glide.with(this).load(UniversityData.getRandomUniDrawable(0)).centerCrop().into(imageView);
-            }
-            if (informaciontitulo != null) {
-                informaciontitulo.setText(R.string.informaciontituloartes);
+                Glide.with(this).load(UniversityData.getRandomMapaDrawable(0)).centerCrop().into(imageView);
             }
             if (informacion != null) {
-                informacion.setText(R.string.informacionartes);
+                informacion.setText(R.string.informacionrobledo);
             }
-            if (programastitulo != null) {
-                programastitulo.setText(R.string.programastituloartes);
+        }
+        if (Objects.equals(unirecibido, "  Posgrados")) {
+            if (imageView != null) {
+                Glide.with(this).load(UniversityData.getRandomMapaDrawable(1)).centerCrop().into(imageView);
             }
-            if (programas != null) {
-                programas.setText(R.string.programasartes);
+            if (informacion != null) {
+                informacion.setText(R.string.informacionposgrados);
             }
-            if (oficinastitulo != null) {
-                oficinastitulo.setText(R.string.oficinastituloartes);
+        }
+        if (Objects.equals(unirecibido, "  Ciudadela")) {
+            if (imageView != null) {
+                Glide.with(this).load(UniversityData.getRandomMapaDrawable(2)).centerCrop().into(imageView);
             }
-            if (oficinas != null) {
-                oficinas.setText(R.string.oficinasartes);
+            if (informacion != null) {
+                informacion.setText(R.string.lorem_ipsum);
+            }
+        }
+        if (Objects.equals(unirecibido, "  Escuela Idiomas")) {
+            if (imageView != null) {
+                Glide.with(this).load(UniversityData.getRandomMapaDrawable(3)).centerCrop().into(imageView);
+            }
+            if (informacion != null) {
+                informacion.setText(R.string.informacionidiomasplace);
+            }
+        }
+        if (Objects.equals(unirecibido, "  Medicina")) {
+            if (imageView != null) {
+                Glide.with(this).load(UniversityData.getRandomMapaDrawable(4)).centerCrop().into(imageView);
+            }
+            if (informacion != null) {
+                informacion.setText(R.string.informacionmedicina);
+            }
+        }
+        if (Objects.equals(unirecibido, "  Medellin")) {
+            if (imageView != null) {
+                Glide.with(this).load(UniversityData.getRandomMapaDrawable(5)).centerCrop().into(imageView);
+            }
+            if (informacion != null) {
+                informacion.setText(R.string.informacionmedellin);
             }
         }
     }
