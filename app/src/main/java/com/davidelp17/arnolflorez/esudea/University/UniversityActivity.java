@@ -22,7 +22,6 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.davidelp17.arnolflorez.esudea.Groups.GroupsActivity;
-import com.davidelp17.arnolflorez.esudea.Groups.GroupsActivityRaw;
 import com.davidelp17.arnolflorez.esudea.Information.InformationActivity;
 import com.davidelp17.arnolflorez.esudea.R;
 
@@ -31,6 +30,7 @@ import java.util.List;
 
 public class UniversityActivity extends AppCompatActivity
 {
+    public static final String TAG = "UniversityActivity";
 
     private NavigationView navView;
     private DrawerLayout mDrawerLayout;
@@ -58,11 +58,6 @@ public class UniversityActivity extends AppCompatActivity
         mDrawerLayout.setDrawerListener(toggle);
         toggle.syncState();
         ////////////////////
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        if (navigationView != null) {
-            setupDrawerContent(navigationView);
-        }
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         if (viewPager != null) {
@@ -116,7 +111,7 @@ public class UniversityActivity extends AppCompatActivity
                                 Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_grupos:
-                                Intent GroupsActivity = new Intent(getApplicationContext(), GroupsActivityRaw.class);
+                                Intent GroupsActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Groups.GroupsActivity.class);
                                 startActivity(GroupsActivity);
                                 finish();
                                 break;
@@ -186,9 +181,9 @@ public class UniversityActivity extends AppCompatActivity
     private void setupViewPager(ViewPager viewPager)
     {
         Adapter adapter = new Adapter(getSupportFragmentManager());
-        adapter.addFragment(new UniversityFragment(), "Facultades");
-        adapter.addFragment(new UniversityFragment(), "Extension");
-        adapter.addFragment(new UniversityFragment(), "Bienestar");
+        adapter.addFragment(new UniversityFragment(), "Unidades");
+        adapter.addFragment(new ConveniosFragment(),  "Internacional");
+        adapter.addFragment(new BienestarFragment(),  "Bienestar");
         viewPager.setAdapter(adapter);
     }
 

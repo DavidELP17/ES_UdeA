@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -31,14 +32,15 @@
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/profile_linearlayout"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/profile_vertical_margin"
         android:paddingBottom="@dimen/profile_vertical_margin"
         android:orientation="vertical"
-        android:gravity="center_vertical"><de.hdodenhof.circleimageview.CircleImageView
+        android:gravity="center_vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/avatar"
         android:layout_marginTop="@dimen/margin_profile"
         android:layout_width="@dimen/list_item_avatar_size"
@@ -50,7 +52,7 @@
             android:id="@+id/namelabelprofile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingTop="20dp"
             android:gravity="center_horizontal"
             android:text="@string/namelabel"
             android:textSize="@dimen/namesize"
@@ -89,33 +91,5 @@
             android:gravity="center_horizontal"
             android:paddingTop="@dimen/activity_vertical_margin"
             android:textStyle="bold|italic" />
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/misDatos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/mis_datos"
-                android:imeActionId="@+id/login"
-                android:imeActionLabel="@string/action_changepassword_short"
-                android:imeOptions="actionUnspecified"
-                android:inputType="text"
-                android:maxLines="1"
-                android:singleLine="true"
-                />
-        </android.support.design.widget.TextInputLayout>
-
-        <Button
-            style="?android:textAppearanceSmall"
-            android:id="@+id/boton_change"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="@string/action_changepassword_in"
-            android:textStyle="bold"
-            android:visibility="gone"
-            />
-    </LinearLayout></LinearLayout>
+    </LinearLayout>
+</LinearLayout>

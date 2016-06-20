@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatCallback;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -18,7 +19,6 @@ import com.davidelp17.arnolflorez.esudea.Gallery.PreGallery.Logger.ActivityBase;
 import com.davidelp17.arnolflorez.esudea.Gallery.PreGallery.Logger.Log;
 import com.davidelp17.arnolflorez.esudea.Gallery.PreGallery.Logger.LogWrapper;
 import com.davidelp17.arnolflorez.esudea.Gallery.PreGallery.Logger.MessageOnlyLogFilter;
-import com.davidelp17.arnolflorez.esudea.Groups.GroupsActivityRaw;
 import com.davidelp17.arnolflorez.esudea.Information.InformationActivity;
 import com.davidelp17.arnolflorez.esudea.R;
 
@@ -47,6 +47,13 @@ public class PreGalleryActivity extends ActivityBase implements AppCompatCallbac
         final ActionBar ab = getSupportActionBar();
         ab.setHomeAsUpIndicator(R.drawable.ic_menu);
         ab.setDisplayHomeAsUpEnabled(true);
+
+        //Animacion para el boton de MENU
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawerLayout.setDrawerListener(toggle);
+        toggle.syncState();
+        ////////////////////
 
         if (navView != null) {
             setupDrawerContent(navView);
@@ -88,7 +95,7 @@ public class PreGalleryActivity extends ActivityBase implements AppCompatCallbac
                                 Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_grupos:
-                                Intent GroupsActivity = new Intent(getApplicationContext(), GroupsActivityRaw.class);
+                                Intent GroupsActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Groups.GroupsActivity.class);
                                 startActivity(GroupsActivity);
                                 finish();
                                 break;

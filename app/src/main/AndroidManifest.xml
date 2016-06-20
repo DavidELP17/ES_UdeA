@@ -128,6 +128,11 @@
         </activity>
 
         <activity
+            android:name=".Maps.MapsDetailActivity"
+            android:label="@string/mapa">
+        </activity>
+
+        <activity
             android:name=".Gallery.GalleryActivity"
             android:label="@string/galeria">
         </activity>
@@ -149,6 +154,11 @@
 
         <activity
             android:name=".Events.EventsActivity"
+            android:label="@string/eventos">
+        </activity>
+
+        <activity
+            android:name=".Events.EventsDetailActivity"
             android:label="@string/eventos">
         </activity>
 

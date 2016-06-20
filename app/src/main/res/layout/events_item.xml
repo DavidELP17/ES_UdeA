@@ -24,10 +24,11 @@
             android:elevation="10dp">
 
             <ImageView
+                android:id="@+id/eventhome"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/universidad_1"/>
+                android:background="@drawable/universidad_1"/>
 
             <TextView
                 android:id="@+id/textView"
@@ -36,7 +37,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="@dimen/card_margin_leftright"
                 android:layout_gravity="left"
-                android:textSize="@dimen/TituloEvent"
+                android:textSize="20dp"
                 android:textColor="@color/colorPrimary"
                 android:text="@string/element_text"
                 android:typeface="normal"

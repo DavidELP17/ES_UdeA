@@ -17,7 +17,7 @@ public class EventsFragment extends Fragment
     private static final String TAG = "EventsFragment";
     private static final String KEY_LAYOUT_MANAGER = "layoutManager";
     private static final int SPAN_COUNT = 2;
-    private static final int DATASET_COUNT = 60;
+    private static final int DATASET_COUNT = 5;
 
     private enum LayoutManagerType
     {
@@ -33,7 +33,10 @@ public class EventsFragment extends Fragment
     protected RecyclerView mRecyclerView;
     protected EventsAdapter mAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;
-    protected String[] mDataset;
+    protected String[] mDataGC;
+    protected String[] mDataGH;
+    protected String[] mDataGM;
+    protected String[] mDataGS;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -67,7 +70,7 @@ public class EventsFragment extends Fragment
         }
         setRecyclerViewLayoutManager(mCurrentLayoutManagerType);
 
-        mAdapter = new EventsAdapter(mDataset);
+        mAdapter = new EventsAdapter(mDataGC,mDataGH, mDataGM, mDataGS);
         // Set EventsAdapter as the adapter for RecyclerView.
         mRecyclerView.setAdapter(mAdapter);
         // END_INCLUDE(initializeRecyclerView)
@@ -115,10 +118,47 @@ public class EventsFragment extends Fragment
 
     private void initDataset()
     {
-        mDataset = new String[DATASET_COUNT];
+        mDataGC = new String[DATASET_COUNT];
+        mDataGH = new String[DATASET_COUNT];
+        mDataGM = new String[DATASET_COUNT];
+        mDataGS = new String[DATASET_COUNT];
         for (int i = 0; i < DATASET_COUNT; i++)
         {
-            mDataset[i] = "This is element #" + i;
+            if(i==0)
+            {
+                mDataGC[i] = "ACTUALICEMONOS EN MICROBIOLOGÍA EN INDUSTRIA DE ALIMENTOS";
+                mDataGH[i] = "Hora: 9 a.m.";
+                mDataGM[i] = "Lugar: Escuela de Microbiologia";
+                mDataGS[i] = "Fecha: 20/06/2016";
+            }
+            if(i==1)
+            {
+                mDataGC[i] = "CONGRESO MUNDIAL SOBRE CANCER DE MAMA";
+                mDataGH[i] = "Hora: 11:30 a.m.";
+                mDataGM[i] = "Lugar: Facultad de Medicina";
+                mDataGS[i] = "Fecha: 21/06/2016";
+            }
+            if(i==2)
+            {
+                mDataGC[i] = "CONGRESO UNIVERSITARIO SOBRE REDES SOCIALES";
+                mDataGH[i] = "Hora: 7 a.m.";
+                mDataGM[i] = "Lugar: Teatro Camilo Torres";
+                mDataGS[i] = "Fecha: 05/07/2016";
+            }
+            if(i==3)
+            {
+                mDataGC[i] = "CONVERSATORIO BECAS FULLBRIGHT";
+                mDataGH[i] = "Hora: 3 p.m.";
+                mDataGM[i] = "Lugar: Teatro Facultad de Ingeniería";
+                mDataGS[i] = "Fecha: 20/07/2016";
+            }
+            if(i==4)
+            {
+                mDataGC[i] = "FESTIVAL DE DANZA";
+                mDataGH[i] = "Hora: 12 m.";
+                mDataGM[i] = "Lugar: Coliseo Universitario";
+                mDataGS[i] = "Fecha: 28/07/2016";
+            }
         }
     }
 }

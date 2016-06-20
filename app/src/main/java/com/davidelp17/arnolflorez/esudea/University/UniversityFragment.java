@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.davidelp17.arnolflorez.esudea.Gallery.PreGallery.Logger.Log;
 import com.davidelp17.arnolflorez.esudea.R;
 
 import java.util.ArrayList;
@@ -22,12 +23,16 @@ import java.util.List;
 
 public class UniversityFragment extends Fragment
 {
+    public static final String TAG = "UniversityFragment";
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         RecyclerView rv = (RecyclerView) inflater.inflate(R.layout.university_fragment_recyclerview, container, false);
         setupRecyclerView(rv);
+        Log.i(TAG, "Ready");
+
         return rv;
     }
 

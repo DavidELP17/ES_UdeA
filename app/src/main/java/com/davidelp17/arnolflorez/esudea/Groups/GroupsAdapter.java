@@ -17,7 +17,11 @@ import com.davidelp17.arnolflorez.esudea.R;
 public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.ViewHolder> {
     private static final String TAG = "GroupsAdapter";
 
-    private String[] mDataSet;
+    private String[] mDataGC;
+    private String[] mDataGH;
+    private String[] mDataGM;
+    private String[] mDataGP;
+    private String[] mDataGS;
 
     public BDGrupos helper;
     public SQLiteDatabase dbRead;
@@ -30,11 +34,13 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.ViewHolder
     public SharedPreferences ID_PREF;
     private String ShR_fac;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder
+    {
         private final TextView GC;
         private final TextView GM;
         private final TextView GH;
         private final TextView GP;
+        private final TextView GS;
 
         public ViewHolder(View v) {
             super(v);
@@ -49,15 +55,37 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.ViewHolder
             GH = (TextView) v.findViewById(R.id.groupH);
             GM = (TextView) v.findViewById(R.id.groupM);
             GP = (TextView) v.findViewById(R.id.groupP);
+            GS = (TextView) v.findViewById(R.id.groupS);
         }
 
-        public TextView getTextView() {
+        public TextView getTextViewC()
+        {
             return GC;
+        }
+        public TextView getTextViewH()
+        {
+            return GH;
+        }
+        public TextView getTextViewM()
+        {
+            return GM;
+        }
+        public TextView getTextViewP()
+        {
+            return GP;
+        }
+        public TextView getTextViewS()
+        {
+            return GS;
         }
     }
 
-    public GroupsAdapter(String[] dataSet) {
-        mDataSet = dataSet;
+    public GroupsAdapter(String[] dataGC, String[] dataGH, String[] dataGM, String[] dataGP, String[] dataGS) {
+        mDataGC = dataGC;
+        mDataGH = dataGH;
+        mDataGM = dataGM;
+        mDataGP = dataGP;
+        mDataGS = dataGS;
     }
 
     @Override
@@ -66,16 +94,22 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.ViewHolder
         View v = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.groups_item, viewGroup, false);
 
+
+
         return new ViewHolder(v);
     }
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         Log.d(TAG, "Element " + position + " set.");
 
-        viewHolder.getTextView().setText(mDataSet[position]);
+        viewHolder.getTextViewC().setText(mDataGC[position]);
+        viewHolder.getTextViewH().setText(mDataGH[position]);
+        viewHolder.getTextViewM().setText(mDataGM[position]);
+        viewHolder.getTextViewP().setText(mDataGP[position]);
+        viewHolder.getTextViewS().setText(mDataGS[position]);
     }
     @Override
     public int getItemCount() {
-        return mDataSet.length;
+        return mDataGC.length;
     }
 }

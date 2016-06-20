@@ -1,8 +1,11 @@
 package com.davidelp17.arnolflorez.esudea.Groups;
 
+import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -12,10 +15,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.davidelp17.arnolflorez.esudea.DataBase.BDGrupos;
+import com.davidelp17.arnolflorez.esudea.DataBase.ContracGrupos;
 import com.davidelp17.arnolflorez.esudea.R;
+
+import java.util.Objects;
 
 public class GroupsFragment extends Fragment
 {
@@ -28,12 +33,22 @@ public class GroupsFragment extends Fragment
     public SQLiteDatabase dbRead;
     public Cursor c;
 
-    public TextView GC;
-    public TextView GM;
-    public TextView GH;
-    public TextView GP;
-    private EditText Selector;
+    int veces = 0;
 
+    GroupsActivity mGroupObject = new GroupsActivity();
+    public String GC;
+    public String GM;
+    public String GH;
+    public String GP;
+    public String GS;
+
+    public String[] GCEnviar;
+    public String[] GMEnviar;
+    public String[] GHEnviar;
+    public String[] GPEnviar;
+    public String[] GSEnviar;
+
+    private EditText Selector;
 
     private static final String PREF_ID = "PREF_ID";
     private static final String EDITOR_FAC = "EDITOR_FAC";
@@ -51,14 +66,35 @@ public class GroupsFragment extends Fragment
     protected RecyclerView mRecyclerView;
     protected GroupsAdapter mAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;
-    protected String[] mDataset;
+    protected String[] mDataGC;
+    protected String[] mDataGH;
+    protected String[] mDataGM;
+    protected String[] mDataGP;
+    protected String[] mDataGS;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
 
-        initDataset();
+        ID_PREF = this.getActivity().getSharedPreferences(PREF_ID, Context.MODE_PRIVATE);
+        android.util.Log.i(TAG, "onCreate: Preference " + ID_PREF);
+
+        ShR_fac = ID_PREF.getString(EDITOR_FAC, "null");
+        android.util.Log.i(TAG, "onCreate: Preference " + ShR_fac);
+
+        helper = new BDGrupos(getActivity());
+        dbRead = helper.getWritableDatabase();
+
+        if(!ShR_fac.equals("null"))
+        {
+            GenerarGruposv();
+            initDataset();
+        }
+        else
+        {
+            veces=0;
+        }
     }
 
     @Override
@@ -80,7 +116,7 @@ public class GroupsFragment extends Fragment
         }
         setRecyclerViewLayoutManager(mCurrentLayoutManagerType);
 
-        mAdapter = new GroupsAdapter(mDataset);
+        mAdapter = new GroupsAdapter(mDataGC,mDataGH, mDataGM, mDataGP, mDataGS);
         mRecyclerView.setAdapter(mAdapter);
 
         return rootView;
@@ -122,12 +158,101 @@ public class GroupsFragment extends Fragment
         super.onSaveInstanceState(savedInstanceState);
     }
 
+    public void GenerarGruposv()
+    {
+        GCEnviar = new String[60];
+        GMEnviar = new String[60];
+        GHEnviar = new String[60];
+        GPEnviar = new String[60];
+        GSEnviar = new String[60];
+
+        String Busqueda = null;
+
+        for (int i = 0; i < 60; i++)
+        {
+            GCEnviar[i] = "Inicializar" + i;
+            GMEnviar[i] = "Inicializar" + i;
+            GHEnviar[i] = "Inicializar" + i;
+            GPEnviar[i] = "Inicializar" + i;
+            GSEnviar[i] = "Inicializar" + i;
+        }
+
+        if(!ShR_fac.equals("null"))
+        {
+            Busqueda=ShR_fac;
+        }
+
+        String where = ContracGrupos.COLUMN_FACULTAD + "=?";
+        String[] retur = new String[]{
+                ContracGrupos.COLUMN_CODIGO,
+                ContracGrupos.COLUMN_MATERIA,
+                ContracGrupos.COLUMN_HORARIO,
+                ContracGrupos.COLUMN_PROFESOR,
+                ContracGrupos.COLUMN_SALON
+        };
+
+        c = dbRead.query(ContracGrupos.GRUPO_TABLE_NAME, retur, where, new String[]{Busqueda}, null, null, null);
+        //c= dbRead.rawQuery("select nombre,contraseña  from Estudiantes where nombre='ju'", null);
+
+        veces=0;
+        while(c.moveToNext())
+        {
+            GC = c.getString(c.getColumnIndex(ContracGrupos.COLUMN_CODIGO));
+            GM = c.getString(c.getColumnIndex(ContracGrupos.COLUMN_MATERIA));
+            GH = c.getString(c.getColumnIndex(ContracGrupos.COLUMN_HORARIO));
+            GP = c.getString(c.getColumnIndex(ContracGrupos.COLUMN_PROFESOR));
+            GS = c.getString(c.getColumnIndex(ContracGrupos.COLUMN_SALON));
+
+            GCEnviar[veces] = GC;
+            GMEnviar[veces] = GM;
+            GHEnviar[veces] = GH;
+            GPEnviar[veces] = GP;
+            GSEnviar[veces] = GS;
+            veces++;
+        }
+        if(!c.moveToNext())
+        {
+            GC = "STOP";
+            GM = "STOP";
+            GH = "STOP";
+            GP = "STOP";
+            GS = "STOP";
+
+            GCEnviar[veces] = GC;
+            GMEnviar[veces] = GM;
+            GHEnviar[veces] = GH;
+            GPEnviar[veces] = GP;
+            GSEnviar[veces] = GS;
+
+            c.close();
+
+            android.util.Log.i(TAG, "Veces    " + veces);
+        }
+        for (int i = 0; i < 7; i++)
+        {
+            //android.util.Log.i(TAG, "OOOOOOOOOO     " + GCEnviar[i] + "     " + i);
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.KITKAT)
     private void initDataset()
     {
-        mDataset = new String[DATASET_COUNT];
+        mDataGC = new String[veces];
+        mDataGH = new String[veces];
+        mDataGM = new String[veces];
+        mDataGP = new String[veces];
+        mDataGS = new String[veces];
         for (int i = 0; i < DATASET_COUNT; i++)
         {
-            mDataset[i] = "Codigo de Curso #" + i;
+            if(Objects.equals(GCEnviar[i], "STOP"))
+            {
+                break;
+            }
+            mDataGC[i] = "Código: " + GCEnviar[i];
+            mDataGH[i] = "Horario: " + GHEnviar[i];
+            mDataGM[i] = "Curso: " + GMEnviar[i];
+            mDataGP[i] = "Profesor: " + GPEnviar[i];
+            mDataGS[i] = "Aula: " + GSEnviar[i];
         }
     }
 }

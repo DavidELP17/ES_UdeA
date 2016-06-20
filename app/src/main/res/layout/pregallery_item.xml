@@ -13,6 +13,12 @@
         android:layout_height="180dp"
         android:orientation="vertical"
         android:background="@drawable/universidad_4">
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/side_nav">
+        </LinearLayout>
 
         <TextView
             android:id="@+id/textView"
@@ -20,7 +26,6 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:gravity="center"
-            android:background="@color/GaleryItem"
             android:textColor="@color/Blanco"
             android:text="@string/element_text"
             android:layout_alignParentBottom="true"

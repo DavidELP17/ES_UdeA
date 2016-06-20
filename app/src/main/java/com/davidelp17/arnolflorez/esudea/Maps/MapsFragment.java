@@ -1,5 +1,6 @@
 package com.davidelp17.arnolflorez.esudea.Maps;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ScrollView;
 
 import com.davidelp17.arnolflorez.esudea.R;
+import com.davidelp17.arnolflorez.esudea.University.UniversityDetailActivity;
 
 public class MapsFragment extends Fragment
 {
@@ -66,7 +68,9 @@ public class MapsFragment extends Fragment
             @Override
             public void onClick(View v)
             {
-
+                Intent MapsActivity = new Intent(v.getContext(), com.davidelp17.arnolflorez.esudea.Maps.MapsDetailActivity.class);
+                MapsActivity.putExtra(UniversityDetailActivity.EXTRA_NAME,MapsAdapter.PAGE_TITLES[index]);
+                v.getContext().startActivity(MapsActivity);
             }
         });
     }

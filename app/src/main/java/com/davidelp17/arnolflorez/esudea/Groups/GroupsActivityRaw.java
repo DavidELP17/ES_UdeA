@@ -16,7 +16,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.davidelp17.arnolflorez.esudea.DataBase.BDGrupos;
@@ -40,8 +39,7 @@ public class GroupsActivityRaw extends AppCompatActivity {
     public TextView GM;
     public TextView GH;
     public TextView GP;
-    private EditText Selector;
-
+    private TextView Selector;
 
     private static final String PREF_ID = "PREF_ID";
     private static final String EDITOR_FAC = "EDITOR_FAC";
@@ -63,7 +61,7 @@ public class GroupsActivityRaw extends AppCompatActivity {
         helper = new BDGrupos(this);
         dbRead = helper.getWritableDatabase();
 
-        Selector = (EditText)findViewById(R.id.group_facultad);
+        Selector = (TextView)findViewById(R.id.group_facultad);
         GH=(TextView)findViewById(R.id.groupH);
         GC=(TextView)findViewById(R.id.groupC);
         GM=(TextView)findViewById(R.id.groupM);
@@ -210,6 +208,7 @@ public class GroupsActivityRaw extends AppCompatActivity {
             GM.append("\n"+ c.getString(c.getColumnIndex(ContracGrupos.COLUMN_MATERIA)));
             GH.append("\n"+ c.getString(c.getColumnIndex(ContracGrupos.COLUMN_HORARIO)));
             GP.append("\n"+ c.getString(c.getColumnIndex(ContracGrupos.COLUMN_PROFESOR)));
+            Log.i(TAG, "Yep");
         }
     }
 

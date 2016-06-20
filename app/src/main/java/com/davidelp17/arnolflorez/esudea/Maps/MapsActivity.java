@@ -26,7 +26,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.davidelp17.arnolflorez.esudea.Events.EventsActivity;
-import com.davidelp17.arnolflorez.esudea.Groups.GroupsActivityRaw;
 import com.davidelp17.arnolflorez.esudea.Information.InformationActivity;
 import com.davidelp17.arnolflorez.esudea.R;
 import com.github.nitrico.mapviewpager.MapViewPager;
@@ -34,7 +33,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends AppCompatActivity implements MapViewPager.Callback, LocationListener
 {
@@ -130,13 +128,12 @@ public class MapsActivity extends AppCompatActivity implements MapViewPager.Call
                                 Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_grupos:
-                                Intent GroupsActivity = new Intent(getApplicationContext(), GroupsActivityRaw.class);
+                                Intent GroupsActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Groups.GroupsActivity.class);
                                 startActivity(GroupsActivity);
                                 finish();
                                 break;
                             case R.id.nav_mapas:
                                 Snackbar.make(navView, "Ya Estás en Mapas", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-                                comenzarLocalizacion(navView);
                                 break;
                             case R.id.nav_galeria:
                                 Intent PreGalleryActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Gallery.PreGallery.PreGalleryActivity.class);

@@ -7,7 +7,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.RingtoneManager;
@@ -26,7 +25,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.davidelp17.arnolflorez.esudea.Events.EventsActivity;
-import com.davidelp17.arnolflorez.esudea.Groups.GroupsActivityRaw;
 import com.davidelp17.arnolflorez.esudea.Home.Logger.ActivityBase;
 import com.davidelp17.arnolflorez.esudea.Home.Logger.Log;
 import com.davidelp17.arnolflorez.esudea.Home.Logger.LogWrapper;
@@ -114,7 +112,7 @@ public class HomeActivity extends ActivityBase implements AppCompatCallback
                                 break;
                             case R.id.nav_grupos:
                                 CrearNotificacion(16);
-                                Intent GroupsActivity = new Intent(getApplicationContext(), GroupsActivityRaw.class);
+                                Intent GroupsActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Groups.GroupsActivity.class);
                                 startActivity(GroupsActivity);
                                 finish();
                                 break;
@@ -249,7 +247,7 @@ public class HomeActivity extends ActivityBase implements AppCompatCallback
         Uri defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
         builder
-                .setSmallIcon(android.R.drawable.stat_sys_warning)
+                .setSmallIcon(R.mipmap.ic_launcher)
                 .setLargeIcon((((BitmapDrawable) getResources()
                         .getDrawable(R.mipmap.ic_launcher)).getBitmap()))
                 .setTicker("Alerta EsUdeA!")
@@ -268,11 +266,5 @@ public class HomeActivity extends ActivityBase implements AppCompatCallback
                 .setBigContentTitle("Orden de Evacuacion")
                 .setSummaryText("Más Informacion")
                 .build();
-
     }
-
-
-
-
-
 }

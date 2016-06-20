@@ -32,7 +32,8 @@
             android:title="@string/grupos"/>
         <item
             android:id="@+id/nav_sedes"
-            android:title="Pruebas"/>
+            android:title="Pruebas"
+            android:visible="false"/>
         <item
             android:id="@+id/nav_mapas"
             android:icon="@drawable/ic_maps"

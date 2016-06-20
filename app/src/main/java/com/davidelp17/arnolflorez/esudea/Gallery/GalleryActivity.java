@@ -232,7 +232,7 @@ public class GalleryActivity extends AppCompatActivity
                                 Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_grupos:
-                                Intent GroupsActivity = new Intent(getApplicationContext(), GroupsActivityRaw.class);
+                                Intent GroupsActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Groups.GroupsActivity.class);
                                 startActivity(GroupsActivity);
                                 finish();
                                 break;

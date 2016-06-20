@@ -1,6 +1,5 @@
 package com.davidelp17.arnolflorez.esudea.Profile;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -9,22 +8,20 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.davidelp17.arnolflorez.esudea.DataBase.BDEstudiantes;
 import com.davidelp17.arnolflorez.esudea.DataBase.ContracEstudiantes;
 import com.davidelp17.arnolflorez.esudea.Events.EventsActivity;
-import com.davidelp17.arnolflorez.esudea.Groups.GroupsActivityRaw;
 import com.davidelp17.arnolflorez.esudea.Information.InformationActivity;
 import com.davidelp17.arnolflorez.esudea.Login.LoginActivity;
 import com.davidelp17.arnolflorez.esudea.R;
@@ -50,7 +47,6 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView TvFacultad;
     private TextView TvCarrera;
     private TextView TvEmail;
-    private EditText EdMis_Datos;
     private TextView HNombre;
     private TextView HCorreo;
     private Toolbar toolbar;
@@ -69,8 +65,9 @@ public class ProfileActivity extends AppCompatActivity {
 
         editor_fac=ID_PREF.edit();
 
-        HNombre = (TextView) findViewById(R.id.namelabel);
-        HCorreo = (TextView)findViewById(R.id.usernamelabel);
+
+        //HNombre = (TextView) findViewById(R.id.namelabel);
+        //HCorreo = (TextView)findViewById(R.id.usernamelabel);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navView = (NavigationView) findViewById(R.id.nav_view);
@@ -78,7 +75,6 @@ public class ProfileActivity extends AppCompatActivity {
         helper = new BDEstudiantes(this);
         dbRead = helper.getReadableDatabase();
 
-        EdMis_Datos = (EditText) findViewById(R.id.misDatos);
         TvNombre = (TextView) findViewById(R.id.namelabelprofile);
         TvTIP = (TextView) findViewById(R.id.usercclabelprofile);
         TvCarrera = (TextView) findViewById(R.id.carreralabelprofile);
@@ -98,7 +94,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         }else{
 
-            Snackbar.make(mDrawerLayout, "No Hay Datos de Usuario ", Snackbar.LENGTH_LONG).setAction("Ir a Login", new View.OnClickListener() {
+            Snackbar.make(mDrawerLayout, "No Hay Datos de Usuario ", Snackbar.LENGTH_INDEFINITE).setAction("Ir a Login", new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
@@ -163,7 +159,7 @@ public class ProfileActivity extends AppCompatActivity {
                                 Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_grupos:
-                                Intent GroupsActivity = new Intent(getApplicationContext(), GroupsActivityRaw.class);
+                                Intent GroupsActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Groups.GroupsActivity.class);
                                 startActivity(GroupsActivity);
                                 finish();
                                 break;
@@ -281,8 +277,8 @@ public class ProfileActivity extends AppCompatActivity {
 
    public void Actualizacion_Usuario_Header(String Nombre, String Email) {
 
-       TextView HNombre = (TextView) findViewById(R.id.namelabel);
-       TextView HCorreo = (TextView) findViewById(R.id.usernamelabel);
+       //TextView HNombre = (TextView) findViewById(R.id.namelabel);
+       //TextView HCorreo = (TextView) findViewById(R.id.usernamelabel);
 
        HCorreo.setText(Email);
        HNombre.setText(Nombre);

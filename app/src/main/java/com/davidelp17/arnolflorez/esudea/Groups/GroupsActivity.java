@@ -3,8 +3,6 @@ package com.davidelp17.arnolflorez.esudea.Groups;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -17,36 +15,30 @@ import android.support.v7.app.AppCompatCallback;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.davidelp17.arnolflorez.esudea.DataBase.BDGrupos;
 import com.davidelp17.arnolflorez.esudea.Events.EventsActivity;
 import com.davidelp17.arnolflorez.esudea.Groups.Logger.ActivityBase;
 import com.davidelp17.arnolflorez.esudea.Groups.Logger.Log;
 import com.davidelp17.arnolflorez.esudea.Groups.Logger.LogWrapper;
 import com.davidelp17.arnolflorez.esudea.Groups.Logger.MessageOnlyLogFilter;
 import com.davidelp17.arnolflorez.esudea.Information.InformationActivity;
+import com.davidelp17.arnolflorez.esudea.Login.LoginActivity;
 import com.davidelp17.arnolflorez.esudea.R;
 
 public class GroupsActivity extends ActivityBase implements AppCompatCallback
 {
     public static final String TAG = "GroupsActivity";
-
-    public BDGrupos helper;
-    public SQLiteDatabase dbRead;
-    public Cursor c;
-
-    public TextView GC;
-    public TextView GM;
-    public TextView GH;
-    public TextView GP;
-    private EditText Selector;
+    private TextView Selector;
 
     private static final String PREF_ID = "PREF_ID";
+    private static final String EDITOR_ID = "EDITOR_ID";
     private static final String EDITOR_FAC = "EDITOR_FAC";
     public SharedPreferences ID_PREF;
     private String ShR_fac;
+
+    ImageView imagengrupos;
 
     // Whether the Log Fragment is currently shown
     private boolean mLogShown;
@@ -61,32 +53,55 @@ public class GroupsActivity extends ActivityBase implements AppCompatCallback
         setContentView(R.layout.groups_activity_groups);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        imagengrupos = (ImageView) findViewById(R.id.imagengrupos);
+
         ID_PREF = getSharedPreferences(PREF_ID, MODE_PRIVATE);
         android.util.Log.i(TAG, "onCreate: Preference " + ID_PREF);
 
         ShR_fac = ID_PREF.getString(EDITOR_FAC, "null");
         android.util.Log.i(TAG, "onCreate: Preference " + ShR_fac);
 
-        helper = new BDGrupos(this);
-        dbRead = helper.getWritableDatabase();
+        String ShR_id = ID_PREF.getString(EDITOR_ID, "null");
+        android.util.Log.i(TAG, "onCreate: Preference " + ShR_id);
 
-        Selector = (EditText)findViewById(R.id.group_facultad);
-        GH=(TextView)findViewById(R.id.groupH);
-        GC=(TextView)findViewById(R.id.groupC);
-        GM=(TextView)findViewById(R.id.groupM);
-        GP=(TextView)findViewById(R.id.groupP);
+        Selector = (TextView)findViewById(R.id.group_facultad);
 
-        Selector.setText(ShR_fac);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navView = (NavigationView) findViewById(R.id.nav_view);
+
+        if(!ShR_id.equals("null"))
+        {
+            android.util.Log.i(TAG, "onCreate: Preference IF " + ShR_fac);
+            Selector.setText(ShR_fac);
+            imagengrupos.setVisibility(View.GONE);
+            if (savedInstanceState == null)
+            {
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                GroupsFragment fragment = new GroupsFragment();
+                transaction.replace(R.id.sample_content_fragment, fragment);
+                transaction.commit();
+            }
+        }
+        else
+        {
+            imagengrupos.setVisibility(View.VISIBLE);
+            Snackbar.make(Selector, "No Hay Datos de Usuario ", Snackbar.LENGTH_INDEFINITE).setAction("Ir a Login", new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(GroupsActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+               }
+         }).show();
+        }
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         final ActionBar ab = getSupportActionBar();
         ab.setHomeAsUpIndicator(R.drawable.ic_menu);
         ab.setDisplayHomeAsUpEnabled(true);
-
-        navView = (NavigationView) findViewById(R.id.nav_view);
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-
+        
         //Animacion para el boton de MENU
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -96,14 +111,6 @@ public class GroupsActivity extends ActivityBase implements AppCompatCallback
 
         if (navView != null) {
             setupDrawerContent(navView);
-        }
-
-        if (savedInstanceState == null)
-        {
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            GroupsFragment fragment = new GroupsFragment();
-            transaction.replace(R.id.sample_content_fragment, fragment);
-            transaction.commit();
         }
 
         navView.setNavigationItemSelectedListener(
@@ -135,9 +142,7 @@ public class GroupsActivity extends ActivityBase implements AppCompatCallback
                                 Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_grupos:
-                                Intent GroupsActivity = new Intent(getApplicationContext(), GroupsActivityRaw.class);
-                                startActivity(GroupsActivity);
-                                finish();
+                                Snackbar.make(navView, "Ya Estas en Grupos", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_mapas:
                                 Intent MapsActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Maps.MapsActivity.class);
@@ -183,33 +188,6 @@ public class GroupsActivity extends ActivityBase implements AppCompatCallback
                 });
 
         navView.getMenu().getItem(5).setChecked(true);
-    }
-
-    public void GenerarGrupos(View v)
-    {
-        /*String Busqueda=null;
-
-        if(!ShR_fac.equals("null")){
-            Busqueda=ShR_fac;
-        }
-
-        String where = ContracGrupos.COLUMN_FACULTAD + "=?";
-        String[] retur = new String[]{
-                ContracGrupos.COLUMN_CODIGO,
-                ContracGrupos.COLUMN_MATERIA,
-                ContracGrupos.COLUMN_HORARIO,
-                ContracGrupos.COLUMN_PROFESOR
-        };
-
-        c = dbRead.query(ContracGrupos.GRUPO_TABLE_NAME, retur, where, new String[]{Busqueda}, null, null, null);
-        //c= dbRead.rawQuery("select nombre,contraseña  from Estudiantes where nombre='ju'", null);
-        while (c.moveToNext()){
-
-            GC.append("\n"+ c.getString(c.getColumnIndex(ContracGrupos.COLUMN_CODIGO)));
-            GM.append("\n"+ c.getString(c.getColumnIndex(ContracGrupos.COLUMN_MATERIA)));
-            GH.append("\n"+ c.getString(c.getColumnIndex(ContracGrupos.COLUMN_HORARIO)));
-            GP.append("\n"+ c.getString(c.getColumnIndex(ContracGrupos.COLUMN_PROFESOR)));
-        }*/
     }
 
     @Override

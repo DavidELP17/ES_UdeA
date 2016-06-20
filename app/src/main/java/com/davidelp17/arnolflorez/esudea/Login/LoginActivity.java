@@ -6,27 +6,24 @@ import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.davidelp17.arnolflorez.esudea.DataBase.BDEstudiantes;
 import com.davidelp17.arnolflorez.esudea.DataBase.ContracEstudiantes;
 import com.davidelp17.arnolflorez.esudea.Events.EventsActivity;
-import com.davidelp17.arnolflorez.esudea.Groups.GroupsActivityRaw;
 import com.davidelp17.arnolflorez.esudea.Information.InformationActivity;
 import com.davidelp17.arnolflorez.esudea.Profile.ProfileActivity;
 import com.davidelp17.arnolflorez.esudea.R;
@@ -64,20 +61,15 @@ public class LoginActivity extends AppCompatActivity {
         ID_PREF = getSharedPreferences(PREF_ID, MODE_PRIVATE);
         editor_id = ID_PREF.edit();
 
-
         mUsernameView = (EditText) findViewById(R.id.username);
         mPasswordView = (EditText) findViewById(R.id.password);
         mOutLogin = (Button) findViewById(R.id.boton_outlogin);
         mLogin = (Button) findViewById(R.id.boton_login);
         Logo=(ImageView) findViewById(R.id.login_avatar);
 
-
         navView = (NavigationView) findViewById(R.id.nav_view);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-
-
-
-
+        
         if (navView != null)
         {
             setupDrawerContent(navView);
@@ -128,7 +120,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_grupos:
-                                Intent GroupsActivity = new Intent(getApplicationContext(), GroupsActivityRaw.class);
+                                Intent GroupsActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Groups.GroupsActivity.class);
                                 startActivity(GroupsActivity);
                                 finish();
                                 break;
@@ -172,6 +164,71 @@ public class LoginActivity extends AppCompatActivity {
                         return true;
                     }
                 });
+
+        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
+                String ID;
+                String[] args = new String[]{getUsuario()};
+                String[] retur = new String[]{ContracEstudiantes.Estudiantes.COLUMN_CONTRASEÑA_TITLE, ContracEstudiantes.Estudiantes._ID};
+
+                String where = ContracEstudiantes.Estudiantes.COLUMN_USER + "=?";
+
+
+                String password = null;
+                c = dbRead.query(ContracEstudiantes.ESTUDIANTES_TABLE_NAME, retur, where, args, null, null, null);
+                //c= dbRead.rawQuery("select nombre,contraseña  from Estudiantes where nombre='ju'", null);
+                c.moveToFirst();
+
+                if (c != null)
+                {
+                    if (c.getCount() != 0)
+                    {
+
+                        password = c.getString(c.getColumnIndex(ContracEstudiantes.Estudiantes.COLUMN_CONTRASEÑA_TITLE));
+                        ID = c.getString(c.getColumnIndex(ContracEstudiantes.Estudiantes._ID));
+                        //password=c.getString(0);
+                        Log.i(TAG, "OnClicEntrar: Pasaword " + password);
+
+                        if (getContraseña().equals(password))
+                        {
+                            Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
+                            intent.putExtra("ID", ID);
+
+                            editor_id.putString(EDITOR_ID, ID);
+                            editor_id.commit();
+
+                            //Cambiar color LOGO
+                            Logo.setColorFilter(65);
+
+                            startActivity(intent);
+                            finish();
+                            return true;
+                        }
+                        else
+                        {
+                            Snackbar.make(textView, "Contraseña Incorrecta ", Snackbar.LENGTH_LONG).show();
+                            mPasswordView.setText("");
+
+                            editor_id.putString(EDITOR_ID, "null");
+                            editor_id.commit();
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        Snackbar.make(textView, "Usuario Incorrecto ", Snackbar.LENGTH_LONG).show();
+                        mUsernameView.setText("");
+                        mPasswordView.setText("");
+
+                        editor_id.putString(EDITOR_ID, "null");
+                        editor_id.commit();
+                        return false;
+                    }
+                }
+                return false;
+            }
+        });
     }
 
     @Override
@@ -215,9 +272,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    public void OnClicEntrar(View view) {
+    public void OnClicEntrar(View view)
+    {
+        entrar(view);
+    }
 
-
+    public void entrar(View view)
+    {
         String ID;
         String[] args = new String[]{getUsuario()};
         String[] retur = new String[]{ContracEstudiantes.Estudiantes.COLUMN_CONTRASEÑA_TITLE, ContracEstudiantes.Estudiantes._ID};
@@ -269,9 +330,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
         }
-
     }
-
 
     public String ObtenerID(Cursor c) {
         String ID;

@@ -24,7 +24,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RadioButton;
 
 import com.davidelp17.arnolflorez.esudea.R;
 
@@ -45,9 +44,6 @@ public class PreGalleryFragment extends Fragment {
     }
 
     protected LayoutManagerType mCurrentLayoutManagerType;
-
-    protected RadioButton mLinearLayoutRadioButton;
-    protected RadioButton mGridLayoutRadioButton;
 
     protected RecyclerView mRecyclerView;
     protected PreGalleryAdaptador mAdapter;

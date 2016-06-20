@@ -7,8 +7,7 @@
     android:id="@+id/drawer_layout"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context=".SplashScreen.SplashActivity">
+    android:fitsSystemWindows="true">
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -40,42 +39,43 @@
             android:layout_height="5dp">
         </View>
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/group_facultad"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/group_facultad"
-                android:imeActionId="@+id/login"
-                android:imeActionLabel="@string/action_sign_in_short"
-                android:imeOptions="actionUnspecified"
-                android:inputType="text"
-                android:text="Facultad de Ingenieria"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:enabled="false">
-            </EditText>
-        </android.support.design.widget.TextInputLayout>
-
-        <Button
-            style="?android:textAppearanceSmall"
-            android:id="@+id/boton_cargar_grupos"
+        <TextView
+            android:id="@+id/group_facultadtitulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="@string/group_cargar"
-            android:textStyle="bold"
-            android:onClick="GenerarGrupos"
-            />
+            android:hint="@string/group_facultad"
+            android:text="@string/group_facultad"
+            android:gravity="center_horizontal"
+            android:textColor="#006400"
+            android:textSize="12sp"
+            android:maxLines="1"
+            android:singleLine="true">
+        </TextView>
+
+        <TextView
+            android:id="@+id/group_facultad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textColor="#FF424242"
+            android:padding="5dp"
+            android:textSize="18sp"
+            android:singleLine="true">
+        </TextView>
 
         <FrameLayout
             android:id="@+id/sample_content_fragment"
             android:layout_weight="2"
             android:layout_width="match_parent"
-            android:layout_height="0px" />
+            android:layout_height="0px">
+
+            <ImageView
+                android:id="@+id/imagengrupos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/logo_udea"/>
+        </FrameLayout>
     </LinearLayout>
 
     <android.support.design.widget.NavigationView

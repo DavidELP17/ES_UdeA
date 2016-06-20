@@ -18,7 +18,6 @@ import com.davidelp17.arnolflorez.esudea.Events.Logger.ActivityBase;
 import com.davidelp17.arnolflorez.esudea.Events.Logger.Log;
 import com.davidelp17.arnolflorez.esudea.Events.Logger.LogWrapper;
 import com.davidelp17.arnolflorez.esudea.Events.Logger.MessageOnlyLogFilter;
-import com.davidelp17.arnolflorez.esudea.Groups.GroupsActivityRaw;
 import com.davidelp17.arnolflorez.esudea.Information.InformationActivity;
 import com.davidelp17.arnolflorez.esudea.R;
 
@@ -95,7 +94,7 @@ public class EventsActivity extends ActivityBase implements AppCompatCallback
                                 Snackbar.make(navView, "Recurso en Construcción", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
                             case R.id.nav_grupos:
-                                Intent GroupsActivity = new Intent(getApplicationContext(), GroupsActivityRaw.class);
+                                Intent GroupsActivity = new Intent(getApplicationContext(), com.davidelp17.arnolflorez.esudea.Groups.GroupsActivity.class);
                                 startActivity(GroupsActivity);
                                 finish();
                                 break;

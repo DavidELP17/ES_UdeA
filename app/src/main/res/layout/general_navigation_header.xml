@@ -1,39 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="192dp"
     android:background="@drawable/headerbackground"
     android:id="@+id/navheader_linearlayout"
-    android:padding="@dimen/activity_horizontal_margin"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:orientation="vertical"
     android:gravity="bottom">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        tools:ignore="ContentDescription"
-        android:id="@+id/imageuser"
-        android:layout_width="@dimen/list_item_avatar_size_little"
-        android:layout_height="@dimen/list_item_avatar_size_little"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:src="@drawable/andy">
-    </de.hdodenhof.circleimageview.CircleImageView>
-
-    <TextView
-        android:id="@+id/namelabel"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:text="@string/namelabel1"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1">
-    </TextView>
+        android:layout_height="match_parent"
+        android:background="@drawable/side_nav">
 
-    <TextView
-        android:id="@+id/usernamelabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Emaillabel1">
-    </TextView>
-</LinearLayout>
+        <TextView
+            android:id="@+id/namelabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/activity_vertical_margin"
+            android:text="Bienvenido a la Universidad de Antioquia!"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:layout_gravity="bottom"
+            android:textStyle="bold"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+        </TextView>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            tools:ignore="ContentDescription"
+            android:id="@+id/imageuser"
+            android:layout_width="@dimen/list_item_avatar_size_little"
+            android:layout_height="@dimen/list_item_avatar_size_little"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:src="@drawable/andy"
+            android:layout_marginLeft="19dp"
+            android:layout_marginStart="19dp"
+            android:layout_above="@+id/namelabel"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+        </de.hdodenhof.circleimageview.CircleImageView>
+    </RelativeLayout>
+
+</RelativeLayout>
