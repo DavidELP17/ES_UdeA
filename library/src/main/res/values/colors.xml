@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <color name="inbox_fab">#EF2319</color>
+    <color name="inbox_fab_pressed">#EF7359</color>
+</resources>

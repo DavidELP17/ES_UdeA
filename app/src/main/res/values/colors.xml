@@ -19,4 +19,9 @@
     <color name="Black">#000000</color>
     <color name="Blanco">#FFFFFF</color>
     <color name="GaleryItem">#caaad837</color>
+
+    <color name="ticket">#DBAE00</color>
+    <color name="ticket_press">#fBEE20</color>
+    <color name="remainder">#5473FB</color>
+    <color name="remainder_press">#7493FB</color>
 </resources>

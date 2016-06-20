@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.RingtoneManager;
@@ -31,7 +32,13 @@ import com.davidelp17.arnolflorez.esudea.Home.Logger.LogWrapper;
 import com.davidelp17.arnolflorez.esudea.Home.Logger.MessageOnlyLogFilter;
 import com.davidelp17.arnolflorez.esudea.Information.InformationActivity;
 import com.davidelp17.arnolflorez.esudea.R;
+import com.flask.floatingactionmenu.FadingBackgroundView;
+import com.flask.floatingactionmenu.FloatingActionButton;
+import com.flask.floatingactionmenu.FloatingActionMenu;
+import com.flask.floatingactionmenu.OnFloatingActionMenuSelectedListener;
 
+import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 public class HomeActivity extends ActivityBase implements AppCompatCallback
@@ -78,6 +85,25 @@ public class HomeActivity extends ActivityBase implements AppCompatCallback
             transaction.replace(R.id.sample_content_fragment, fragment);
             transaction.commit();
         }
+
+        FadingBackgroundView fadingBackgroundView = (FadingBackgroundView) findViewById(R.id.fading);
+        final FloatingActionMenu floatingActionMenu = (FloatingActionMenu) findViewById(R.id.fam);
+        floatingActionMenu.setFadingBackgroundView(fadingBackgroundView);
+
+        floatingActionMenu.setLabelText(0, "Visita la pagina de Youtube de la UdeA");
+        floatingActionMenu.setLabelText(1, "Visita la pagina de Facebook de la UdeA");
+        floatingActionMenu.setLabelText(2, "Visita la pagina de Twitter de la UdeA");
+        floatingActionMenu.setLabelText(3, "Salir del Menú");
+
+        floatingActionMenu.setBackgroundColor(2, getResources().getColor(R.color.remainder_press), false);
+        floatingActionMenu.setBackgroundColor(3, getResources().getColor(R.color.accent_material_light), false);
+
+        floatingActionMenu.setOnFloatingActionMenuSelectedListener(new OnFloatingActionMenuSelectedListener() {
+            @Override
+            public void onFloatingActionMenuSelected(FloatingActionButton fab) {
+                toast(fab.getLabelText());
+            }
+        });
 
         navView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
@@ -218,7 +244,7 @@ public class HomeActivity extends ActivityBase implements AppCompatCallback
 
         int Rbandera = random.nextInt(20);
 
-        android.util.Log.i(TAG, "CrearNotificacion: "+ Rbandera + "Numero " + Bandera);
+        android.util.Log.i(TAG, "CrearNotificacion: " + Rbandera + "Numero " + Bandera);
 
         // Bandera=Rbandera;
 
@@ -266,5 +292,51 @@ public class HomeActivity extends ActivityBase implements AppCompatCallback
                 .setBigContentTitle("Orden de Evacuacion")
                 .setSummaryText("Más Informacion")
                 .build();
+    }
+
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    private void toast(String msg) {
+        if(Objects.equals(msg, "Visita la pagina de Youtube de la UdeA"))
+        {
+            Uri webpage = Uri.parse("https://www.youtube.com/user/UniversidadAntioquia");
+            Intent webIntent = new Intent(Intent.ACTION_VIEW, webpage);
+            // Verificar si hay aplicaciones disponibles
+            PackageManager packageManager = getPackageManager();
+            List activities = packageManager.queryIntentActivities(webIntent, 0);
+            boolean isIntentSafe = activities.size() > 0;
+
+            // Si hay, entonces ejecutamos la actividad
+            if (isIntentSafe) {
+                startActivity(webIntent);
+            }
+        }
+        if(Objects.equals(msg, "Visita la pagina de Facebook de la UdeA"))
+        {
+            Uri webpage = Uri.parse("https://www.facebook.com/Universidad.de.Antioquia/");
+            Intent webIntent = new Intent(Intent.ACTION_VIEW, webpage);
+            // Verificar si hay aplicaciones disponibles
+            PackageManager packageManager = getPackageManager();
+            List activities = packageManager.queryIntentActivities(webIntent, 0);
+            boolean isIntentSafe = activities.size() > 0;
+
+            // Si hay, entonces ejecutamos la actividad
+            if (isIntentSafe) {
+                startActivity(webIntent);
+            }
+        }
+        if(Objects.equals(msg, "Visita la pagina de Twitter de la UdeA"))
+        {
+            Uri webpage = Uri.parse("https://twitter.com/udea");
+            Intent webIntent = new Intent(Intent.ACTION_VIEW, webpage);
+            // Verificar si hay aplicaciones disponibles
+            PackageManager packageManager = getPackageManager();
+            List activities = packageManager.queryIntentActivities(webIntent, 0);
+            boolean isIntentSafe = activities.size() > 0;
+
+            // Si hay, entonces ejecutamos la actividad
+            if (isIntentSafe) {
+                startActivity(webIntent);
+            }
+        }
     }
 }

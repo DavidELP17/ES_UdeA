@@ -1,42 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:id="@+id/sample_main_layout"
     android:background="@drawable/side_nav_bar">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        android:orientation="vertical"
+        android:layout_height="match_parent">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:layout_scrollFlags="scroll|enterAlways|snap">
-        </android.support.v7.widget.Toolbar>
-    </android.support.design.widget.AppBarLayout>
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-    <ImageView
-        android:id="@+id/content_frame"
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:layout_scrollFlags="scroll|enterAlways|snap">
+            </android.support.v7.widget.Toolbar>
+        </android.support.design.widget.AppBarLayout>
+
+        <ImageView
+            android:id="@+id/content_frame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/udea_portada">
+        </ImageView>
+
+        <FrameLayout
+            android:id="@+id/sample_content_fragment"
+            android:layout_weight="2"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:background="@drawable/side_nav_bar">
+        </FrameLayout>
+    </LinearLayout>
+
+    <com.flask.floatingactionmenu.RevealBackgroundView
+        android:id="@+id/fading"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <com.flask.floatingactionmenu.FloatingActionMenu
+        android:id="@+id/fam"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/udea_portada">
-    </ImageView>
+        android:layout_gravity="bottom|end"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="4dp"
+        fab:fab_labelStyle="@style/fab_labels_style"
+        >
 
-    <FrameLayout
-        android:id="@+id/sample_content_fragment"
-        android:layout_weight="2"
-        android:layout_width="match_parent"
-        android:layout_height="0px"
-        android:background="@drawable/side_nav_bar">
-    </FrameLayout>
-</LinearLayout>
+        <com.flask.floatingactionmenu.FloatingActionButton
+            android:id="@+id/faba"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            fab:fab_labelText="faba"
+            fab:fab_normal_icon="@drawable/ic_add_white_18dp"
+            fab:fab_toggle_icon="@drawable/ic_mode_edit_white_18dp"
+            fab:fab_type="mini"
+            />
+
+        <com.flask.floatingactionmenu.FloatingActionButton
+            android:id="@+id/fabb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            fab:fab_colorNormal="@color/remainder"
+            fab:fab_colorPressed="@color/remainder_press"
+            fab:fab_labelText="faba"
+            fab:fab_normal_icon="@drawable/ic_add_white_18dp"
+            fab:fab_type="mini"
+            />
+
+        <com.flask.floatingactionmenu.FloatingActionButton
+            android:id="@+id/fabc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            fab:fab_colorNormal="@color/ticket"
+            fab:fab_colorPressed="@color/ticket_press"
+            fab:fab_labelText="fabc"
+            fab:fab_normal_icon="@drawable/ic_add_white_18dp"
+            fab:fab_type="mini"
+            />
+
+        <com.flask.floatingactionmenu.FloatingActionToggleButton
+            android:id="@+id/fab_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            fab:fab_labelText="toggle button"
+            fab:fab_normal_icon="@drawable/ic_add_white_24dp"
+            fab:fab_toggle_icon="@android:drawable/ic_menu_close_clear_cancel"
+            />
+    </com.flask.floatingactionmenu.FloatingActionMenu>
+</RelativeLayout>

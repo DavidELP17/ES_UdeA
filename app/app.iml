@@ -163,5 +163,6 @@
     <orderEntry type="library" exported="" name="play-services-panorama-8.4.0" level="project" />
     <orderEntry type="module" module-name="librariesmapviewpager" exported="" />
     <orderEntry type="module" module-name="librariesgallery" exported="" />
+    <orderEntry type="module" module-name="library" exported="" />
   </component>
 </module>
